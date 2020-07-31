@@ -1,0 +1,11 @@
+#auth-container {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+#logo-container {
+  display: flex;
+  height: 100%;
+}
