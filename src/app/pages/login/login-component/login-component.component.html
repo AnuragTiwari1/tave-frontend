@@ -1,1 +1,47 @@
-<p>login-component works!</p>
+<p class="h1 text-primary">Login to your account</p>
+<hr style="height: 0.12rem; width: 5rem;" class="bg-secondary m-0 mb-2" />
+<form class="mt-4" [formGroup]="loginForm">
+  <div class="form-group">
+    <label for="email">Email</label>
+    <div class="input-group input-group-lg mb-3 py-1">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="email">
+          <fa-icon [icon]="filmIcon"></fa-icon>
+        </span>
+      </div>
+      <input
+        type="email"
+        class="form-control"
+        id="email"
+        aria-describedby="email"
+      />
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="password">Password</label>
+
+    <div class="input-group input-group-lg mb-3 py-1">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="name">
+          <fa-icon [icon]="filmIcon"></fa-icon>
+        </span>
+      </div>
+      <input
+        type="password"
+        class="form-control"
+        id="password"
+        aria-describedby="password"
+      />
+    </div>
+  </div>
+
+  <p style="font-weight:200;" class="text-primary text-right">Forgot Password?</p>
+
+  <button
+    type="submit"
+    class="btn btn-primary btn-block rounded-pill py-3 mt-4"
+  >
+    <p class="h5 mb-0 font-weight-bold text-uppercase">Login</p>
+  </button>
+</form>

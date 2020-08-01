@@ -12,7 +12,7 @@ export class LoginComponent implements OnInit {
   SET_PASSWORD = 'setPassword';
 
   constructor() {
-    this.pageName = 'createAccount';
+    this.pageName = 'setPassword';
   }
 
   ngOnInit(): void {}
