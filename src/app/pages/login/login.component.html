@@ -9,24 +9,20 @@
       </div>
     </div>
     <div class="col-md-6 p-4" [ngSwitch]="pageName">
-      <div class="d-flex flex-column h-100">  
+      <div class="d-flex flex-column h-100">
         <div class="container mb-3">
           <div class="row">
             <div class="col-0 col-md-1"></div>
-            <div class="col-12 col-md-10 mt-1 mt-md-5" [ngSwitch]="pageName">
-              <app-create-account
-                *ngSwitchCase="CREATE_ACCOUNT"
-              ></app-create-account>
-              <app-forgot-password *ngSwitchCase="FORGOT_PASSWORD">
-              </app-forgot-password>
-              <app-set-password *ngSwitchCase="SET_PASSWORD"></app-set-password>
-              <app-login-component *ngSwitchDefault></app-login-component>
+            <div class="col-12 col-md-10 mt-1 mt-md-5">
+              <router-outlet></router-outlet>
             </div>
             <div class="col-0 col-md-1"></div>
           </div>
         </div>
         <p class="text-center mb-0 mt-auto">
-          Already have an account?<span class='text-primary'>&nbsp;Login&nbsp;</span>
+          Already have an account?<span class="text-primary"
+            >&nbsp;Login&nbsp;</span
+          >
         </p>
       </div>
     </div>

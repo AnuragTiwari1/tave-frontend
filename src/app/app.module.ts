@@ -25,13 +25,34 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
   imports: [
     BrowserModule,
     RouterModule.forRoot([
+      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       {
         path: 'dashboard',
         component: DashboardComponent,
         canActivate: [AuthGuard],
       },
-      { path: 'login', component: LoginComponent },
-      { path: '', component: LoginComponent },
+      {
+        path: 'login',
+        component: LoginComponent,
+        children: [
+          {
+            path: '',
+            component: LoginComponentComponent,
+          },
+          {
+            path: 'createAccount',
+            component: CreateAccountComponent,
+          },
+          {
+            path: 'forgotPassword',
+            component: ForgotPasswordComponent,
+          },
+          {
+            path: 'setPassword',
+            component: SetPasswordComponent,
+          },
+        ],
+      },
     ]),
     ReactiveFormsModule,
     FontAwesomeModule,
