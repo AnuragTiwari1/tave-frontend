@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
-import { faFilm } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-set-password',
@@ -8,7 +7,6 @@ import { faFilm } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./set-password.component.css'],
 })
 export class SetPasswordComponent implements OnInit {
-  filmIcon = faFilm;
   setPasswordForm = new FormGroup({
     password: new FormControl(''),
     confirmPassword: new FormControl(''),

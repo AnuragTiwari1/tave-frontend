@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
-import { faFilm } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-forgot-password',
@@ -8,7 +7,6 @@ import { faFilm } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./forgot-password.component.css'],
 })
 export class ForgotPasswordComponent implements OnInit {
-  filmIcon = faFilm;
 
   forgotPasswordForm = new FormGroup({
     email: new FormControl(''),
