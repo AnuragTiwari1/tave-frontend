@@ -8,8 +8,12 @@
         <img src="" alt="LOGO HERE" />
       </div>
     </div>
-    <div class="col-md-6 p-0">
-		
+    <div class="col-md-6 p-0" [ngSwitch]="pageName">
+      <app-create-account *ngSwitchCase="CREATE_ACCOUNT"></app-create-account>
+      <app-forgot-password *ngSwitchCase="FORGOT_PASSWORD">
+      </app-forgot-password>
+	  <app-set-password *ngSwitchCase="SET_PASSWORD"></app-set-password>
+      <app-login-component *ngSwitchDefault></app-login-component>
     </div>
   </div>
 </div>
