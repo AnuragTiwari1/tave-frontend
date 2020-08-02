@@ -9,6 +9,7 @@ import { CreateAccountComponent } from './pages/login/create-account/create-acco
 import { ForgotPasswordComponent } from './pages/login/forgot-password/forgot-password.component';
 import { LoginComponentComponent } from './pages/login/login-component/login-component.component';
 import { SetPasswordComponent } from './pages/login/set-password/set-password.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,8 @@ import { SetPasswordComponent } from './pages/login/set-password/set-password.co
         ],
       },
     ]),
+    FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
