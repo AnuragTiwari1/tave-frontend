@@ -10,6 +10,7 @@ import { ForgotPasswordComponent } from './pages/login/forgot-password/forgot-pa
 import { LoginComponentComponent } from './pages/login/login-component/login-component.component';
 import { SetPasswordComponent } from './pages/login/set-password/set-password.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FieldErrorDisplayComponent } from './components/field-error-display.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ForgotPasswordComponent,
     LoginComponentComponent,
     SetPasswordComponent,
+
+    // helper components are place below
+    FieldErrorDisplayComponent,
   ],
   imports: [
     BrowserModule,

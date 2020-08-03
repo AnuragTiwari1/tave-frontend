@@ -19,11 +19,33 @@
             <div class="col-0 col-md-1"></div>
           </div>
         </div>
-        <p class="text-center mb-0 mt-auto">
-          Already have an account?<span class="text-primary"
-            >&nbsp;Login&nbsp;</span
-          >
-        </p>
+        <footer class="mt-auto" [ngSwitch]="pageName">
+          <p class="text-center mb-0" *ngSwitchCase="CREATE_ACCOUNT">
+            Already have an account?<a
+              (click)="setPageName()"
+              routerLink="/login"
+              >&nbsp;Login&nbsp;</a
+            >
+          </p>
+
+          <p class="text-center mb-0 mt-auto" *ngSwitchCase="FORGOT_PASSWORD">
+            Don't have an accout?<a
+              (click)="setPageName(CREATE_ACCOUNT)"
+              routerLink="createAccount"
+              >&nbsp;Register&nbsp;</a
+            >
+          </p>
+
+          <p class="text-center mb-0 mt-auto" *ngSwitchCase="SET_PASSWORD"></p>
+
+          <p class="text-center mb-0 mt-auto" *ngSwitchDefault>
+            Don't have an accout?<a
+              (click)="setPageName(CREATE_ACCOUNT)"
+              routerLink="createAccount"
+              >&nbsp;Register&nbsp;</a
+            >
+          </p>
+        </footer>
       </div>
     </div>
   </div>
