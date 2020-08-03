@@ -28,7 +28,7 @@ import { FieldErrorDisplayComponent } from './components/field-error-display.com
   imports: [
     BrowserModule,
     RouterModule.forRoot([
-      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+      { path: '', redirectTo: 'login', pathMatch: 'full' },
       {
         path: 'dashboard',
         component: DashboardComponent,
