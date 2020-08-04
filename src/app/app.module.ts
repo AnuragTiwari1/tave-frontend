@@ -12,7 +12,8 @@ import { SetPasswordComponent } from './pages/login/set-password/set-password.co
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FieldErrorDisplayComponent } from './components/field-error-display.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { HttpClientModule } from '@angular/common/http';
+import { httpInterceptorProviders } from './http-interceptors/index';
 import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
@@ -36,6 +37,7 @@ import { ToastrModule } from 'ngx-toastr';
       progressBar: true,
       preventDuplicates: true,
     }), // ToastrModule added
+    HttpClientModule,
     RouterModule.forRoot([
       { path: '', redirectTo: 'login', pathMatch: 'full' },
       {
@@ -69,7 +71,7 @@ import { ToastrModule } from 'ngx-toastr';
     FormsModule,
     ReactiveFormsModule,
   ],
-  providers: [],
+  providers: [httpInterceptorProviders],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

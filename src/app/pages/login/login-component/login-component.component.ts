@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AbstractFormsInterface } from '../../../interfaces/AbstractFormsInterface';
 import { ToastrService } from 'ngx-toastr';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-login-component',
@@ -16,7 +17,10 @@ export class LoginComponentComponent implements OnInit, AbstractFormsInterface {
     password: new FormControl('', [Validators.required]),
   });
 
-  constructor(private toastr: ToastrService) {}
+  constructor(
+    private toastr: ToastrService,
+    private authService: AuthService
+  ) {}
 
   ngOnInit(): void {}
 
@@ -35,8 +39,12 @@ export class LoginComponentComponent implements OnInit, AbstractFormsInterface {
 
   onSubmit(): void {
     this.formSumitAttempt = true;
+    const val = this.loginForm.value;
+
     if (this.loginForm.valid) {
-      console.log('form submitted');
+      this.authService.login(val.email, val.password).subscribe(() => {
+        console.log('User is logged in');
+      });
     } else {
       this.toastr.error(
         'Please fix all the errors on form fields before submitting',
