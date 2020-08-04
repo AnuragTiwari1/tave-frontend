@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AbstractFormsInterface } from '../../../interfaces/AbstractFormsInterface';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login-component',
@@ -15,7 +16,7 @@ export class LoginComponentComponent implements OnInit, AbstractFormsInterface {
     password: new FormControl('', [Validators.required]),
   });
 
-  constructor() {}
+  constructor(private toastr: ToastrService) {}
 
   ngOnInit(): void {}
 
@@ -34,6 +35,7 @@ export class LoginComponentComponent implements OnInit, AbstractFormsInterface {
   }
 
   onSubmit(): void {
+    this.toastr.success('Hello world!', 'Toastr fun!');
     this.formSumitAttempt = true;
     if (this.loginForm.valid) {
       console.log('form submitted');

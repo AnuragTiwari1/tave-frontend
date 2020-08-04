@@ -11,6 +11,9 @@ import { LoginComponentComponent } from './pages/login/login-component/login-com
 import { SetPasswordComponent } from './pages/login/set-password/set-password.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FieldErrorDisplayComponent } from './components/field-error-display.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -27,6 +30,12 @@ import { FieldErrorDisplayComponent } from './components/field-error-display.com
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule, // required animations module
+    ToastrModule.forRoot({
+      timeOut: 5000,
+      progressBar: true,
+      preventDuplicates: true,
+    }), // ToastrModule added
     RouterModule.forRoot([
       { path: '', redirectTo: 'login', pathMatch: 'full' },
       {
