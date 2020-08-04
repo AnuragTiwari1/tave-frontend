@@ -17,7 +17,7 @@ export class AuthService {
 
   login(email: string, password: string) {
     return this.http
-      .post<ILogin>('/api/login', { email, password })
+      .post<ILogin>('/auth/login', { email, password })
       .pipe(tap(this.setSession));
   }
 
