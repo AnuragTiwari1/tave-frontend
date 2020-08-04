@@ -22,8 +22,7 @@ export class LoginComponentComponent implements OnInit, AbstractFormsInterface {
 
   isFieldValid(field: string): boolean {
     return (
-      (!this.loginForm.get(field).valid && this.loginForm.get(field).touched) ||
-      (this.loginForm.get(field).untouched && this.formSumitAttempt)
+      !this.loginForm.get(field).valid && this.loginForm.get(field).touched
     );
   }
 
@@ -35,10 +34,14 @@ export class LoginComponentComponent implements OnInit, AbstractFormsInterface {
   }
 
   onSubmit(): void {
-    this.toastr.success('Hello world!', 'Toastr fun!');
     this.formSumitAttempt = true;
     if (this.loginForm.valid) {
       console.log('form submitted');
+    } else {
+      this.toastr.error(
+        'Please fix all the errors on form fields before submitting',
+        'Form has errored'
+      );
     }
   }
 }
