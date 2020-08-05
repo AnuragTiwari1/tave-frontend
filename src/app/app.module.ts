@@ -39,7 +39,7 @@ import { ToastrModule } from 'ngx-toastr';
     }), // ToastrModule added
     HttpClientModule,
     RouterModule.forRoot([
-      { path: '', redirectTo: 'login', pathMatch: 'full' },
+      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       {
         path: 'dashboard',
         component: DashboardComponent,

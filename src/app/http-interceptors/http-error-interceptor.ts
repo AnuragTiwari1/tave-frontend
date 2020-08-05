@@ -7,11 +7,14 @@ import {
   HttpErrorResponse,
 } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { retry, catchError } from 'rxjs/operators';
+import { catchError } from 'rxjs/operators';
 import { ToastrService } from 'ngx-toastr';
 
 @Injectable()
 export class HttpErrorInterceptor implements HttpInterceptor {
+  prettyErrorMessage =
+    'Opps there seems to be some error. Please try again after some time';
+
   constructor(private toastr: ToastrService) {}
 
   intercept(
@@ -19,7 +22,6 @@ export class HttpErrorInterceptor implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
     return next.handle(request).pipe(
-      retry(1),
       catchError((error: HttpErrorResponse) => {
         let errorMessage = '';
         if (error.error instanceof ErrorEvent) {
@@ -31,12 +33,13 @@ export class HttpErrorInterceptor implements HttpInterceptor {
         }
         switch (error.status) {
           case 400:
-            this.toastr.error(error.error.message, error.statusText);
+            this.toastr.error(
+              error.error.message || this.prettyErrorMessage,
+              error.statusText
+            );
             break;
           case 500:
-            this.toastr.error(
-              'Opps there seems to be some error. Please try again after some time'
-            );
+            this.toastr.error(this.prettyErrorMessage);
         }
 
         return throwError(errorMessage);
