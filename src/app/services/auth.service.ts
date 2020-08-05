@@ -16,17 +16,23 @@ export class AuthService {
   constructor(private http: HttpClient) {}
 
   login(email: string, password: string) {
+    const formData = new FormData();
+    formData.append('email', email);
+    formData.append('password', password);
+
     return this.http
-      .post<ILogin>('/auth/login', { email, password })
+      .post<ILogin>('/User/login', formData)
       .pipe(tap(this.setSession));
   }
 
   createAccount(name: string, email: string, password: string) {
-    return this.http.post<{ message: string }>('/auth/createAccount', {
-      name,
-      email,
-      password,
-    });
+    const formData = new FormData();
+    formData.append('name', name);
+    formData.append('email', email);
+    formData.append('password', password);
+    formData.append('mobile', '999');
+
+    return this.http.post<{ message: string }>('/User/signup', formData);
   }
 
   private setSession(authResult: ILogin) {
