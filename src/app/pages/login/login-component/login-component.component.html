@@ -19,7 +19,7 @@
     </div>
     <app-field-error-display
       [displayError]="isFieldValid('email')"
-      errorMsg="Please enter valid email address"
+      errorMsg="Please provide a valid email address"
     >
     </app-field-error-display>
   </div>
@@ -30,7 +30,7 @@
     <div class="input-group input-group-lg mb-3 py-1">
       <div class="input-group-prepend">
         <span class="input-group-text" id="name">
-          <i class="fa fa-user"></i>
+          <i class="fa fa-lock"></i>
         </span>
       </div>
       <input
@@ -43,7 +43,7 @@
     </div>
     <app-field-error-display
       [displayError]="isFieldValid('password')"
-      errorMsg="Please enter valid email address"
+      errorMsg="Password is required"
     >
     </app-field-error-display>
   </div>

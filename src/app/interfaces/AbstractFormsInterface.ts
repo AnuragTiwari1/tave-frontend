@@ -1,8 +1,3 @@
-type FormFeedbackTypes = {
-  'has-error': boolean;
-  'has-feedback': boolean;
-};
-
 export interface AbstractFormsInterface {
   /*
    *
@@ -15,5 +10,4 @@ export interface AbstractFormsInterface {
    * */
   isFieldValid: (field: string) => boolean;
   formSumitAttempt: boolean;
-  displayFieldCss: (field: string) => FormFeedbackTypes;
 }

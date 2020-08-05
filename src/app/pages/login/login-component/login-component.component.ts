@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AbstractFormsInterface } from '../../../interfaces/AbstractFormsInterface';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../../../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login-component',
@@ -19,22 +20,17 @@ export class LoginComponentComponent implements OnInit, AbstractFormsInterface {
 
   constructor(
     private toastr: ToastrService,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {}
 
   isFieldValid(field: string): boolean {
     return (
-      !this.loginForm.get(field).valid && this.loginForm.get(field).touched
+      (!this.loginForm.get(field).valid && this.loginForm.get(field).touched) ||
+      (this.formSumitAttempt && !this.loginForm.get(field).valid)
     );
-  }
-
-  displayFieldCss(field: string) {
-    return {
-      'has-error': this.isFieldValid(field),
-      'has-feedback': this.isFieldValid(field),
-    };
   }
 
   onSubmit(): void {
@@ -43,7 +39,7 @@ export class LoginComponentComponent implements OnInit, AbstractFormsInterface {
 
     if (this.loginForm.valid) {
       this.authService.login(val.email, val.password).subscribe(() => {
-        console.log('User is logged in');
+        this.router.navigate(['/dashboard']);
       });
     } else {
       this.toastr.error(

@@ -21,6 +21,14 @@ export class AuthService {
       .pipe(tap(this.setSession));
   }
 
+  createAccount(name: string, email: string, password: string) {
+    return this.http.post<{ message: string }>('/auth/createAccount', {
+      name,
+      email,
+      password,
+    });
+  }
+
   private setSession(authResult: ILogin) {
     const expiresAt = moment().add(authResult.expiresAt, 'second');
 
