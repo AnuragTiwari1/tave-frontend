@@ -4,8 +4,8 @@ import { HttpClient } from '@angular/common/http';
 import { tap } from 'rxjs/operators';
 
 interface ILogin {
-  token?: string;
-  expiresAt?: number;
+  auth_token?: string;
+  expires_at?: string; //date string
   message: string;
 }
 
@@ -30,16 +30,16 @@ export class AuthService {
     formData.append('name', name);
     formData.append('email', email);
     formData.append('password', password);
-    formData.append('mobile', '999');
 
     return this.http.post<{ message: string }>('/User/signup', formData);
   }
 
   private setSession(authResult: ILogin) {
-    const expiresAt = moment().add(authResult.expiresAt, 'second');
-
-    localStorage.setItem('id_token', authResult.token);
-    localStorage.setItem('expires_at', JSON.stringify(expiresAt.valueOf()));
+    localStorage.setItem('id_token', authResult.auth_token);
+    localStorage.setItem(
+      'expires_at',
+      moment(new Date()).add(1, 'months').toISOString()
+    );
   }
 
   logout() {
