@@ -4,49 +4,108 @@
     <div class="sidebar-heading">CRM</div>
     <div class="list-group list-group-flush sidebar-content">
       <a
-        data-toggle="collapse"
-        data-target="#submenu"
-        aria-expanded="false"
-        class="list-group-item list-group-item-action bg-dark active"
-        type="button"
+        [ngClass]="{
+          'list-group-item list-group-item-action bg-light': true,
+          active: pageName === 'dashboard'
+        }"
+        routerLink=""
+        (click)="setPageName('dashboard')"
         >Dashboard</a
       >
-      <div id="submenu" class="collapse">
+      <div [ngClass]="{ collapse: pageName !== 'dashboard' }">
         <ul class="list-group list-group-flush">
           <li
-            class="list-group-item list-group-item-action border-0 bg-light text-warning active"
+            [ngClass]="{
+              'list-group-item list-group-item-action border-0 bg-white': true,
+              'text-warning active': subPageName === ''
+            }"
           >
-            <a>List 1</a>
+            <a>Overview</a>
           </li>
-          <li class="list-group-item list-group-item-action bg-light border-0">
-            <a>List 2</a>
+          <li
+            [ngClass]="{
+              'list-group-item list-group-item-action border-0': true,
+              'text-warning active': subPageName === 'agenda'
+            }"
+          >
+            <a>Agenda</a>
           </li>
-          <li class="list-group-item list-group-item-action bg-light border-0">
-            <a>List 3</a>
-          </li>
-          <li class="list-group-item list-group-item-action bg-light border-0">
-            <a>List 4</a>
-          </li>
-          <li class="list-group-item list-group-item-action bg-light border-0">
-            <a>List 5</a>
+          <li
+            [ngClass]="{
+              'list-group-item list-group-item-action border-0': true,
+              'text-warning active': subPageName === 'upcoming_task'
+            }"
+          >
+            <a>Upcoming Tasks</a>
           </li>
         </ul>
       </div>
-      <a href="#" class="list-group-item list-group-item-action bg-light"
-        >Shortcuts</a
+      <a
+        [ngClass]="{
+          'list-group-item list-group-item-action bg-light': true,
+          active: pageName === 'calendar'
+        }"
+        routerLink="calendar"
+        (click)="setPageName('calendar')"
+        >Calender</a
       >
-      <a href="#" class="list-group-item list-group-item-action bg-light"
-        >Overview</a
+      <div [ngClass]="{ collapse: pageName !== 'calendar' }">
+        <ul class="list-group list-group-flush">
+          <li
+            [ngClass]="{
+              'list-group-item list-group-item-action border-0 bg-white': true,
+              'text-warning active': subPageName === ''
+            }"
+          >
+            <a>Event Overview</a>
+          </li>
+          <li
+            [ngClass]="{
+              'list-group-item list-group-item-action border-0': true,
+              'text-warning active': subPageName === 'add_event'
+            }"
+          >
+            <a>Add Event</a>
+          </li>
+          <li
+            [ngClass]="{
+              'list-group-item list-group-item-action border-0': true,
+              'text-warning active': subPageName === 'upcoming_event'
+            }"
+          >
+            <a>Upcoming Agenda</a>
+          </li>
+        </ul>
+      </div>
+      <a
+        [ngClass]="{
+          'list-group-item list-group-item-action bg-light': true,
+          active: pageName === 'mail'
+        }"
+        routerLink="mail"
+        (click)="setPageName('mail')"
+        >Mails</a
       >
-      <a href="#" class="list-group-item list-group-item-action bg-light"
-        >Events</a
-      >
-      <a href="#" class="list-group-item list-group-item-action bg-light"
-        >Profile</a
-      >
-      <a href="#" class="list-group-item list-group-item-action bg-light"
-        >Status</a
-      >
+      <div [ngClass]="{ collapse: pageName !== 'mail' }">
+        <ul class="list-group list-group-flush">
+          <li
+            [ngClass]="{
+              'list-group-item list-group-item-action border-0 bg-white': true,
+              'text-warning active': subPageName === ''
+            }"
+          >
+            <a>Mail Box</a>
+          </li>
+          <li
+            [ngClass]="{
+              'list-group-item list-group-item-action border-0': true,
+              'text-warning active': subPageName === 'add_event'
+            }"
+          >
+            <a>Compose</a>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
   <!-- /#sidebar-wrapper -->
@@ -77,20 +136,7 @@
         </ul>
       </div>
     </nav>
-    <div class="container-fluid">
-      <h1 class="mt-4">Simple Sidebar</h1>
-      <p>
-        The starting state of the menu will appear collapsed on smaller screens,
-        and will appear non-collapsed on larger screens. When toggled using the
-        button below, the menu will change.
-      </p>
-      <p>
-        Make sure to keep all page content within the
-        <code>#page-content-wrapper</code>. The top navbar is optional, and just
-        for demonstration. Just create an element with the
-        <code>#menu-toggle</code> ID which will toggle the menu when clicked.
-      </p>
-    </div>
+    <router-outlet></router-outlet>
   </div>
   <!-- /#page-content-wrapper -->
 </div>

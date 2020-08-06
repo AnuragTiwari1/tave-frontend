@@ -39,7 +39,7 @@ export class LoginComponentComponent implements OnInit, AbstractFormsInterface {
 
     if (this.loginForm.valid) {
       this.authService.login(val.email, val.password).subscribe(() => {
-        this.router.navigate(['/dashboard']);
+        this.router.navigate(['/app/dashboard']);
       });
     } else {
       this.toastr.error(

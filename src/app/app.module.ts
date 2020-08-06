@@ -15,6 +15,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { httpInterceptorProviders } from './http-interceptors/index';
 import { ToastrModule } from 'ngx-toastr';
+import { DashboardComponentComponent } from './pages/dashboard/dashboard-component/dashboard-component.component';
+import { OverviewComponent as DashboardOverviewComponent } from './pages/dashboard/dashboardComponent/overview/overview.component';
+import { CalendarComponent } from './pages/calendar/calendar.component';
+import { OverviewComponent as CalendarOverviewComponent } from './pages/calendar/components/overview/overview.component';
+import { MailComponent } from './pages/mail/mail.component';
+import { OutboxComponent as MailOutboxComponent } from './pages/mail/component/outbox/outbox.component';
 
 @NgModule({
   declarations: [
@@ -25,9 +31,13 @@ import { ToastrModule } from 'ngx-toastr';
     ForgotPasswordComponent,
     LoginComponentComponent,
     SetPasswordComponent,
-
-    // helper components are place below
     FieldErrorDisplayComponent,
+    DashboardComponentComponent,
+    DashboardOverviewComponent,
+    CalendarComponent,
+    CalendarOverviewComponent,
+    MailComponent,
+    MailOutboxComponent,
   ],
   imports: [
     BrowserModule,
@@ -39,11 +49,44 @@ import { ToastrModule } from 'ngx-toastr';
     }), // ToastrModule added
     HttpClientModule,
     RouterModule.forRoot([
-      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+      { path: '', redirectTo: 'app/dashboard', pathMatch: 'full' },
       {
-        path: 'dashboard',
+        path: 'app',
         component: DashboardComponent,
         canActivate: [AuthGuard],
+        children: [
+          {
+            path: 'dashboard',
+            component: DashboardComponentComponent,
+            children: [
+              {
+                path: '',
+                component: DashboardOverviewComponent,
+              },
+            ],
+          },
+          {
+            path: 'calendar',
+            component: CalendarComponent,
+            children: [
+              {
+                path: '',
+                component: CalendarOverviewComponent,
+              },
+            ],
+          },
+
+          {
+            path: 'mail',
+            component: MailComponent,
+            children: [
+              {
+                path: '',
+                component: MailOutboxComponent,
+              },
+            ],
+          },
+        ],
       },
       {
         path: 'login',

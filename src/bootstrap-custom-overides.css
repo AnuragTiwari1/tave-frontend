@@ -35,6 +35,10 @@ a:hover {
   text-decoration: none;
 }
 
+.list-group-item.active {
+  color: inherit;
+}
+
 .control-label.required:after {
   color: #d00;
   content: "*";
