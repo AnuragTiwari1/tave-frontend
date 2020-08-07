@@ -37,7 +37,7 @@ export class DashboardComponent implements OnInit {
     this.pageName = pageName;
   }
 
-  setSubPageName(subPageName: ''): void {
+  setSubPageName(subPageName = ''): void {
     this.subPageName = subPageName;
   }
 }

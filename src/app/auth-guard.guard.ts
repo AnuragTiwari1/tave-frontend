@@ -25,7 +25,7 @@ export class AuthGuard implements CanActivate {
     | UrlTree {
     const isLoggedIn = this.auth.isLoggedIn();
 
-    return true;
+	return true;
 
     if (isLoggedIn) {
       return true;
