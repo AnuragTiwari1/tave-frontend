@@ -25,6 +25,7 @@ import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { EventComponent as CalendarAddEventComponent } from './pages/calendar/components/event/event.component';
+import { ComposeComponent as MailComposeComponent } from './pages/mail/components/compose/compose.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { EventComponent as CalendarAddEventComponent } from './pages/calendar/co
     MailComponent,
     MailOutboxComponent,
     CalendarAddEventComponent,
+    MailComposeComponent,
   ],
   imports: [
     BrowserModule,
@@ -96,6 +98,10 @@ import { EventComponent as CalendarAddEventComponent } from './pages/calendar/co
               {
                 path: '',
                 component: MailOutboxComponent,
+              },
+              {
+                path: 'compose',
+                component: MailComposeComponent,
               },
             ],
           },

@@ -100,15 +100,17 @@
               'text-warning active': subPageName === ''
             }"
           >
-            <a>Mail Box</a>
+            <a routerLink="mail" (click)="setSubPageName()">Mail Box</a>
           </li>
           <li
             [ngClass]="{
               'list-group-item list-group-item-action border-0': true,
-              'text-warning active': subPageName === 'add_event'
+              'text-warning': subPageName === 'compose'
             }"
           >
-            <a>Compose</a>
+            <a routerLink="mail/compose" (click)="setSubPageName('compose')"
+              >Compose</a
+            >
           </li>
         </ul>
       </div>
