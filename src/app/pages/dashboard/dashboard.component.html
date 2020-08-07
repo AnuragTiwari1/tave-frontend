@@ -57,15 +57,21 @@
               'text-warning active': subPageName === ''
             }"
           >
-            <a>Event Overview</a>
+            <a routerLink="calendar" (click)="setSubPageName()"
+              >Event Overview</a
+            >
           </li>
           <li
             [ngClass]="{
               'list-group-item list-group-item-action border-0': true,
-              'text-warning active': subPageName === 'add_event'
+              'text-warning': subPageName === 'add_event'
             }"
           >
-            <a>Add Event</a>
+            <a
+              routerLink="calendar/add_event"
+              (click)="setSubPageName('add_event')"
+              >Edit Event</a
+            >
           </li>
           <li
             [ngClass]="{
