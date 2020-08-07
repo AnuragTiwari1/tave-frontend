@@ -24,6 +24,9 @@ input[type="number"]:focus,
 .input-group-text {
   background-color: white;
   border-right-width: 0px;
+  svg {
+    fill: $primary;
+  }
 }
 
 .form-group > label {
@@ -53,4 +56,8 @@ a:hover {
   top: -10px;
   left: -20px;
   font-size: 0.6rem;
+}
+
+.btn {
+  font-family: "Oxygen", sans-serif;
 }
