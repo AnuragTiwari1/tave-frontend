@@ -43,7 +43,6 @@ const colors: any = {
   selector: 'app-overview',
   templateUrl: './overview.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  styleUrls: ['./overview.component.css'],
 })
 export class OverviewComponent {
   @ViewChild('modalContent', { static: true }) modalContent: TemplateRef<any>;
