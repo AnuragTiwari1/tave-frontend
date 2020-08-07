@@ -21,6 +21,9 @@ import { CalendarComponent } from './pages/calendar/calendar.component';
 import { OverviewComponent as CalendarOverviewComponent } from './pages/calendar/components/overview/overview.component';
 import { MailComponent } from './pages/mail/mail.component';
 import { OutboxComponent as MailOutboxComponent } from './pages/mail/component/outbox/outbox.component';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -47,6 +50,10 @@ import { OutboxComponent as MailOutboxComponent } from './pages/mail/component/o
       progressBar: true,
       preventDuplicates: true,
     }), // ToastrModule added
+    CalendarModule.forRoot({
+      provide: DateAdapter,
+      useFactory: adapterFactory,
+    }),
     HttpClientModule,
     RouterModule.forRoot([
       { path: '', redirectTo: 'app/dashboard', pathMatch: 'full' },
@@ -113,6 +120,7 @@ import { OutboxComponent as MailOutboxComponent } from './pages/mail/component/o
     ]),
     FormsModule,
     ReactiveFormsModule,
+    NgbModule,
   ],
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent],

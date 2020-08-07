@@ -33,7 +33,7 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-  setPageName(pageName: 'dashboard'): void {
+  setPageName(pageName = 'dashboard'): void {
     this.pageName = pageName;
   }
 
