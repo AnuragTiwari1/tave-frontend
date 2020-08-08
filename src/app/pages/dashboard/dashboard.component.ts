@@ -17,6 +17,76 @@ export class DashboardComponent implements OnInit {
   pageName = 'dashboard';
   subPageName = '';
 
+  pages = [
+    {
+      name: 'Dashboard',
+      identifier: 'dashboard',
+      route: '',
+      submenu: [
+        {
+          name: 'Overview',
+          route: 'dashboard',
+          identifier: '',
+        },
+        {
+          name: 'Agenda',
+          route: '',
+          identifier: 'agenda',
+        },
+        {
+          name: 'Upcoming Tasks',
+          route: '',
+          identifier: 'upcoming_task',
+        },
+      ],
+    },
+
+    {
+      name: 'Calendar',
+      identifier: 'calendar',
+      route: 'calendar',
+      submenu: [
+        {
+          name: 'Events Overview',
+          route: 'calendar',
+          identifier: '',
+        },
+        {
+          name: 'Add new Event',
+          route: 'calendar/add_event',
+          identifier: 'add_event',
+        },
+        {
+          name: 'Upcoming Agenda',
+          route: 'upcoming',
+          identifier: 'calendar/upcoming',
+        },
+      ],
+    },
+    {
+      name: 'Mail',
+      identifier: 'mail',
+      route: 'mail',
+      submenu: [
+        {
+          name: 'Inbox',
+          route: 'mail',
+          identifier: '',
+        },
+        {
+          name: 'Outbox',
+          route: 'mail/outbox',
+          identifier: 'outbox',
+        },
+        {
+          name: 'Compose',
+          route: 'mail/compose',
+          identifier: 'compose',
+        },
+      ],
+    },
+  ];
+
   constructor(router: Router) {
     const tree: UrlTree = router.parseUrl(router.url);
     const g: UrlSegmentGroup = tree.root.children[PRIMARY_OUTLET];

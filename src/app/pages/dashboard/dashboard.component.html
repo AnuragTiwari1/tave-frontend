@@ -1,118 +1,38 @@
 <div class="d-flex" id="wrapper">
   <!-- Sidebar -->
-  <div class="bg-light border-right" id="sidebar-wrapper">
-    <div class="sidebar-heading">CRM</div>
+  <div class="bg-primary border-right" id="sidebar-wrapper">
+    <div class="sidebar-heading font-oxygen">CRM</div>
     <div class="list-group list-group-flush sidebar-content">
-      <a
+      <div
         [ngClass]="{
-          'list-group-item list-group-item-action bg-light': true,
-          active: pageName === 'dashboard'
+          'list-group-item': true,
+          active: pageName === page.identifier
         }"
-        routerLink=""
-        (click)="setPageName('dashboard')"
-        >Dashboard</a
+        *ngFor="let page of pages"
       >
-      <div [ngClass]="{ collapse: pageName !== 'dashboard' }">
-        <ul class="list-group list-group-flush">
-          <li
+        <a
+          routerLink="{{ page.route }}"
+          (click)="setPageName(page.identifier)"
+          >{{ page.name }}</a
+        >
+        <div
+          [ngClass]="{
+            'list-group list-group-flush submenu': true,
+            collapse: pageName !== page.identifier
+          }"
+        >
+          <a
+            *ngFor="let s of page.submenu"
+            routerLink="{{ s.route }}"
+            (click)="setSubPageName(s.identifier)"
             [ngClass]="{
-              'list-group-item list-group-item-action border-0 bg-white': true,
-              'text-warning active': subPageName === ''
+              'list-group-item border-0': true,
+              'text-warning': subPageName === s.identifier
             }"
           >
-            <a>Overview</a>
-          </li>
-          <li
-            [ngClass]="{
-              'list-group-item list-group-item-action border-0': true,
-              'text-warning active': subPageName === 'agenda'
-            }"
-          >
-            <a>Agenda</a>
-          </li>
-          <li
-            [ngClass]="{
-              'list-group-item list-group-item-action border-0': true,
-              'text-warning active': subPageName === 'upcoming_task'
-            }"
-          >
-            <a>Upcoming Tasks</a>
-          </li>
-        </ul>
-      </div>
-      <a
-        [ngClass]="{
-          'list-group-item list-group-item-action bg-light': true,
-          active: pageName === 'calendar'
-        }"
-        routerLink="calendar"
-        (click)="setPageName('calendar')"
-        >Calender</a
-      >
-      <div [ngClass]="{ collapse: pageName !== 'calendar' }">
-        <ul class="list-group list-group-flush">
-          <li
-            [ngClass]="{
-              'list-group-item list-group-item-action border-0 bg-white': true,
-              'text-warning active': subPageName === ''
-            }"
-          >
-            <a routerLink="calendar" (click)="setSubPageName()"
-              >Event Overview</a
-            >
-          </li>
-          <li
-            [ngClass]="{
-              'list-group-item list-group-item-action border-0': true,
-              'text-warning': subPageName === 'add_event'
-            }"
-          >
-            <a
-              routerLink="calendar/add_event"
-              (click)="setSubPageName('add_event')"
-              >Edit Event</a
-            >
-          </li>
-          <li
-            [ngClass]="{
-              'list-group-item list-group-item-action border-0': true,
-              'text-warning active': subPageName === 'upcoming_event'
-            }"
-          >
-            <a>Upcoming Agenda</a>
-          </li>
-        </ul>
-      </div>
-      <a
-        [ngClass]="{
-          'list-group-item list-group-item-action bg-light': true,
-          active: pageName === 'mail'
-        }"
-        routerLink="mail"
-        (click)="setPageName('mail')"
-        >Mails</a
-      >
-      <div [ngClass]="{ collapse: pageName !== 'mail' }">
-        <ul class="list-group list-group-flush">
-          <li
-            [ngClass]="{
-              'list-group-item list-group-item-action border-0 bg-white': true,
-              'text-warning active': subPageName === ''
-            }"
-          >
-            <a routerLink="mail" (click)="setSubPageName()">Mail Box</a>
-          </li>
-          <li
-            [ngClass]="{
-              'list-group-item list-group-item-action border-0': true,
-              'text-warning': subPageName === 'compose'
-            }"
-          >
-            <a routerLink="mail/compose" (click)="setSubPageName('compose')"
-              >Compose</a
-            >
-          </li>
-        </ul>
+            {{ s.name }}
+          </a>
+        </div>
       </div>
     </div>
   </div>
