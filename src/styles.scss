@@ -20,3 +20,8 @@
 .font-oxygen {
   font-family: "Oxygen", sans-serif;
 }
+
+.required:after {
+  content: " *";
+  color: red;
+}

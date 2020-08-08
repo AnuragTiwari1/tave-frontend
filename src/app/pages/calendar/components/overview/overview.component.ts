@@ -15,16 +15,9 @@ import {
 } from 'angular-calendar';
 import { Subject } from 'rxjs';
 import { CustomDateFormatter } from './custom-date-formatter';
-import {
-  startOfDay,
-  endOfDay,
-  subDays,
-  addDays,
-  endOfMonth,
-  isSameDay,
-  isSameMonth,
-  addHours,
-} from 'date-fns';
+import { isSameDay, isSameMonth } from 'date-fns';
+import { CalendarService } from '../../../../services/calendar.service';
+import * as moment from 'moment';
 
 const colors: any = {
   red: {
@@ -44,7 +37,6 @@ const colors: any = {
 @Component({
   selector: 'app-overview',
   templateUrl: './overview.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrls: ['./overview.component.scss'],
   providers: [
     {
@@ -53,7 +45,7 @@ const colors: any = {
     },
   ],
 })
-export class OverviewComponent {
+export class OverviewComponent implements OnInit {
   @ViewChild('modalContent', { static: true }) modalContent: TemplateRef<any>;
 
   view: CalendarView = CalendarView.Month;
@@ -69,37 +61,21 @@ export class OverviewComponent {
 
   refresh: Subject<any> = new Subject();
 
-  events: CalendarEvent[] = [
-    {
-      start: subDays(startOfDay(new Date()), 1),
-      end: addDays(new Date(), 1),
-      title: 'A 3 day event',
-      color: colors.red,
-      allDay: true,
-    },
-    {
-      start: startOfDay(new Date()),
-      title: 'An event with no end date',
-      color: colors.yellow,
-    },
-    {
-      start: subDays(endOfMonth(new Date()), 3),
-      end: addDays(endOfMonth(new Date()), 3),
-      title: 'A long event that spans 2 months',
-      color: colors.blue,
-      allDay: true,
-    },
-    {
-      start: addHours(startOfDay(new Date()), 2),
-      end: addHours(new Date(), 2),
-      title: 'A draggable and resizable event',
-      color: colors.yellow,
-    },
-  ];
+  events: CalendarEvent[] = [];
 
   activeDayIsOpen: boolean = false;
 
-  constructor(private modal: NgbModal) {}
+  constructor(private modal: NgbModal, private calSer: CalendarService) {}
+
+  ngOnInit() {
+    this.calSer.getEvents().subscribe((data) => {
+      this.events = data.data.map((e) => ({
+        start: moment(e.date).toDate(),
+        title: e.title,
+        color: colors.yellow,
+      }));
+    });
+  }
 
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
     if (isSameMonth(date, this.viewDate)) {
