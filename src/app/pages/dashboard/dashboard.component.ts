@@ -7,6 +7,7 @@ import {
   PRIMARY_OUTLET,
   UrlSegment,
 } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -90,13 +91,7 @@ export class DashboardComponent implements OnInit {
     },
   ];
 
-  constructor(router: Router) {
-    const tree: UrlTree = router.parseUrl(router.url);
-    const g: UrlSegmentGroup = tree.root.children[PRIMARY_OUTLET];
-    const s: UrlSegment[] = g.segments;
-    this.pageName = s[1]?.path ?? 'dashboard';
-    this.subPageName = s[2]?.path ?? '';
-  }
+  constructor(private router: Router, private authService: AuthService) {}
 
   ngOnInit(): void {
     //Toggle Click Function
@@ -104,6 +99,12 @@ export class DashboardComponent implements OnInit {
       e.preventDefault();
       $('#wrapper').toggleClass('toggled');
     });
+
+    const tree: UrlTree = this.router.parseUrl(this.router.url);
+    const g: UrlSegmentGroup = tree.root.children[PRIMARY_OUTLET];
+    const s: UrlSegment[] = g.segments;
+    this.pageName = s[1]?.path ?? 'dashboard';
+    this.subPageName = s[2]?.path ?? '';
   }
 
   setPageName(pageName = 'dashboard'): void {
@@ -112,5 +113,10 @@ export class DashboardComponent implements OnInit {
 
   setSubPageName(subPageName = ''): void {
     this.subPageName = subPageName;
+  }
+
+  logout() {
+    this.authService.logout();
+    this.router.navigate(['/login']);
   }
 }
