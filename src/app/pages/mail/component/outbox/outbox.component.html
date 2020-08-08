@@ -1,8 +1,65 @@
-<div class="container">
-  <div
-    class="bg-dark text-white mt-4 p-3 d-flex justify-content-between rounded-top"
-  >
-    <h5 class="m-0">Mail box</h5>
-    <h5 class="m-0">4 Messages</h5>
+<div class="container-fluid px-0">
+  <div class="row mt-4 font-oxygen">
+    <div class="col-md-6">
+      <p class="h3">Mail</p>
+    </div>
+    <div class="col-md-6">
+      <a
+        role="button"
+        class="btn btn-outline-primary float-md-right"
+        routerLink="/app/mail/compose"
+        >Compose</a
+      >
+    </div>
+  </div>
+  <div class="card mt-4 rounded-5">
+    <div class="card-body">
+      <h5 class="card-title font-oxygen">Inbox</h5>
+      <hr class="mb-0" />
+
+      <div class="card border-0">
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+              <tr
+                id="head-row"
+                class="font-weight-bold text-uppercase font-oxygen"
+              >
+                <th>When</th>
+                <th>From</th>
+                <th>Reciepents</th>
+                <th>Message</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="event-body">
+              <tr *ngFor="let mail of mails">
+                <td>
+                  <p class="mb-0">01/03/2020</p>
+                </td>
+                <td>
+                  <p class="mb-0">mailer@mail.com</p>
+                </td>
+                <td>
+                  <p class="mb-0">reciever@mail.com</p>
+                </td>
+                <td>
+                  <p class="mb-0">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+                    sed do eiusmod tempor incididunt ut labore et
+                  </p>
+                </td>
+
+                <td>
+                  <p class="mb-0">
+                    Delivered
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
