@@ -24,8 +24,9 @@ import { OutboxComponent as MailOutboxComponent } from './pages/mail/component/o
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { EventComponent as CalendarAddEventComponent } from './pages/calendar/components/event/event.component';
+import { EventComponent as CalendarEventComponent } from './pages/calendar/components/event/event.component';
 import { ComposeComponent as MailComposeComponent } from './pages/mail/components/compose/compose.component';
+import { AddEventComponent as AddCalendarEventComponent } from './pages/calendar/components/add-event/add-event.component';
 
 @NgModule({
   declarations: [
@@ -43,8 +44,9 @@ import { ComposeComponent as MailComposeComponent } from './pages/mail/component
     CalendarOverviewComponent,
     MailComponent,
     MailOutboxComponent,
-    CalendarAddEventComponent,
+    CalendarEventComponent,
     MailComposeComponent,
+    AddCalendarEventComponent,
   ],
   imports: [
     BrowserModule,
@@ -86,7 +88,11 @@ import { ComposeComponent as MailComposeComponent } from './pages/mail/component
               },
               {
                 path: 'add_event',
-                component: CalendarAddEventComponent,
+                component: AddCalendarEventComponent,
+              },
+              {
+                path: 'events',
+                component: CalendarEventComponent,
               },
             ],
           },

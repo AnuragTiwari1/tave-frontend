@@ -60,8 +60,8 @@ export class DashboardComponent implements OnInit {
         },
         {
           name: 'Upcoming Agenda',
-          route: 'upcoming',
-          identifier: 'calendar/upcoming',
+          route: 'calendar/events',
+          identifier: 'events',
         },
       ],
     },
