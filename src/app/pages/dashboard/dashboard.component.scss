@@ -35,8 +35,13 @@
   }
 
   .active {
-    svg {
-      fill: $yellow;
+    i {
+      color: $yellow;
+    }
+    .link-container {
+      border-right-width: 0.25rem;
+      border-color: $yellow;
+      border-right-style: solid;
     }
   }
 }
@@ -52,6 +57,21 @@
 
 #page-content-wrapper {
   min-width: 100vw;
+
+  .nav {
+    color: #dadada;
+    svg {
+      fill: #8ca0b3;
+    }
+  }
+}
+
+#wrapper > #page-content-wrapper {
+  background: #f1f6fa;
+
+  #page-content {
+    padding: 1rem 2.5rem;
+  }
 }
 
 #wrapper.toggled #sidebar-wrapper {

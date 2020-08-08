@@ -22,6 +22,7 @@ export class DashboardComponent implements OnInit {
       name: 'Dashboard',
       identifier: 'dashboard',
       route: '',
+      iconClass: 'fa fa-tachometer',
       submenu: [
         {
           name: 'Overview',
@@ -45,6 +46,7 @@ export class DashboardComponent implements OnInit {
       name: 'Calendar',
       identifier: 'calendar',
       route: 'calendar',
+      iconClass: 'fa fa-tachometer',
       submenu: [
         {
           name: 'Events Overview',
@@ -67,6 +69,7 @@ export class DashboardComponent implements OnInit {
       name: 'Mail',
       identifier: 'mail',
       route: 'mail',
+      iconClass: 'fa fa-paper-plane',
       submenu: [
         {
           name: 'Inbox',
