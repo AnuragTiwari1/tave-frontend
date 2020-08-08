@@ -10,9 +10,11 @@ import {
   CalendarEvent,
   CalendarEventAction,
   CalendarEventTimesChangedEvent,
+  CalendarDateFormatter,
   CalendarView,
 } from 'angular-calendar';
 import { Subject } from 'rxjs';
+import { CustomDateFormatter } from './custom-date-formatter';
 import {
   startOfDay,
   endOfDay,
@@ -43,6 +45,13 @@ const colors: any = {
   selector: 'app-overview',
   templateUrl: './overview.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  styleUrls: ['./overview.component.scss'],
+  providers: [
+    {
+      provide: CalendarDateFormatter,
+      useClass: CustomDateFormatter,
+    },
+  ],
 })
 export class OverviewComponent {
   @ViewChild('modalContent', { static: true }) modalContent: TemplateRef<any>;
@@ -58,24 +67,6 @@ export class OverviewComponent {
     event: CalendarEvent;
   };
 
-  actions: CalendarEventAction[] = [
-    {
-      label: '<i class="fas fa-fw fa-pencil-alt"></i>',
-      a11yLabel: 'Edit',
-      onClick: ({ event }: { event: CalendarEvent }): void => {
-        this.handleEvent('Edited', event);
-      },
-    },
-    {
-      label: '<i class="fas fa-fw fa-trash-alt"></i>',
-      a11yLabel: 'Delete',
-      onClick: ({ event }: { event: CalendarEvent }): void => {
-        this.events = this.events.filter((iEvent) => iEvent !== event);
-        this.handleEvent('Deleted', event);
-      },
-    },
-  ];
-
   refresh: Subject<any> = new Subject();
 
   events: CalendarEvent[] = [
@@ -84,19 +75,12 @@ export class OverviewComponent {
       end: addDays(new Date(), 1),
       title: 'A 3 day event',
       color: colors.red,
-      actions: this.actions,
       allDay: true,
-      resizable: {
-        beforeStart: true,
-        afterEnd: true,
-      },
-      draggable: true,
     },
     {
       start: startOfDay(new Date()),
       title: 'An event with no end date',
       color: colors.yellow,
-      actions: this.actions,
     },
     {
       start: subDays(endOfMonth(new Date()), 3),
@@ -110,16 +94,10 @@ export class OverviewComponent {
       end: addHours(new Date(), 2),
       title: 'A draggable and resizable event',
       color: colors.yellow,
-      actions: this.actions,
-      resizable: {
-        beforeStart: true,
-        afterEnd: true,
-      },
-      draggable: true,
     },
   ];
 
-  activeDayIsOpen: boolean = true;
+  activeDayIsOpen: boolean = false;
 
   constructor(private modal: NgbModal) {}
 
@@ -152,37 +130,6 @@ export class OverviewComponent {
       }
       return iEvent;
     });
-    this.handleEvent('Dropped or resized', event);
-  }
-
-  handleEvent(action: string, event: CalendarEvent): void {
-    this.modalData = { event, action };
-    this.modal.open(this.modalContent, { size: 'lg' });
-  }
-
-  addEvent(): void {
-    this.events = [
-      ...this.events,
-      {
-        title: 'New event',
-        start: startOfDay(new Date()),
-        end: endOfDay(new Date()),
-        color: colors.red,
-        draggable: true,
-        resizable: {
-          beforeStart: true,
-          afterEnd: true,
-        },
-      },
-    ];
-  }
-
-  deleteEvent(eventToDelete: CalendarEvent) {
-    this.events = this.events.filter((event) => event !== eventToDelete);
-  }
-
-  setView(view: CalendarView) {
-    this.view = view;
   }
 
   closeOpenMonthViewDay() {

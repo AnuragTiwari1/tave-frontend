@@ -46,7 +46,7 @@ export class DashboardComponent implements OnInit {
       name: 'Calendar',
       identifier: 'calendar',
       route: 'calendar',
-      iconClass: 'fa fa-tachometer',
+      iconClass: 'fa fa-calendar',
       submenu: [
         {
           name: 'Events Overview',

@@ -5,6 +5,18 @@
 @import "~ngx-toastr/toastr";
 @import "../node_modules/angular-calendar/css/angular-calendar";
 
+.cal-month-view .cal-header {
+  font-weight: normal;
+  font-family: "Oxygen", sans-serif;
+}
+.cal-month-view .cal-day-number {
+  color: #000000;
+  font-family: "Oxygen", sans-serif;
+}
+.cal-month-view .cal-day-cell.cal-weekend .cal-day-number {
+  color: #000000;
+}
+
 .font-oxygen {
   font-family: "Oxygen", sans-serif;
 }
