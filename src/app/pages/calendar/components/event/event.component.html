@@ -7,87 +7,50 @@
       <a
         role="button"
         class="btn btn-outline-primary float-md-right"
-        routerLink="add_event"
+        routerLink="/app/calendar/add_event"
       >
         Add New Event
       </a>
     </div>
   </div>
+  <div class="card mt-4 rounded-3">
+    <div class="card-body">
+      <h5 class="card-title font-oxygen">Upcoming Event</h5>
+      <hr />
 
-  <!-- <div class="table-responsive mt-5"> -->
-  <!--   <table class="table table-bordered"> -->
-  <!--     <thead> -->
-  <!--       <tr> -->
-  <!--         <th>Title</th> -->
-  <!--         <th>Primary color</th> -->
-  <!--         <th>Secondary color</th> -->
-  <!--         <th>Starts at</th> -->
-  <!--         <th>Ends at</th> -->
-  <!--         <th>Remove</th> -->
-  <!--       </tr> -->
-  <!--     </thead> -->
-  <!--  -->
-  <!--     <tbody> -->
-  <!--       <tr *ngFor="let event of events"> -->
-  <!--         <td> -->
-  <!--           <input -->
-  <!--             type="text" -->
-  <!--             class="form-control" -->
-  <!--             [(ngModel)]="event.title" -->
-  <!--             (keyup)="refresh.next()" -->
-  <!--           /> -->
-  <!--         </td> -->
-  <!--         <td> -->
-  <!--           <input -->
-  <!--             type="color" -->
-  <!--             [(ngModel)]="event.color.primary" -->
-  <!--             (change)="refresh.next()" -->
-  <!--           /> -->
-  <!--         </td> -->
-  <!--         <td> -->
-  <!--           <input -->
-  <!--             type="color" -->
-  <!--             [(ngModel)]="event.color.secondary" -->
-  <!--             (change)="refresh.next()" -->
-  <!--           /> -->
-  <!--         </td> -->
-  <!--         <td> -->
-  <!--           <input -->
-  <!--             class="form-control" -->
-  <!--             type="text" -->
-  <!--             mwlFlatpickr -->
-  <!--             [(ngModel)]="event.start" -->
-  <!--             (ngModelChange)="refresh.next()" -->
-  <!--             [altInput]="true" -->
-  <!--             [convertModelValue]="true" -->
-  <!--             [enableTime]="true" -->
-  <!--             dateFormat="Y-m-dTH:i" -->
-  <!--             altFormat="F j, Y H:i" -->
-  <!--             placeholder="Not set" -->
-  <!--           /> -->
-  <!--         </td> -->
-  <!--         <td> -->
-  <!--           <input -->
-  <!--             class="form-control" -->
-  <!--             type="text" -->
-  <!--             mwlFlatpickr -->
-  <!--             [(ngModel)]="event.end" -->
-  <!--             (ngModelChange)="refresh.next()" -->
-  <!--             [altInput]="true" -->
-  <!--             [convertModelValue]="true" -->
-  <!--             [enableTime]="true" -->
-  <!--             dateFormat="Y-m-dTH:i" -->
-  <!--             altFormat="F j, Y H:i" -->
-  <!--             placeholder="Not set" -->
-  <!--           /> -->
-  <!--         </td> -->
-  <!--         <td> -->
-  <!--           <button class="btn btn-danger" (click)="deleteEvent(event)"> -->
-  <!--             Delete -->
-  <!--           </button> -->
-  <!--         </td> -->
-  <!--       </tr> -->
-  <!--     </tbody> -->
-  <!--   </table> -->
-  <!-- </div> -->
+      <div class="card">
+        <div class="table-responsive">
+          <table class="table">
+            <thead class="bg-primary text-white">
+              <tr>
+                <th>Title</th>
+                <th>Starts at</th>
+                <th>Type</th>
+                <th>Location</th>
+              </tr>
+            </thead>
+
+            <tbody id="event-body">
+              <tr *ngFor="let event of events">
+                <td>
+                  <p class="mb-0">{{ event.title }}</p>
+                </td>
+                <td>
+                  <p class="mb-0">01/03/2020 13:14pm</p>
+                </td>
+                <td>
+                  <p class="mb-0">Face to Face</p>
+                </td>
+                <td>
+                  <p class="mb-0">
+                    4157 Washingnton Ave,Manchester, Kentucky 39459
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
