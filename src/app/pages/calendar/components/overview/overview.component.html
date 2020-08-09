@@ -65,14 +65,58 @@
       [viewDate]="viewDate"
       [(events)]="events"
       [refresh]="refresh"
-      [activeDayIsOpen]="activeDayIsOpen"
-      (dayClicked)="dayClicked($event.day)"
+      [activeDayIsOpen]="false"
       (eventTimesChanged)="eventTimesChanged($event)"
+      [cellTemplate]="customCellTemplate"
     >
     </mwl-calendar-month-view>
 
     <br /><br /><br />
   </div>
 </div>
-<!-- Everything you see below is just for the demo, you don't need to include it in your app -->
 
+<ng-template #modalContent let-close="close">
+  <div class="modal-header">
+    <h5 class="modal-title">Event action occurred</h5>
+    <button type="button" class="close" (click)="close()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div>
+      Action:
+      <pre>{{ modalData?.action }}</pre>
+    </div>
+    <div>
+      Event:
+      <pre>{{ modalData?.event | json }}</pre>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-secondary" (click)="close()">
+      OK
+    </button>
+  </div>
+</ng-template>
+
+<ng-template #customCellTemplate let-day="day" let-locale="locale">
+  <div class="cal-cell-top">
+    <span
+      class="cal-day-badge rounded-circle"
+      style="background: #8ca0b3;"
+      *ngIf="day.badgeTotal > 0"
+      >{{ day.badgeTotal }}</span
+    >
+    <span class="cal-day-number">{{
+      day.date | calendarDate: "monthViewDayNumber":locale
+    }}</span>
+  </div>
+  <div
+    class="p-1 m-2 ml-md-2 ml-lg-5 rounded bg-primary event-details"
+    *ngIf="day.badgeTotal > 0"
+  >
+    <small class="text-white" style="margin: 5px;">
+      {{ day.events[0].title }}
+    </small>
+  </div>
+</ng-template>

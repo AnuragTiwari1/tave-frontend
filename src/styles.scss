@@ -17,6 +17,21 @@
   color: #000000;
 }
 
+.cal-month-view .cal-cell-top {
+  min-height: unset;
+}
+.cal-month-view .cal-day-cell.cal-today {
+  background-color: white;
+}
+.cal-month-view .cal-day-cell.cal-today .cal-day-number {
+  background-color: #feb950;
+  border-radius: 50%;
+  height: 2rem;
+  width: 2rem;
+  text-align: center;
+  font-size: 1.5rem;
+}
+
 .font-oxygen {
   font-family: "Oxygen", sans-serif;
 }
