@@ -15,7 +15,8 @@ export class AddEventComponent implements OnInit {
   addEventForm = new FormGroup({
     title: new FormControl('', [Validators.required]),
     clientName: new FormControl('', [Validators.required]),
-    date: new FormControl('', [Validators.required]),
+    startDate: new FormControl('', [Validators.required]),
+    endDate: new FormControl('', [Validators.required]),
     location: new FormControl('', [Validators.required]),
     type: new FormControl('', [Validators.required]),
   });
@@ -42,7 +43,14 @@ export class AddEventComponent implements OnInit {
 
     if (this.addEventForm.valid) {
       this.calSer
-        .add(val.location, 'blue', val.clientName, val.date, val.title)
+        .add(
+          val.location,
+          'blue',
+          val.clientName,
+          val.startDate,
+          val.endDate,
+          val.title
+        )
         .subscribe(() => {
           this.router.navigate(['/app/calendar']);
           this.toastr.success('Calendar event added successfully', 'Success');

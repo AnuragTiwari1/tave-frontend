@@ -1,34 +1,27 @@
-import {
-  Component,
-  OnInit,
-  ChangeDetectionStrategy,
-  ViewChild,
-  TemplateRef,
-} from '@angular/core';
+import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import {
   CalendarEvent,
-  CalendarEventAction,
   CalendarEventTimesChangedEvent,
   CalendarDateFormatter,
   CalendarView,
 } from 'angular-calendar';
 import { Subject } from 'rxjs';
 import { CustomDateFormatter } from './custom-date-formatter';
-import { isSameDay, isSameMonth } from 'date-fns';
+import { isSameMonth } from 'date-fns';
 import { CalendarService } from '../../../../services/calendar.service';
 import * as moment from 'moment';
 
 const colors: any = {
-  red: {
+  session: {
     primary: '#ad2121',
     secondary: '#FAE3E3',
   },
-  blue: {
+  call: {
     primary: '#1e90ff',
     secondary: '#D1E8FF',
   },
-  yellow: {
+  meetting: {
     primary: '#e3bc08',
     secondary: '#FDF1BA',
   },
@@ -70,24 +63,25 @@ export class OverviewComponent implements OnInit {
   ngOnInit() {
     this.calSer.getEvents().subscribe((data) => {
       this.events = data.data.map((e) => ({
-        start: moment(e.date).toDate(),
+        start: moment(e.startDate).toDate(),
         title: e.title,
-        color: colors.yellow,
+        color: colors[e.type],
+        end: moment(e.endDate).toDate(),
       }));
     });
   }
 
-  dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
+  dayClicked({ date }: { date: Date }): void {
     if (isSameMonth(date, this.viewDate)) {
-      if (
-        (isSameDay(this.viewDate, date) && this.activeDayIsOpen === true) ||
-        events.length === 0
-      ) {
-        this.activeDayIsOpen = false;
-      } else {
-        this.activeDayIsOpen = true;
-      }
       this.viewDate = date;
+    }
+  }
+
+  setView(view: CalendarView, date?: Date) {
+    this.view = view;
+
+    if (date) {
+      this.dayClicked({ date });
     }
   }
 

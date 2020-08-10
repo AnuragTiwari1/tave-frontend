@@ -1,7 +1,26 @@
 <div class="container-fluid px-0">
   <div class="row mt-4 font-oxygen">
     <div class="col-md-6">
-      <p class="h3">Calendar</p>
+      <p class="h3">
+        <span class="cursor-pointer" (click)="setView(CalendarView.Month)"
+          >Calendar
+          <svg
+            width="16"
+            height="10"
+            viewBox="0 0 16 25"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M3.11416 24.0235L0 20.9094L8.8976 12.0118L0 3.11416L3.11416 0L15.1259 12.0118L3.11416 24.0235Z"
+              fill="#6B6B6B"
+            />
+          </svg>
+        </span>
+        <span *ngIf="view === CalendarView.Day" class="cursor-pointer ml-1"
+          >Details</span
+        >
+      </p>
     </div>
     <div class="col-md-6">
       <a
@@ -61,15 +80,26 @@
         </svg>
       </div>
     </div>
-    <mwl-calendar-month-view
-      [viewDate]="viewDate"
-      [(events)]="events"
-      [refresh]="refresh"
-      [activeDayIsOpen]="false"
-      (eventTimesChanged)="eventTimesChanged($event)"
-      [cellTemplate]="customCellTemplate"
-    >
-    </mwl-calendar-month-view>
+    <div [ngSwitch]="view">
+      <mwl-calendar-month-view
+        *ngSwitchCase="CalendarView.Month"
+        [viewDate]="viewDate"
+        [(events)]="events"
+        [refresh]="refresh"
+        [activeDayIsOpen]="false"
+        (eventTimesChanged)="eventTimesChanged($event)"
+        [cellTemplate]="customCellTemplate"
+      >
+      </mwl-calendar-month-view>
+      <mwl-calendar-day-view
+        *ngSwitchCase="CalendarView.Day"
+        [viewDate]="viewDate"
+        [events]="events"
+        [refresh]="refresh"
+        (eventTimesChanged)="eventTimesChanged($event)"
+      >
+      </mwl-calendar-day-view>
+    </div>
 
     <br /><br /><br />
   </div>
@@ -115,7 +145,11 @@
     class="p-1 m-2 ml-md-2 ml-lg-5 rounded bg-primary event-details"
     *ngIf="day.badgeTotal > 0"
   >
-    <small class="text-white" style="margin: 5px;">
+    <small
+      class="text-white"
+      style="margin: 5px;"
+      (click)="setView(CalendarView.Day, day.date)"
+    >
       {{ day.events[0].title }}
     </small>
   </div>
