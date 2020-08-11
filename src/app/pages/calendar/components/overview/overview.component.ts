@@ -63,10 +63,10 @@ export class OverviewComponent implements OnInit {
   ngOnInit() {
     this.calSer.getEvents().subscribe((data) => {
       this.events = data.data.map((e) => ({
-        start: moment(e.startDate).toDate(),
+        start: moment(e.start_date).toDate(),
         title: e.title,
         color: colors[e.type],
-        end: moment(e.endDate).toDate(),
+        end: moment(e.end_date).toDate(),
       }));
     });
   }

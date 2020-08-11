@@ -3,8 +3,8 @@ export interface ICalendarEvents {
   uid: string;
   location: string;
   color: string;
-  startDate: string;
-  endDate: string;
+  start_date: string;
+  end_date: string;
   type: string;
   title: string;
 }

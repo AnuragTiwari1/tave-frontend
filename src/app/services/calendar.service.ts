@@ -15,8 +15,8 @@ export class CalendarService {
     formData.append('color', color);
     formData.append('client_name', client_name);
     formData.append('title', title);
-    formData.append('startDate', startDate);
-    formData.append('endDate', endDate);
+    formData.append('start_date', startDate);
+    formData.append('end_date', endDate);
 
     return this.http.post<{ message: string }>('/calendar/add_event', formData);
   }
