@@ -35,7 +35,7 @@ export class AccountsService {
 
   saveAuthCode(authCode: string) {
     return this.http
-      .get<{ message: string }>(`/saveAuthCode?code=${authCode}`)
+      .get<{ message: string }>(`/GmailSignIn/saveAuthCode?code=${authCode}`)
       .pipe(
         tap(() => {
           this.googleAccount = true;
