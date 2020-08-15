@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import {
+  FormGroup,
+  FormControl,
+  Validators,
+  FormBuilder,
+} from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { CalendarService } from '../../../../services/calendar.service';
 import { Router } from '@angular/router';
@@ -12,18 +17,19 @@ import { Router } from '@angular/router';
 export class AddEventComponent implements OnInit {
   private formSumitAttempt = false;
 
-  addEventForm = new FormGroup({
-    title: new FormControl('', [Validators.required]),
-    clientName: new FormControl('', [Validators.required]),
-    startDate: new FormControl('', [Validators.required]),
-    endDate: new FormControl('', [Validators.required]),
-    location: new FormControl('', [Validators.required]),
-    type: new FormControl('', [Validators.required]),
+  addEventForm = this.fb.group({
+    title: ['', [Validators.required]],
+    clientName: ['', [Validators.required]],
+    startDate: ['', [Validators.required]],
+    endDate: ['', [Validators.required]],
+    location: ['', [Validators.required]],
+    type: ['', [Validators.required]],
   });
 
   constructor(
     private toastr: ToastrService,
     private router: Router,
+    private fb: FormBuilder,
     private calSer: CalendarService
   ) {}
 
