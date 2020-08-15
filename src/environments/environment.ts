@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   // baseUrl: 'http://localhost/tave/index.php/api',
-  baseUrl: 'http://103.146.176.234/~tavefront/public_html/tave/index.php/api',
+  baseUrl: 'http://8d07e520c7dd.ngrok.io/ProjectCode/tave/index.php',
 };
 
 /*

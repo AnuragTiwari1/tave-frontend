@@ -18,7 +18,7 @@
       <hr class="mb-0" />
 
       <div class="card border-0">
-        <div class="table-responsive">
+        <div class="table-responsive" *ngIf="isGoogleEnabled">
           <table class="table">
             <thead>
               <tr
@@ -58,6 +58,9 @@
               </tr>
             </tbody>
           </table>
+        </div>
+        <div *ngIf="!isGoogleEnabled">
+          <button (click)="enableGooglePress()">enable  Google Integration</button>
         </div>
       </div>
     </div>

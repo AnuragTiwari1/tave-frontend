@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AccountsService } from 'src/app/services/accounts.service';
 
 @Component({
   selector: 'app-outbox',
@@ -7,8 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OutboxComponent implements OnInit {
   mails = [{}, {}, {}, {}, {}, {}];
+  isGoogleEnabled: boolean;
 
-  constructor() {}
+  constructor(private accountService: AccountsService, private) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.isGoogleEnabled = this.accountService.isGoogleEnabled();
+  }
+
+  enableGooglePress() {
+    this.accountService.enableGoogle().subscribe((res) => {
+      window.open(res.auth_url);
+    });
+  }
 }

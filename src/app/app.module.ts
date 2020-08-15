@@ -28,7 +28,7 @@ import { EventComponent as CalendarEventComponent } from './pages/calendar/compo
 import { ComposeComponent as MailComposeComponent } from './pages/mail/components/compose/compose.component';
 import { AddEventComponent as AddCalendarEventComponent } from './pages/calendar/components/add-event/add-event.component';
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
-
+import { IntegrationSuccessComponent } from './integration-success/integration-success.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,6 +48,7 @@ import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
     CalendarEventComponent,
     MailComposeComponent,
     AddCalendarEventComponent,
+    IntegrationSuccessComponent,
   ],
   imports: [
     BrowserModule,
@@ -66,6 +67,7 @@ import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
     OwlNativeDateTimeModule,
     RouterModule.forRoot([
       { path: '', redirectTo: 'app/dashboard', pathMatch: 'full' },
+      { path: 'integration_success', component: IntegrationSuccessComponent },
       {
         path: 'app',
         component: DashboardComponent,

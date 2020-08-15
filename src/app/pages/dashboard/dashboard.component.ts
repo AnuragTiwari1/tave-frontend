@@ -8,6 +8,7 @@ import {
   UrlSegment,
 } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
+import { AccountsService } from '../../services/accounts.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -91,7 +92,7 @@ export class DashboardComponent implements OnInit {
     },
   ];
 
-  constructor(private router: Router, private authService: AuthService) {}
+  constructor(private router: Router, private authService: AuthService, private accountServices:AccountsService) {}
 
   ngOnInit(): void {
     //Toggle Click Function
@@ -105,6 +106,10 @@ export class DashboardComponent implements OnInit {
     const s: UrlSegment[] = g.segments;
     this.pageName = s[1]?.path ?? 'dashboard';
     this.subPageName = s[2]?.path ?? '';
+
+    //get all the registered accounts for user
+
+    this.accountServices.getAccounts().subscribe()
   }
 
   setPageName(pageName = 'dashboard'): void {
