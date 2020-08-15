@@ -27,6 +27,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { EventComponent as CalendarEventComponent } from './pages/calendar/components/event/event.component';
 import { ComposeComponent as MailComposeComponent } from './pages/mail/components/compose/compose.component';
 import { AddEventComponent as AddCalendarEventComponent } from './pages/calendar/components/add-event/add-event.component';
+import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 
 @NgModule({
   declarations: [
@@ -61,6 +62,8 @@ import { AddEventComponent as AddCalendarEventComponent } from './pages/calendar
       useFactory: adapterFactory,
     }),
     HttpClientModule,
+    OwlDateTimeModule,
+    OwlNativeDateTimeModule,
     RouterModule.forRoot([
       { path: '', redirectTo: 'app/dashboard', pathMatch: 'full' },
       {

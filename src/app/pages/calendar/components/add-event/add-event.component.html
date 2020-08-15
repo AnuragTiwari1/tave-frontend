@@ -71,16 +71,23 @@
               </app-field-error-display>
             </div>
             <div class="form-group mb-1 col">
-              <label class="required" for="date">Start</label>
-              <input
-                type="datetime-local"
-                class="form-control"
-                id="date"
-                min="new Date().toISOString()"
-                formControlName="startDate"
-                aria-describedby="date"
-              />
-
+              <label class="required" for="date">Starts at</label>
+              <div class="input-group input-group">
+                <input
+                  [owlDateTime]="startDateTime"
+                  class="form-control"
+                  formControlName="startDate"
+                />
+                <div class="input-group-append">
+                  <span
+                    class="input-group-text"
+                    id="email"
+                    [owlDateTimeTrigger]="startDateTime"
+                    ><i class="fa fa-calendar"></i
+                  ></span>
+                </div>
+              </div>
+              <owl-date-time #startDateTime></owl-date-time>
               <app-field-error-display
                 [displayError]="isFieldValid('startDate')"
                 errorMsg="This feild is required"
@@ -89,16 +96,23 @@
             </div>
 
             <div class="form-group mb-1 col">
-              <label class="required" for="date">End</label>
-              <input
-                type="datetime-local"
-                class="form-control"
-                id="date"
-                min="new Date().toISOString()"
-                formControlName="endDate"
-                aria-describedby="date"
-              />
-
+              <label class="required" for="date">Ends on</label>
+              <div class="input-group input-group">
+                <input
+                  [owlDateTime]="endDateTime"
+                  class="form-control"
+                  formControlName="endDate"
+                />
+                <div class="input-group-append">
+                  <span
+                    class="input-group-text"
+                    id="email"
+                    [owlDateTimeTrigger]="endDateTime"
+                    ><i class="fa fa-calendar"></i
+                  ></span>
+                </div>
+              </div>
+              <owl-date-time #endDateTime></owl-date-time>
               <app-field-error-display
                 [displayError]="isFieldValid('endDate')"
                 errorMsg="This feild is required"
