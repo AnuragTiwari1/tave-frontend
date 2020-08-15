@@ -29,13 +29,17 @@ export class AccountsService {
     return this.microsoftAccount;
   }
 
-  enableGoogle(){
-    return this.http.get<{auth_url:string}>('/GmailSignIn/enableGmail')
+  enableGoogle() {
+    return this.http.get<{ auth_url: string }>('/GmailSignIn/enableGmail');
   }
 
-  saveAuthCode(authCode:string){
-    return this.http.get<{message:string}>(`/saveAuthCode?code=${authCode}`).pipe(tab(()=>{
-      this.googleAccount=true
-    }))
+  saveAuthCode(authCode: string) {
+    return this.http
+      .get<{ message: string }>(`/saveAuthCode?code=${authCode}`)
+      .pipe(
+        tap(() => {
+          this.googleAccount = true;
+        })
+      );
   }
 }

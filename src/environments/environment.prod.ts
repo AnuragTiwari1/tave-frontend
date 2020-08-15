@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  baseUrl: 'https://sabbmanglam.com/tave/index.php',
+  baseUrl: 'https://b9cecbba70e2.ngrok.io/ProjectCode/tave/index.php',
 };

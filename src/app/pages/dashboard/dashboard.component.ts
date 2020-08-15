@@ -109,7 +109,7 @@ export class DashboardComponent implements OnInit {
 
     //get all the registered accounts for user
 
-    this.accountServices.getAccounts().subscribe()
+    // this.accountServices.getAccounts().subscribe()
   }
 
   setPageName(pageName = 'dashboard'): void {

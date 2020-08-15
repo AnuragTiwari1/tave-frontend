@@ -10,7 +10,7 @@ export class OutboxComponent implements OnInit {
   mails = [{}, {}, {}, {}, {}, {}];
   isGoogleEnabled: boolean;
 
-  constructor(private accountService: AccountsService, private) {}
+  constructor(private accountService: AccountsService) {}
 
   ngOnInit(): void {
     this.isGoogleEnabled = this.accountService.isGoogleEnabled();
