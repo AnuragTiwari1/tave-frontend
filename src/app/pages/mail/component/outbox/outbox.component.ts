@@ -22,10 +22,8 @@ export class OutboxComponent implements OnInit {
   ngOnInit(): void {
     this.isGoogleEnabled = this.accountService.isGoogleEnabled();
 
-    if (this.isGoogleEnabled) {
-      this.mailServices.listMails().subscribe((res) => {
-        this.mails = res.message;
-      });
+    if (this.isGoogleEnabled||true) {
+      this.mails=this.mailServices.listMails()
 
       this.authCode = this.accountService.googleAuthCode;
     }
