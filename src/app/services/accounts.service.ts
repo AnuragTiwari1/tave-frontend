@@ -12,7 +12,9 @@ export class AccountsService {
   microsoftAccount: boolean;
   googleAuthCode?: string;
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient, private router: Router) {
+    this.googleAccount = !!localStorage.getItem('googleEnabled');
+  }
 
   getAccounts() {
     return this.http.get<IAccounts>('/accounts').pipe(tap(this.setAccounts));
@@ -36,9 +38,9 @@ export class AccountsService {
   }
 
   saveAuthCode(authCode: string) {
-    console.log('the code i got is >>>>>>>>>>>>>>>>', authCode);
     this.googleAuthCode = authCode;
     this.router.navigate(['/app/mail']);
     this.googleAccount = true;
+    localStorage.setItem('googleEnabled', 'TRUE');
   }
 }
