@@ -15,9 +15,7 @@ export class MailService {
 
   listMails() {
     return this.http
-      .get<{ message: IGMailMessages[] }>(
-        `/GmailSignIn/listMessages?code=${this.accountsServices.googleAuthCode}`
-      )
+      .get<{ message: IGMailMessages[] }>(`../mock/mails.json`)
       .pipe(tap(this.parseMails));
   }
 
@@ -33,7 +31,7 @@ export class MailService {
         }
       });
 
-     mailObj.shortMessage=e.snippet;
+      mailObj.shortMessage = e.snippet;
 
       return mailObj;
     }) as IMail[];

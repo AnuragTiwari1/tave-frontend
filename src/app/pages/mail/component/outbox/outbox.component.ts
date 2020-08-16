@@ -33,7 +33,7 @@ export class OutboxComponent implements OnInit {
 
   enableGooglePress() {
     this.accountService.enableGoogle().subscribe((res) => {
-      window.open(res.auth_url);
+      window.open(res.auth_url,"_self");
     });
   }
 }
