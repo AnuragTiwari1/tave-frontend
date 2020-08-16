@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { IAccounts } from '../interfaces/Accounts';
 import { tap } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -9,8 +10,9 @@ import { tap } from 'rxjs/operators';
 export class AccountsService {
   googleAccount: boolean;
   microsoftAccount: boolean;
+  googleAuthCode?: string;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   getAccounts() {
     return this.http.get<IAccounts>('/accounts').pipe(tap(this.setAccounts));
@@ -34,12 +36,9 @@ export class AccountsService {
   }
 
   saveAuthCode(authCode: string) {
-    return this.http
-      .get<{ message: string }>(`/GmailSignIn/listMessages?code=${authCode}`)
-      .pipe(
-        tap(() => {
-          this.googleAccount = true;
-        })
-      );
+    console.log('the code i got is >>>>>>>>>>>>>>>>', authCode);
+    this.googleAuthCode = authCode;
+    this.router.navigate(['/app/mail']);
+    this.googleAccount = true;
   }
 }

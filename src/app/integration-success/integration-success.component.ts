@@ -15,7 +15,7 @@ export class IntegrationSuccessComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    const code = this.route.snapshot.queryParams.code
-    this.accountService.saveAuthCode(code).subscribe();
+    const code = this.route.snapshot.queryParams.code;
+    this.accountService.saveAuthCode(code);
   }
 }
