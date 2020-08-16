@@ -22,7 +22,7 @@ export class OutboxComponent implements OnInit {
   ngOnInit(): void {
     this.isGoogleEnabled = this.accountService.isGoogleEnabled();
 
-    if (this.isGoogleEnabled||true) {
+    if (this.isGoogleEnabled) {
       this.mails=this.mailServices.listMails()
 
       this.authCode = this.accountService.googleAuthCode;
