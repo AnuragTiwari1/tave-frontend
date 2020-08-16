@@ -27,8 +27,8 @@
                 class="font-weight-bold text-uppercase font-oxygen"
               >
                 <th>When</th>
+                <th>Subject</th>
                 <th>From</th>
-                <th>Reciepents</th>
                 <th>Message</th>
                 <th>Status</th>
               </tr>
@@ -36,13 +36,13 @@
             <tbody id="event-body">
               <tr *ngFor="let mail of mails">
                 <td>
-                  <p class="mb-0">01/03/2020</p>
+                  <p class="mb-0">{{mail.when}}</p>
+                </td>
+                <td>
+                  <p class="mb-0">{{ mail.subject }}</p>
                 </td>
                 <td>
                   <p class="mb-0">{{ mail.from }}</p>
-                </td>
-                <td>
-                  <p class="mb-0">{{ mail.to }}</p>
                 </td>
                 <td>
                   <p class="mb-0">{{ mail.shortMessage }}</p>

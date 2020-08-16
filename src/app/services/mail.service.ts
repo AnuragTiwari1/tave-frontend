@@ -35,7 +35,12 @@ export class MailService {
           mailObj.to = element.value;
         } else if (element.name === 'From') {
           mailObj.from = element.value;
+        } else if (element.name === 'Subject') {
+          mailObj.subject = element.value;
+        } else if (element.name === 'Date') {
+          mailObj.when = element.value;
         }
+
       });
 
      mailObj.shortMessage=e.msg.snippet;
