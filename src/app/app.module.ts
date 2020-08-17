@@ -6,10 +6,10 @@ import { LoginComponent } from './pages/login/login.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { AuthGuard } from './auth-guard.guard';
 import { CreateAccountComponent } from './pages/login/create-account/create-account.component';
-import { ForgotPasswordComponent } from './pages/login/forgot-password/forgot-password.component';
+import { ForgotPasswordComponent } from './pages/login/forgot-/forgot-password.component';
 import { LoginComponentComponent } from './pages/login/login-component/login-component.component';
 import { SetPasswordComponent } from './pages/login/set-password/set-password.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/fpasswordorms';
 import { FieldErrorDisplayComponent } from './components/field-error-display.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
@@ -29,6 +29,10 @@ import { ComposeComponent as MailComposeComponent } from './pages/mail/component
 import { AddEventComponent as AddCalendarEventComponent } from './pages/calendar/components/add-event/add-event.component';
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 import { IntegrationSuccessComponent } from './integration-success/integration-success.component';
+import { LeadsComponent } from './src/app/pages/leads/leads.component';
+import { LeadMainComponent } from './src/app/pages/components/lead-main/lead-main.component';
+import { MatTabsModule } from '@angular/material/tabs';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -49,6 +53,8 @@ import { IntegrationSuccessComponent } from './integration-success/integration-s
     MailComposeComponent,
     AddCalendarEventComponent,
     IntegrationSuccessComponent,
+    LeadsComponent,
+    LeadMainComponent,
   ],
   imports: [
     BrowserModule,
@@ -101,7 +107,16 @@ import { IntegrationSuccessComponent } from './integration-success/integration-s
               },
             ],
           },
-
+          {
+            path: 'leads',
+            component: LeadsComponent,
+            children: [
+              {
+                path: '',
+                component: LeadMainComponent,
+              },
+            ],
+          },
           {
             path: 'mail',
             component: MailComponent,
@@ -144,6 +159,7 @@ import { IntegrationSuccessComponent } from './integration-success/integration-s
     FormsModule,
     ReactiveFormsModule,
     NgbModule,
+    MatTabsModule,
   ],
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent],

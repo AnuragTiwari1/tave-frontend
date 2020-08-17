@@ -43,7 +43,6 @@ export class DashboardComponent implements OnInit {
         },
       ],
     },
-
     {
       name: 'Calendar',
       identifier: 'calendar',
@@ -90,9 +89,26 @@ export class DashboardComponent implements OnInit {
         },
       ],
     },
+    {
+      name: 'Leads',
+      identifier: 'leads',
+      route: 'leads',
+      iconClass: 'fa fa-paper-plane',
+      submenu: [
+        {
+          name: 'Overview',
+          route: 'leads',
+          identifier: '',
+        },
+      ],
+    },
   ];
 
-  constructor(private router: Router, private authService: AuthService, private accountServices:AccountsService) {}
+  constructor(
+    private router: Router,
+    private authService: AuthService,
+    private accountServices: AccountsService
+  ) {}
 
   ngOnInit(): void {
     //Toggle Click Function
