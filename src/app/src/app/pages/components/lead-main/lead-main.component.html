@@ -4,13 +4,58 @@
       <p class="h3">Leads</p>
     </div>
     <div class="col-md-6">
-      <a
+      <!-- <a
         role="button"
         class="btn btn-outline-primary float-md-right"
         routerLink="/app/calendar/add_event"
       >
         Add New Event
-      </a>
+      </a> -->
     </div>
   </div>
+  <mat-tab-group>
+    <mat-tab label="Overview">
+      <ng-template matTabContent>
+        <app-lead-overview></app-lead-overview>
+      </ng-template>
+    </mat-tab>
+    <mat-tab label="Schedule">
+      <ng-template matTabContent>
+        <app-lead-schedule></app-lead-schedule>
+      </ng-template>
+    </mat-tab>
+    <mat-tab label="Quotes and Orders">
+      <ng-template matTabContent>
+        <app-lead-quotes-and-orders></app-lead-quotes-and-orders>
+      </ng-template>
+    </mat-tab>
+
+
+    <mat-tab label="Quotes and Orders">
+      <ng-template matTabContent>
+        <app-lead-quotes-and-orders></app-lead-quotes-and-orders>
+      </ng-template>
+    </mat-tab>
+    <mat-tab label="Quotes and Orders">
+      <ng-template matTabContent>
+        <app-lead-quotes-and-orders></app-lead-quotes-and-orders>
+      </ng-template>
+    </mat-tab>
+    <mat-tab label="Quotes and Orders">
+      <ng-template matTabContent>
+        <app-lead-quotes-and-orders></app-lead-quotes-and-orders>
+      </ng-template>
+    </mat-tab>
+    <mat-tab label="Quotes and Orders">
+      <ng-template matTabContent>
+        <app-lead-quotes-and-orders></app-lead-quotes-and-orders>
+      </ng-template>
+    </mat-tab>
+    <mat-tab label="Quotes and Orders">
+      <ng-template matTabContent>
+        <app-lead-quotes-and-orders></app-lead-quotes-and-orders>
+      </ng-template>
+    </mat-tab>
+
+  </mat-tab-group>
 </div>

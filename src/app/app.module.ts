@@ -32,6 +32,16 @@ import { IntegrationSuccessComponent } from './integration-success/integration-s
 import { LeadsComponent } from './src/app/pages/leads/leads.component';
 import { LeadMainComponent } from './src/app/pages/components/lead-main/lead-main.component';
 import { MatTabsModule } from '@angular/material/tabs';
+import { LeadOverviewComponent } from './src/app/pages/components/lead-overview/lead-overview.component';
+import { LeadScheduleComponent } from './src/app/pages/components/lead-schedule/lead-schedule.component';
+import { LeadQuotesAndOrdersComponent } from './src/app/pages/components/lead-quotes-and-orders/lead-quotes-and-orders.component';
+import { LeadFianncialsComponent } from './src/app/pages/components/lead-fianncials/lead-fianncials.component';
+import { LeadMailComponent } from './src/app/pages/components/lead-mail/lead-mail.component';
+import { LeadContractsComponent } from './src/app/pages/components/lead-contracts/lead-contracts.component';
+import { LeadQuestionnairesComponent } from './src/app/pages/components/lead-questionnaires/lead-questionnaires.component';
+import { LeadTasksComponent } from './src/app/pages/components/lead-tasks/lead-tasks.component';
+import { LeadNotesComponent } from './src/app/pages/components/lead-notes/lead-notes.component';
+import { LeadFilesComponent } from './src/app/pages/components/lead-files/lead-files.component';
 
 @NgModule({
   declarations: [
@@ -55,6 +65,16 @@ import { MatTabsModule } from '@angular/material/tabs';
     IntegrationSuccessComponent,
     LeadsComponent,
     LeadMainComponent,
+    LeadOverviewComponent,
+    LeadScheduleComponent,
+    LeadQuotesAndOrdersComponent,
+    LeadFianncialsComponent,
+    LeadMailComponent,
+    LeadContractsComponent,
+    LeadQuestionnairesComponent,
+    LeadTasksComponent,
+    LeadNotesComponent,
+    LeadFilesComponent,
   ],
   imports: [
     BrowserModule,

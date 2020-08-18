@@ -93,7 +93,7 @@ export class DashboardComponent implements OnInit {
       name: 'Leads',
       identifier: 'leads',
       route: 'leads',
-      iconClass: 'fa fa-paper-plane',
+      iconClass: 'fa fa-industry',
       submenu: [
         {
           name: 'Overview',
