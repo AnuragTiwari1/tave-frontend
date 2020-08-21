@@ -101,4 +101,6 @@ export class OverviewComponent implements OnInit {
       return iEvent;
     });
   }
+
+  closeOpenMonthViewDay() {}
 }
