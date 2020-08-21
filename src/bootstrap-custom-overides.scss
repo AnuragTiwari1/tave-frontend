@@ -19,13 +19,13 @@ input[type="number"]:focus,
 .input-group-lg > .custom-select .form-control {
   height: calc(1.5em + 1.5rem + 8px);
   border-left-width: 0px;
-}
 
-.input-group-text {
-  background-color: white;
-  border-right-width: 0px;
-  svg {
-    fill: $primary;
+  .input-group-text {
+    background-color: white;
+    border-right-width: 0px;
+    svg {
+      fill: $primary;
+    }
   }
 }
 

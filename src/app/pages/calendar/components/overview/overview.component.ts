@@ -1,39 +1,27 @@
-import {
-  Component,
-  OnInit,
-  ChangeDetectionStrategy,
-  ViewChild,
-  TemplateRef,
-} from '@angular/core';
+import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import {
   CalendarEvent,
-  CalendarEventAction,
   CalendarEventTimesChangedEvent,
+  CalendarDateFormatter,
   CalendarView,
 } from 'angular-calendar';
 import { Subject } from 'rxjs';
-import {
-  startOfDay,
-  endOfDay,
-  subDays,
-  addDays,
-  endOfMonth,
-  isSameDay,
-  isSameMonth,
-  addHours,
-} from 'date-fns';
+import { CustomDateFormatter } from './custom-date-formatter';
+import { isSameMonth } from 'date-fns';
+import { CalendarService } from '../../../../services/calendar.service';
+import * as moment from 'moment';
 
 const colors: any = {
-  red: {
+  session: {
     primary: '#ad2121',
     secondary: '#FAE3E3',
   },
-  blue: {
+  call: {
     primary: '#1e90ff',
     secondary: '#D1E8FF',
   },
-  yellow: {
+  meetting: {
     primary: '#e3bc08',
     secondary: '#FDF1BA',
   },
@@ -42,9 +30,15 @@ const colors: any = {
 @Component({
   selector: 'app-overview',
   templateUrl: './overview.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  styleUrls: ['./overview.component.scss'],
+  providers: [
+    {
+      provide: CalendarDateFormatter,
+      useClass: CustomDateFormatter,
+    },
+  ],
 })
-export class OverviewComponent {
+export class OverviewComponent implements OnInit {
   @ViewChild('modalContent', { static: true }) modalContent: TemplateRef<any>;
 
   view: CalendarView = CalendarView.Month;
@@ -60,37 +54,36 @@ export class OverviewComponent {
 
   refresh: Subject<any> = new Subject();
 
-  events: CalendarEvent[] = [
-    {
-      start: subDays(startOfDay(new Date()), 1),
-      end: addDays(new Date(), 1),
-      title: 'A 3 day event',
-      color: colors.red,
-      allDay: true,
-    },
-    {
-      start: startOfDay(new Date()),
-      title: 'An event with no end date',
-      color: colors.yellow,
-    },
-    {
-      start: subDays(endOfMonth(new Date()), 3),
-      end: addDays(endOfMonth(new Date()), 3),
-      title: 'A long event that spans 2 months',
-      color: colors.blue,
-      allDay: true,
-    },
-    {
-      start: addHours(startOfDay(new Date()), 2),
-      end: addHours(new Date(), 2),
-      title: 'A draggable and resizable event',
-      color: colors.yellow,
-    },
-  ];
+  events: CalendarEvent[] = [];
 
-  constructor(private modal: NgbModal) {}
+  activeDayIsOpen: boolean = false;
 
-  dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {}
+  constructor(private modal: NgbModal, private calSer: CalendarService) {}
+
+  ngOnInit() {
+    this.calSer.getEvents().subscribe((data) => {
+      this.events = data.data.map((e) => ({
+        start: moment(e.start_date).toDate(),
+        title: e.title,
+        color: colors[e.type],
+        end: moment(e.end_date).toDate(),
+      }));
+    });
+  }
+
+  dayClicked({ date }: { date: Date }): void {
+    if (isSameMonth(date, this.viewDate)) {
+      this.viewDate = date;
+    }
+  }
+
+  setView(view: CalendarView, date?: Date) {
+    this.view = view;
+
+    if (date) {
+      this.dayClicked({ date });
+    }
+  }
 
   eventTimesChanged({
     event,
@@ -107,36 +100,5 @@ export class OverviewComponent {
       }
       return iEvent;
     });
-    this.handleEvent('Dropped or resized', event);
-  }
-
-  handleEvent(action: string, event: CalendarEvent): void {
-    this.modalData = { event, action };
-    this.modal.open(this.modalContent, { size: 'lg' });
-  }
-
-  addEvent(): void {
-    this.events = [
-      ...this.events,
-      {
-        title: 'New event',
-        start: startOfDay(new Date()),
-        end: endOfDay(new Date()),
-        color: colors.red,
-        draggable: true,
-        resizable: {
-          beforeStart: true,
-          afterEnd: true,
-        },
-      },
-    ];
-  }
-
-  deleteEvent(eventToDelete: CalendarEvent) {
-    this.events = this.events.filter((event) => event !== eventToDelete);
-  }
-
-  setView(view: CalendarView) {
-    this.view = view;
   }
 }

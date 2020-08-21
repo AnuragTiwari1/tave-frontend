@@ -1,125 +1,49 @@
 <div class="d-flex" id="wrapper">
   <!-- Sidebar -->
-  <div class="bg-light border-right" id="sidebar-wrapper">
-    <div class="sidebar-heading">CRM</div>
+  <div class="bg-primary border-right" id="sidebar-wrapper">
+    <div class="sidebar-heading font-oxygen">CRM</div>
     <div class="list-group list-group-flush sidebar-content">
-      <a
+      <div
         [ngClass]="{
-          'list-group-item list-group-item-action bg-light': true,
-          active: pageName === 'dashboard'
+          'list-group-item': true,
+          active: pageName === page.identifier
         }"
-        routerLink=""
-        (click)="setPageName('dashboard')"
-        >Dashboard</a
+        *ngFor="let page of pages"
       >
-      <div [ngClass]="{ collapse: pageName !== 'dashboard' }">
-        <ul class="list-group list-group-flush">
-          <li
+        <div class="link-container">
+          <a
+            routerLink="{{ page.route }}"
+            (click)="setPageName(page.identifier)"
+          >
+            <i class="{{ page.iconClass }} pr-2"></i>
+            {{ page.name }}</a
+          >
+        </div>
+        <div
+          [ngClass]="{
+            'list-group list-group-flush submenu': true,
+            collapse: pageName !== page.identifier
+          }"
+        >
+          <a
+            *ngFor="let s of page.submenu"
+            routerLink="{{ s.route }}"
+            (click)="setSubPageName(s.identifier)"
             [ngClass]="{
-              'list-group-item list-group-item-action border-0 bg-white': true,
-              'text-warning active': subPageName === ''
+              'list-group-item border-0': true,
+              'text-warning': subPageName === s.identifier
             }"
           >
-            <a>Overview</a>
-          </li>
-          <li
-            [ngClass]="{
-              'list-group-item list-group-item-action border-0': true,
-              'text-warning active': subPageName === 'agenda'
-            }"
-          >
-            <a>Agenda</a>
-          </li>
-          <li
-            [ngClass]="{
-              'list-group-item list-group-item-action border-0': true,
-              'text-warning active': subPageName === 'upcoming_task'
-            }"
-          >
-            <a>Upcoming Tasks</a>
-          </li>
-        </ul>
-      </div>
-      <a
-        [ngClass]="{
-          'list-group-item list-group-item-action bg-light': true,
-          active: pageName === 'calendar'
-        }"
-        routerLink="calendar"
-        (click)="setPageName('calendar')"
-        >Calender</a
-      >
-      <div [ngClass]="{ collapse: pageName !== 'calendar' }">
-        <ul class="list-group list-group-flush">
-          <li
-            [ngClass]="{
-              'list-group-item list-group-item-action border-0 bg-white': true,
-              'text-warning active': subPageName === ''
-            }"
-          >
-            <a routerLink="calendar" (click)="setSubPageName()"
-              >Event Overview</a
-            >
-          </li>
-          <li
-            [ngClass]="{
-              'list-group-item list-group-item-action border-0': true,
-              'text-warning': subPageName === 'add_event'
-            }"
-          >
-            <a
-              routerLink="calendar/add_event"
-              (click)="setSubPageName('add_event')"
-              >Edit Event</a
-            >
-          </li>
-          <li
-            [ngClass]="{
-              'list-group-item list-group-item-action border-0': true,
-              'text-warning active': subPageName === 'upcoming_event'
-            }"
-          >
-            <a>Upcoming Agenda</a>
-          </li>
-        </ul>
-      </div>
-      <a
-        [ngClass]="{
-          'list-group-item list-group-item-action bg-light': true,
-          active: pageName === 'mail'
-        }"
-        routerLink="mail"
-        (click)="setPageName('mail')"
-        >Mails</a
-      >
-      <div [ngClass]="{ collapse: pageName !== 'mail' }">
-        <ul class="list-group list-group-flush">
-          <li
-            [ngClass]="{
-              'list-group-item list-group-item-action border-0 bg-white': true,
-              'text-warning active': subPageName === ''
-            }"
-          >
-            <a routerLink="mail" (click)="setSubPageName()">Mail Box</a>
-          </li>
-          <li
-            [ngClass]="{
-              'list-group-item list-group-item-action border-0': true,
-              'text-warning': subPageName === 'compose'
-            }"
-          >
-            <a routerLink="mail/compose" (click)="setSubPageName('compose')"
-              >Compose</a
-            >
-          </li>
-        </ul>
+            {{ s.name }}
+          </a>
+        </div>
       </div>
     </div>
   </div>
   <!-- /#sidebar-wrapper -->
   <!-- Page Content -->
   <div id="page-content-wrapper">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+    <nav class="navbar navbar-expand-lg navbar-light bg-white">
       <button
         class="navbar-toggler"
         type="button"
@@ -132,24 +56,97 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul
-          class="nav navbar-nav mt-2 mt-lg-0 flex-fill text-muted align-items-center"
-        >
+        <ul class="nav navbar-nav mt-2 mt-lg-0 flex-fill align-items-center">
           <li class="nav-item h5">
             <i class="btn btn-default btn-lg btn-link">
-              <span class="fa fa-bell"></span>
+              <svg
+                width="21"
+                height="27"
+                viewBox="0 0 21 27"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M18.813 19.1394C17.1555 16.3508 18.1224 14.808 17.4708 9.64617C16.887 5.0214 13.2514 3.69737 11.3892 3.3194V0H9.49445V3.3194C7.62968 3.69737 3.99402 5.02135 3.41154 9.64617C2.76001 14.8055 3.72689 16.3508 2.06933 19.1394C1.62887 19.8754 1.07895 20.4672 0.568115 20.9234V22H20.3129V20.9234C19.8034 20.4672 19.2509 19.8754 18.813 19.1394Z"
+                  fill="#8CA0B3"
+                />
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M9.92093 27C11.0688 27 11.9993 26.1046 11.9993 25C11.9993 23.8954 11.0688 23 9.92093 23C8.77306 23 7.84253 23.8954 7.84253 25C7.84253 26.1046 8.77306 27 9.92093 27Z"
+                />
+              </svg>
             </i>
             <span class="badge badge-notify text-white">3</span>
-            <i class="fa fa-envelope mb-0 mx-3"></i>
+            <i class="btn btn-default btn-lg btn-link">
+              <svg
+                width="26"
+                height="19"
+                viewBox="0 0 26 19"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M3.45331 0H23.4059C24.7777 0 25.9 1.06875 25.9 2.375V16.625C25.9 17.9312 24.7777 19 23.4059 19H3.45331C2.08156 19 0.959229 17.9312 0.959229 16.625L0.971699 2.375C0.971699 1.06875 2.08156 0 3.45331 0ZM12.91 10L22.7824 4.28571V2L12.91 7.71429L3.03763 2V4.28571L12.91 10Z"
+                />
+              </svg>
+            </i>
           </li>
           <li class="nav-item ml-auto h4">
-            <i class="fa fa-search mb-0 mx-3"></i>
-            <i class="fa fa-cog mb-0 mx-3"></i>
+            <i class="btn btn-default btn-lg btn-link">
+              <svg
+                width="31"
+                height="29"
+                viewBox="0 0 31 29"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M20.8377 18.239H22.2075L30.8057 26.5294L28.2383 29L19.6229 20.7261V19.4162L19.1491 18.9603C17.1934 20.5769 14.6518 21.5552 11.869 21.5552C5.68313 21.5552 0.668945 16.7301 0.668945 10.7776C0.668945 4.82504 5.68313 0 11.869 0C18.0549 0 23.0691 4.82504 23.0691 10.7776C23.0691 13.4554 22.0525 15.9011 20.3638 17.783L20.8377 18.239ZM4.11508 10.7776C4.11508 14.898 7.5871 18.239 11.869 18.239C16.1508 18.239 19.6229 14.898 19.6229 10.7776C19.6229 6.65724 16.1508 3.31619 11.869 3.31619C7.5871 3.31619 4.11508 6.65724 4.11508 10.7776Z"
+                />
+              </svg>
+            </i>
+
+            <i class="btn btn-default btn-lg btn-link">
+              <svg
+                width="30"
+                height="27"
+                viewBox="0 0 30 27"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M29.4232 11.9936C29.3765 11.6143 28.8927 11.3293 28.4744 11.3293C27.1219 11.3293 25.9218 10.6033 25.4184 9.48055C24.9042 8.33059 25.2358 6.98948 26.2438 6.14423C26.561 5.87908 26.5996 5.43522 26.3335 5.1269C25.6413 4.32331 24.8545 3.59743 23.9954 2.96834C23.659 2.72156 23.1655 2.7559 22.8738 3.05117C21.9941 3.9418 20.4139 4.27281 19.1929 3.80707C17.9222 3.31843 17.121 2.14137 17.1994 0.877859C17.2252 0.480986 16.9079 0.135919 16.4751 0.0898363C15.3727 -0.0267255 14.2606 -0.0303398 13.1549 0.0818045C12.727 0.124976 12.4097 0.461911 12.4241 0.853763C12.4722 2.10482 11.6612 3.2613 10.4032 3.73237C9.19678 4.18286 7.62771 3.85465 6.74977 2.97196C6.45962 2.6812 5.97408 2.64546 5.63604 2.88632C4.75151 3.52073 3.94705 4.24721 3.24845 5.04417C2.97598 5.354 3.01606 5.80307 3.33653 6.06963C4.36372 6.92 4.69539 8.27276 4.16176 9.43597C3.65228 10.545 2.39259 11.2597 0.950482 11.2597C0.482519 11.2459 0.149201 11.5331 0.098023 11.922C-0.0317898 12.9356 -0.0333273 13.9684 0.0916531 14.9903C0.137999 15.3712 0.636493 15.6537 1.05943 15.6537C2.3446 15.6237 3.57848 16.3511 4.09608 17.5025C4.61204 18.6525 4.28037 19.9928 3.27086 20.8388C2.95511 21.1039 2.91503 21.5471 3.18113 21.8554C3.86688 22.6538 4.65377 23.3804 5.51589 24.0147C5.85404 24.2638 6.34606 24.2287 6.63918 23.9334C7.52217 23.0406 9.10222 22.7102 10.3184 23.1768C11.5923 23.6639 12.3936 24.8409 12.3151 26.1051C12.2895 26.5022 12.6084 26.8479 13.0394 26.8932C13.6034 26.9534 14.1707 26.9834 14.7396 26.9834C15.2796 26.9834 15.8198 26.9563 16.3598 26.9014C16.7877 26.8582 17.1048 26.5213 17.0904 26.1287C17.0409 24.8784 17.8533 23.7219 19.1097 23.2516C20.3242 22.7981 21.8867 23.13 22.7647 24.0118C23.0565 24.302 23.5387 24.337 23.8786 24.097C24.7615 23.4641 25.5643 22.7382 26.2662 21.939C26.5385 21.6299 26.5001 21.1801 26.178 20.9137C25.1508 20.0633 24.8175 18.7103 25.3511 17.5479C25.8528 16.4537 27.0657 15.719 28.3703 15.719L28.5528 15.7233C28.976 15.7547 29.3653 15.4567 29.4166 15.0619C29.5466 14.0473 29.5482 13.0155 29.4232 11.9936ZM14.7808 18.0205C12.0662 18.0205 9.85803 16.0019 9.85803 13.5203C9.85803 11.0387 12.0662 9.02002 14.7808 9.02002C17.4953 9.02002 19.7035 11.0387 19.7035 13.5203C19.7035 16.0019 17.4953 18.0205 14.7808 18.0205Z"
+                />
+              </svg>
+            </i>
+            <i (click)="logout()" class="btn btn-default btn-lg btn-link">
+              <svg
+                height="27"
+                viewBox="0 0 511 512"
+                width="30"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="m361.5 392v40c0 44.113281-35.886719 80-80 80h-201c-44.113281 0-80-35.886719-80-80v-352c0-44.113281 35.886719-80 80-80h201c44.113281 0 80 35.886719 80 80v40c0 11.046875-8.953125 20-20 20s-20-8.953125-20-20v-40c0-22.054688-17.945312-40-40-40h-201c-22.054688 0-40 17.945312-40 40v352c0 22.054688 17.945312 40 40 40h201c22.054688 0 40-17.945312 40-40v-40c0-11.046875 8.953125-20 20-20s20 8.953125 20 20zm136.355469-170.355469-44.785157-44.785156c-7.8125-7.8125-20.476562-7.8125-28.285156 0-7.8125 7.808594-7.8125 20.472656 0 28.28125l31.855469 31.859375h-240.140625c-11.046875 0-20 8.953125-20 20s8.953125 20 20 20h240.140625l-31.855469 31.859375c-7.8125 7.808594-7.8125 20.472656 0 28.28125 3.90625 3.90625 9.023438 5.859375 14.140625 5.859375 5.121094 0 10.238281-1.953125 14.144531-5.859375l44.785157-44.785156c19.496093-19.496094 19.496093-51.214844 0-70.710938zm0 0"
+                />
+              </svg>
+            </i>
           </li>
         </ul>
       </div>
     </nav>
-    <router-outlet></router-outlet>
+    <div id="page-content">
+      <router-outlet></router-outlet>
+    </div>
   </div>
   <!-- /#page-content-wrapper -->
 </div>

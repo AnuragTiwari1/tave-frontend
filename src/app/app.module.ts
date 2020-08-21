@@ -24,8 +24,24 @@ import { OutboxComponent as MailOutboxComponent } from './pages/mail/component/o
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { EventComponent as CalendarAddEventComponent } from './pages/calendar/components/event/event.component';
+import { EventComponent as CalendarEventComponent } from './pages/calendar/components/event/event.component';
 import { ComposeComponent as MailComposeComponent } from './pages/mail/components/compose/compose.component';
+import { AddEventComponent as AddCalendarEventComponent } from './pages/calendar/components/add-event/add-event.component';
+import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
+import { IntegrationSuccessComponent } from './integration-success/integration-success.component';
+import { LeadsComponent } from './src/app/pages/leads/leads.component';
+import { LeadMainComponent } from './src/app/pages/components/lead-main/lead-main.component';
+import { MatTabsModule } from '@angular/material/tabs';
+import { LeadOverviewComponent } from './src/app/pages/components/lead-overview/lead-overview.component';
+import { LeadScheduleComponent } from './src/app/pages/components/lead-schedule/lead-schedule.component';
+import { LeadQuotesAndOrdersComponent } from './src/app/pages/components/lead-quotes-and-orders/lead-quotes-and-orders.component';
+import { LeadFianncialsComponent } from './src/app/pages/components/lead-fianncials/lead-fianncials.component';
+import { LeadMailComponent } from './src/app/pages/components/lead-mail/lead-mail.component';
+import { LeadContractsComponent } from './src/app/pages/components/lead-contracts/lead-contracts.component';
+import { LeadQuestionnairesComponent } from './src/app/pages/components/lead-questionnaires/lead-questionnaires.component';
+import { LeadTasksComponent } from './src/app/pages/components/lead-tasks/lead-tasks.component';
+import { LeadNotesComponent } from './src/app/pages/components/lead-notes/lead-notes.component';
+import { LeadFilesComponent } from './src/app/pages/components/lead-files/lead-files.component';
 
 @NgModule({
   declarations: [
@@ -43,8 +59,22 @@ import { ComposeComponent as MailComposeComponent } from './pages/mail/component
     CalendarOverviewComponent,
     MailComponent,
     MailOutboxComponent,
-    CalendarAddEventComponent,
+    CalendarEventComponent,
     MailComposeComponent,
+    AddCalendarEventComponent,
+    IntegrationSuccessComponent,
+    LeadsComponent,
+    LeadMainComponent,
+    LeadOverviewComponent,
+    LeadScheduleComponent,
+    LeadQuotesAndOrdersComponent,
+    LeadFianncialsComponent,
+    LeadMailComponent,
+    LeadContractsComponent,
+    LeadQuestionnairesComponent,
+    LeadTasksComponent,
+    LeadNotesComponent,
+    LeadFilesComponent,
   ],
   imports: [
     BrowserModule,
@@ -59,8 +89,11 @@ import { ComposeComponent as MailComposeComponent } from './pages/mail/component
       useFactory: adapterFactory,
     }),
     HttpClientModule,
+    OwlDateTimeModule,
+    OwlNativeDateTimeModule,
     RouterModule.forRoot([
       { path: '', redirectTo: 'app/dashboard', pathMatch: 'full' },
+      { path: 'integration_success', component: IntegrationSuccessComponent },
       {
         path: 'app',
         component: DashboardComponent,
@@ -86,11 +119,24 @@ import { ComposeComponent as MailComposeComponent } from './pages/mail/component
               },
               {
                 path: 'add_event',
-                component: CalendarAddEventComponent,
+                component: AddCalendarEventComponent,
+              },
+              {
+                path: 'events',
+                component: CalendarEventComponent,
               },
             ],
           },
-
+          {
+            path: 'leads',
+            component: LeadsComponent,
+            children: [
+              {
+                path: '',
+                component: LeadMainComponent,
+              },
+            ],
+          },
           {
             path: 'mail',
             component: MailComponent,
@@ -133,6 +179,7 @@ import { ComposeComponent as MailComposeComponent } from './pages/mail/component
     FormsModule,
     ReactiveFormsModule,
     NgbModule,
+    MatTabsModule,
   ],
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent],

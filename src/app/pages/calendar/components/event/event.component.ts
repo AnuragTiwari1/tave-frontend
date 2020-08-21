@@ -9,21 +9,9 @@ import {
   endOfDay,
 } from 'date-fns';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-
-const colors: any = {
-  red: {
-    primary: '#ad2121',
-    secondary: '#FAE3E3',
-  },
-  blue: {
-    primary: '#1e90ff',
-    secondary: '#D1E8FF',
-  },
-  yellow: {
-    primary: '#e3bc08',
-    secondary: '#FDF1BA',
-  },
-};
+import { CalendarService } from '../../../../services/calendar.service';
+import * as moment from 'moment';
+import { ICalendarEvents } from '../../../../interfaces/calendarEvents';
 
 @Component({
   selector: 'app-event',
@@ -32,9 +20,13 @@ const colors: any = {
 export class EventComponent implements OnInit {
   @ViewChild('modalContent', { static: true }) modalContent: TemplateRef<any>;
 
-  constructor(private modal: NgbModal) {}
+  constructor(private modal: NgbModal, private calSer: CalendarService) {}
 
-  ngOnInit(): void {}
+  ngOnInit() {
+    this.calSer.getEvents().subscribe((data) => {
+      this.events = data.data;
+    });
+  }
 
   modalData: {
     action: string;
@@ -64,61 +56,9 @@ export class EventComponent implements OnInit {
     },
   ];
 
-  events: CalendarEvent[] = [
-    {
-      start: subDays(startOfDay(new Date()), 1),
-      end: addDays(new Date(), 1),
-      title: 'A 3 day event',
-      color: colors.red,
-      actions: this.actions,
-      allDay: true,
-      resizable: {
-        beforeStart: true,
-        afterEnd: true,
-      },
-      draggable: true,
-    },
-    {
-      start: startOfDay(new Date()),
-      title: 'An event with no end date',
-      color: colors.yellow,
-      actions: this.actions,
-    },
-    {
-      start: subDays(endOfMonth(new Date()), 3),
-      end: addDays(endOfMonth(new Date()), 3),
-      title: 'A long event that spans 2 months',
-      color: colors.blue,
-      allDay: true,
-    },
-    {
-      start: addHours(startOfDay(new Date()), 2),
-      end: addHours(new Date(), 2),
-      title: 'A draggable and resizable event',
-      color: colors.yellow,
-      actions: this.actions,
-      resizable: {
-        beforeStart: true,
-        afterEnd: true,
-      },
-      draggable: true,
-    },
-  ];
+  events: any[] = [];
 
   addEvent(): void {
-    this.events = [
-      ...this.events,
-      {
-        title: 'New event',
-        start: startOfDay(new Date()),
-        end: endOfDay(new Date()),
-        color: colors.red,
-        draggable: true,
-        resizable: {
-          beforeStart: true,
-          afterEnd: true,
-        },
-      },
-    ];
+    this.events = [...this.events];
   }
 }

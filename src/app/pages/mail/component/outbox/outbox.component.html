@@ -1,8 +1,68 @@
-<div class="container">
-  <div
-    class="bg-dark text-white mt-4 p-3 d-flex justify-content-between rounded-top"
-  >
-    <h5 class="m-0">Mail box</h5>
-    <h5 class="m-0">4 Messages</h5>
+<div class="container-fluid px-0">
+  <!-- <p>{{ authCode }}</p> -->
+  <div class="row mt-4 font-oxygen">
+    <div class="col-md-6">
+      <p class="h3">Mail</p>
+    </div>
+    <div class="col-md-6">
+      <a
+        role="button"
+        class="btn btn-outline-primary float-md-right"
+        routerLink="/app/mail/compose"
+        >Compose</a
+      >
+    </div>
+  </div>
+  <div class="card mt-4 rounded-5">
+    <div class="card-body">
+      <h5 class="card-title font-oxygen">Inbox</h5>
+      <hr class="mb-0" />
+
+      <div class="card border-0">
+        <div class="table-responsive" *ngIf="isGoogleEnabled">
+          <table class="table">
+            <thead>
+              <tr
+                id="head-row"
+                class="font-weight-bold text-uppercase font-oxygen"
+              >
+                <th>When</th>
+                <th>Subject</th>
+                <th>From</th>
+                <th>Message</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="event-body">
+              <tr *ngFor="let mail of mails">
+                <td>
+                  <p class="mb-0">{{mail.when}}</p>
+                </td>
+                <td>
+                  <p class="mb-0">{{ mail.subject }}</p>
+                </td>
+                <td>
+                  <p class="mb-0">{{ mail.from }}</p>
+                </td>
+                <td>
+                  <p class="mb-0">{{ mail.shortMessage }}</p>
+                </td>
+
+                <td>
+                  <p class="mb-0">
+                    Delivered
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div *ngIf="!isGoogleEnabled">
+          <button (click)="enableGooglePress()">
+            enable Google Integration
+          </button>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

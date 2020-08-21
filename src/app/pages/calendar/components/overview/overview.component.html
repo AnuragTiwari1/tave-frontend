@@ -1,53 +1,109 @@
-<div class="container-fluid">
-  <div class="row text-center mt-4">
-    <div class="col-md-4"></div>
-    <div class="col-md-4">
-      <h3>{{ viewDate | calendarDate: view + "ViewTitle":"en" }}</h3>
+<div class="container-fluid px-0">
+  <div class="row mt-4 font-oxygen">
+    <div class="col-md-6">
+      <p class="h3">
+        <span class="cursor-pointer" (click)="setView(CalendarView.Month)"
+          >Calendar
+          <svg
+            width="16"
+            height="10"
+            viewBox="0 0 16 25"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M3.11416 24.0235L0 20.9094L8.8976 12.0118L0 3.11416L3.11416 0L15.1259 12.0118L3.11416 24.0235Z"
+              fill="#6B6B6B"
+            />
+          </svg>
+        </span>
+        <span *ngIf="view === CalendarView.Day" class="cursor-pointer ml-1"
+          >Details</span
+        >
+      </p>
     </div>
-    <div class="col-md-4">
-      <div class="btn-group">
-        <div
-          class="btn btn-primary"
-          (click)="setView(CalendarView.Month)"
-          [class.active]="view === CalendarView.Month"
-        >
-          Month
-        </div>
-        <div
-          class="btn btn-primary"
-          (click)="setView(CalendarView.Week)"
-          [class.active]="view === CalendarView.Week"
-        >
-          Week
-        </div>
-        <div
-          class="btn btn-primary"
-          (click)="setView(CalendarView.Day)"
-          [class.active]="view === CalendarView.Day"
-        >
-          Day
-        </div>
-      </div>
+    <div class="col-md-6">
+      <a
+        role="button"
+        class="btn btn-outline-primary float-md-right"
+        routerLink="add_event"
+      >
+        Add New Event
+      </a>
     </div>
   </div>
   <br />
-  <div [ngSwitch]="view">
-    <mwl-calendar-month-view
-      *ngSwitchCase="CalendarView.Month"
-      [viewDate]="viewDate"
-      [events]="events"
-      [refresh]="refresh"
-      [activeDayIsOpen]="false"
-      (dayClicked)="dayClicked($event.day)"
-      (eventClicked)="handleEvent('Clicked', $event.event)"
-      (eventTimesChanged)="eventTimesChanged($event)"
-    >
-    </mwl-calendar-month-view>
+  <div class="bg-white pb-5 px-3 pt-5">
+    <div class="d-flex mb-5 justify-content-center align-items-center">
+      <div
+        class="btn"
+        mwlCalendarPreviousView
+        [view]="view"
+        [(viewDate)]="viewDate"
+        (viewDateChange)="closeOpenMonthViewDay()"
+      >
+        <svg
+          width="16"
+          height="25"
+          viewBox="0 0 16 25"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M12.0118 24.0235L15.126 20.9094L6.22837 12.0118L15.126 3.11416L12.0118 0L5.05447e-05 12.0118L12.0118 24.0235Z"
+            fill="#6B6B6B"
+          />
+        </svg>
+      </div>
+      <h1 id="month-text" class="text-center mb-0">
+        {{ viewDate | calendarDate: view + "ViewTitle":"en" }}
+      </h1>
+
+      <div
+        class="btn"
+        mwlCalendarNextView
+        [view]="view"
+        [(viewDate)]="viewDate"
+        (viewDateChange)="closeOpenMonthViewDay()"
+      >
+        <svg
+          width="16"
+          height="25"
+          viewBox="0 0 16 25"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M3.11416 24.0235L0 20.9094L8.8976 12.0118L0 3.11416L3.11416 0L15.1259 12.0118L3.11416 24.0235Z"
+            fill="#6B6B6B"
+          />
+        </svg>
+      </div>
+    </div>
+    <div [ngSwitch]="view">
+      <mwl-calendar-month-view
+        *ngSwitchCase="CalendarView.Month"
+        [viewDate]="viewDate"
+        [(events)]="events"
+        [refresh]="refresh"
+        [activeDayIsOpen]="false"
+        (eventTimesChanged)="eventTimesChanged($event)"
+        [cellTemplate]="customCellTemplate"
+      >
+      </mwl-calendar-month-view>
+      <mwl-calendar-day-view
+        *ngSwitchCase="CalendarView.Day"
+        [viewDate]="viewDate"
+        [events]="events"
+        [refresh]="refresh"
+        (eventTimesChanged)="eventTimesChanged($event)"
+      >
+      </mwl-calendar-day-view>
+    </div>
+
+    <br /><br /><br />
   </div>
 </div>
-<!-- Everything you see below is just for the demo, you don't need to include it in your app -->
-
-<br /><br /><br />
 
 <ng-template #modalContent let-close="close">
   <div class="modal-header">
@@ -70,5 +126,31 @@
     <button type="button" class="btn btn-outline-secondary" (click)="close()">
       OK
     </button>
+  </div>
+</ng-template>
+
+<ng-template #customCellTemplate let-day="day" let-locale="locale">
+  <div class="cal-cell-top">
+    <span
+      class="cal-day-badge rounded-circle"
+      style="background: #8ca0b3;"
+      *ngIf="day.badgeTotal > 0"
+      >{{ day.badgeTotal }}</span
+    >
+    <span class="cal-day-number">{{
+      day.date | calendarDate: "monthViewDayNumber":locale
+    }}</span>
+  </div>
+  <div
+    class="p-1 m-2 rounded bg-primary event-details"
+    *ngIf="day.badgeTotal > 0"
+  >
+    <small
+      class="text-white"
+      style="margin: 5px;"
+      (click)="setView(CalendarView.Day, day.date)"
+    >
+      {{ day.events[0].title }}
+    </small>
   </div>
 </ng-template>
