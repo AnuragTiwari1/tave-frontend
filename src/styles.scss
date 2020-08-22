@@ -103,6 +103,12 @@ $tave-frontend-theme: mat-light-theme(
   display: none !important;
 }
 
+.tave-rounded-button {
+  padding: 0.5rem 2rem;
+  border-radius: 2rem;
+  background-color: #466991;
+}
+
 html,
 body {
   height: 100%;

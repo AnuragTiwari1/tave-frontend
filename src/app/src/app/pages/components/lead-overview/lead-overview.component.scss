@@ -2,16 +2,19 @@ $yellow: #feb950;
 $border-gray: #cdcdcd;
 
 .card {
-  padding: 1rem;
-  border-radius:1rem;
+  padding: 1rem 1.5rem;
+  border-radius: 1rem;
 
   .card-header {
     background-color: white;
     border-bottom: 1px solid $border-gray;
     font-size: 1.5rem;
+    margin-bottom: 1rem;
   }
 
   .card-body {
+    padding: 0rem;
+
     ul {
       list-style-type: none;
       padding-left: 0px;
@@ -25,6 +28,7 @@ $border-gray: #cdcdcd;
     font-size: 1rem;
     font-weight: bold;
     font-family: Oxygen;
+    padding: 0rem;
     color: #335276;
   }
 }
@@ -84,4 +88,17 @@ $border-gray: #cdcdcd;
       }
     }
   }
+}
+
+.badge .badge-primary {
+  font-size: 0.8rem;
+}
+
+.yellow-color {
+  color: $yellow;
+}
+
+.list-items {
+  padding: 1.25rem 0rem;
+  border-bottom: 1px solid $border-gray;
 }
