@@ -102,7 +102,5 @@ export class OverviewComponent implements OnInit {
     });
   }
 
-  closeOpenMonthViewDay() {
-    this.activeDayIsOpen = false;
-  }
+  closeOpenMonthViewDay() {}
 }

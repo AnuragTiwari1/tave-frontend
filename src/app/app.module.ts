@@ -29,6 +29,20 @@ import { ComposeComponent as MailComposeComponent } from './pages/mail/component
 import { AddEventComponent as AddCalendarEventComponent } from './pages/calendar/components/add-event/add-event.component';
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 import { IntegrationSuccessComponent } from './integration-success/integration-success.component';
+import { LeadsComponent } from './src/app/pages/leads/leads.component';
+import { LeadMainComponent } from './src/app/pages/components/lead-main/lead-main.component';
+import { MatTabsModule } from '@angular/material/tabs';
+import { LeadOverviewComponent } from './src/app/pages/components/lead-overview/lead-overview.component';
+import { LeadScheduleComponent } from './src/app/pages/components/lead-schedule/lead-schedule.component';
+import { LeadQuotesAndOrdersComponent } from './src/app/pages/components/lead-quotes-and-orders/lead-quotes-and-orders.component';
+import { LeadFianncialsComponent } from './src/app/pages/components/lead-fianncials/lead-fianncials.component';
+import { LeadMailComponent } from './src/app/pages/components/lead-mail/lead-mail.component';
+import { LeadContractsComponent } from './src/app/pages/components/lead-contracts/lead-contracts.component';
+import { LeadQuestionnairesComponent } from './src/app/pages/components/lead-questionnaires/lead-questionnaires.component';
+import { LeadTasksComponent } from './src/app/pages/components/lead-tasks/lead-tasks.component';
+import { LeadNotesComponent } from './src/app/pages/components/lead-notes/lead-notes.component';
+import { LeadFilesComponent } from './src/app/pages/components/lead-files/lead-files.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -49,6 +63,18 @@ import { IntegrationSuccessComponent } from './integration-success/integration-s
     MailComposeComponent,
     AddCalendarEventComponent,
     IntegrationSuccessComponent,
+    LeadsComponent,
+    LeadMainComponent,
+    LeadOverviewComponent,
+    LeadScheduleComponent,
+    LeadQuotesAndOrdersComponent,
+    LeadFianncialsComponent,
+    LeadMailComponent,
+    LeadContractsComponent,
+    LeadQuestionnairesComponent,
+    LeadTasksComponent,
+    LeadNotesComponent,
+    LeadFilesComponent,
   ],
   imports: [
     BrowserModule,
@@ -101,7 +127,16 @@ import { IntegrationSuccessComponent } from './integration-success/integration-s
               },
             ],
           },
-
+          {
+            path: 'leads',
+            component: LeadsComponent,
+            children: [
+              {
+                path: '',
+                component: LeadMainComponent,
+              },
+            ],
+          },
           {
             path: 'mail',
             component: MailComponent,
@@ -144,6 +179,7 @@ import { IntegrationSuccessComponent } from './integration-success/integration-s
     FormsModule,
     ReactiveFormsModule,
     NgbModule,
+    MatTabsModule,
   ],
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent],

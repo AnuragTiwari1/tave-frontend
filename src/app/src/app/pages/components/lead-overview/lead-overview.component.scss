@@ -1,0 +1,104 @@
+$yellow: #feb950;
+$border-gray: #cdcdcd;
+
+.card {
+  padding: 1rem 1.5rem;
+  border-radius: 1rem;
+
+  .card-header {
+    background-color: white;
+    border-bottom: 1px solid $border-gray;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .card-body {
+    padding: 0rem;
+
+    ul {
+      list-style-type: none;
+      padding-left: 0px;
+      margin-bottom: 0.5rem;
+    }
+  }
+
+  .card-footer {
+    background-color: white;
+    border-top: 0rem;
+    font-size: 1rem;
+    font-weight: bold;
+    font-family: Oxygen;
+    padding: 0rem;
+    color: #335276;
+  }
+}
+
+#contact-and-schedule-row {
+  min-height: 5rem;
+
+  .col {
+    min-height: 100%;
+
+    .card {
+      min-height: 100%;
+    }
+  }
+}
+
+#contact-body {
+  li {
+    p {
+      display: flex;
+      font-family: "Oxygen";
+      font-weight: bold;
+
+      span.property {
+        flex: 1.5;
+        text-transform: capitalize;
+      }
+
+      span.value {
+        color: rgba($color: #000000, $alpha: 0.3);
+        flex: 2.8;
+      }
+    }
+  }
+}
+
+#schedule-body {
+  li {
+    p {
+      display: flex;
+      font-family: "Oxygen";
+      font-weight: bold;
+      align-items: center;
+      padding: 1.25rem 0rem;
+      border-bottom: 1px solid $border-gray;
+
+      span.event-timing {
+        flex: 1;
+        font-size: 0.8rem;
+        color: #335276;
+      }
+
+      span.event-title {
+        color: $yellow;
+        flex: 5;
+        font-size: 1.25rem;
+      }
+    }
+  }
+}
+
+.badge .badge-primary {
+  font-size: 0.8rem;
+}
+
+.yellow-color {
+  color: $yellow;
+}
+
+.list-items {
+  padding: 1.25rem 0rem;
+  border-bottom: 1px solid $border-gray;
+}
