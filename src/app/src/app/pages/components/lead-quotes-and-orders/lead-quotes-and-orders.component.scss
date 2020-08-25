@@ -1,0 +1,57 @@
+$border-gray: #cdcdcd;
+
+.card {
+  padding: 1rem 1.5rem;
+  padding-bottom: 0rem;
+  border-radius: 1rem;
+
+  .card-header {
+    background-color: white;
+    border-bottom: 1px solid $border-gray;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    padding-right: 0rem;
+    padding-left: 0rem;
+  }
+
+  .card-body {
+    padding: 0rem;
+    max-height: 15rem;
+    overflow: scroll;
+
+    table tr th {
+      background: #335276;
+      text-transform: none;
+      border-top-width: 0rem;
+    }
+
+    thead tr:first-child th:first-child {
+      border-top-left-radius: 6px;
+    }
+    thead tr:first-child th:last-child {
+      border-top-right-radius: 6px;
+    }
+
+    th {
+      position: sticky;
+      top: 0; /* Don't forget this, required for the stickiness */
+    }
+  }
+
+  .card-footer {
+    background-color: white;
+    border-top: 0rem;
+    font-size: 1rem;
+    font-weight: bold;
+    font-family: Oxygen;
+    padding: 0rem;
+    color: #335276;
+  }
+}
+
+.icon-container {
+  width: 10%;
+  span {
+    padding: 0rem 0.3rem;
+  }
+}
