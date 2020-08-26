@@ -29,21 +29,21 @@ import { ComposeComponent as MailComposeComponent } from './pages/mail/component
 import { AddEventComponent as AddCalendarEventComponent } from './pages/calendar/components/add-event/add-event.component';
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 import { IntegrationSuccessComponent } from './integration-success/integration-success.component';
-import { LeadsComponent } from './src/app/pages/leads/leads.component';
-import { LeadMainComponent } from './src/app/pages/components/lead-main/lead-main.component';
+import { LeadsComponent } from './pages/leads/leads.component';
+import { LeadMainComponent } from './pages/leads/components/lead-main/lead-main.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatTableModule } from '@angular/material/table';
 import { CdkTableModule } from '@angular/cdk/table';
-import { LeadOverviewComponent } from './src/app/pages/components/lead-overview/lead-overview.component';
-import { LeadScheduleComponent } from './src/app/pages/components/lead-schedule/lead-schedule.component';
-import { LeadQuotesAndOrdersComponent } from './src/app/pages/components/lead-quotes-and-orders/lead-quotes-and-orders.component';
-import { LeadFianncialsComponent } from './src/app/pages/components/lead-fianncials/lead-fianncials.component';
-import { LeadMailComponent } from './src/app/pages/components/lead-mail/lead-mail.component';
-import { LeadContractsComponent } from './src/app/pages/components/lead-contracts/lead-contracts.component';
-import { LeadQuestionnairesComponent } from './src/app/pages/components/lead-questionnaires/lead-questionnaires.component';
-import { LeadTasksComponent } from './src/app/pages/components/lead-tasks/lead-tasks.component';
-import { LeadNotesComponent } from './src/app/pages/components/lead-notes/lead-notes.component';
-import { LeadFilesComponent } from './src/app/pages/components/lead-files/lead-files.component';
+import { LeadOverviewComponent } from './pages/leads/components/lead-overview/lead-overview.component';
+import { LeadScheduleComponent } from './pages/leads/components/lead-schedule/lead-schedule.component';
+import { LeadQuotesAndOrdersComponent } from './pages/leads/components/lead-quotes-and-orders/lead-quotes-and-orders.component';
+import { LeadFianncialsComponent } from './pages/leads/components/lead-fianncials/lead-fianncials.component';
+import { LeadMailComponent } from './pages/leads/components/lead-mail/lead-mail.component';
+import { LeadContractsComponent } from './pages/leads/components/lead-contracts/lead-contracts.component';
+import { LeadQuestionnairesComponent } from './pages/leads/components/lead-questionnaires/lead-questionnaires.component';
+import { LeadTasksComponent } from './pages/leads/components/lead-tasks/lead-tasks.component';
+import { LeadNotesComponent } from './pages/leads/components/lead-notes/lead-notes.component';
+import { LeadFilesComponent } from './pages/leads/components/lead-files/lead-files.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @NgModule({

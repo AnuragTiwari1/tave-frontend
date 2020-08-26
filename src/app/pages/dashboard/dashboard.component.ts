@@ -100,6 +100,11 @@ export class DashboardComponent implements OnInit {
           route: 'leads',
           identifier: '',
         },
+        {
+          name: 'New Lead',
+          route: 'leads/create',
+          identifier: 'create',
+        },
       ],
     },
   ];
