@@ -32,6 +32,8 @@ import { IntegrationSuccessComponent } from './integration-success/integration-s
 import { LeadsComponent } from './src/app/pages/leads/leads.component';
 import { LeadMainComponent } from './src/app/pages/components/lead-main/lead-main.component';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatTableModule } from '@angular/material/table';
+import { CdkTableModule } from '@angular/cdk/table';
 import { LeadOverviewComponent } from './src/app/pages/components/lead-overview/lead-overview.component';
 import { LeadScheduleComponent } from './src/app/pages/components/lead-schedule/lead-schedule.component';
 import { LeadQuotesAndOrdersComponent } from './src/app/pages/components/lead-quotes-and-orders/lead-quotes-and-orders.component';
@@ -42,6 +44,7 @@ import { LeadQuestionnairesComponent } from './src/app/pages/components/lead-que
 import { LeadTasksComponent } from './src/app/pages/components/lead-tasks/lead-tasks.component';
 import { LeadNotesComponent } from './src/app/pages/components/lead-notes/lead-notes.component';
 import { LeadFilesComponent } from './src/app/pages/components/lead-files/lead-files.component';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [
@@ -180,6 +183,9 @@ import { LeadFilesComponent } from './src/app/pages/components/lead-files/lead-f
     ReactiveFormsModule,
     NgbModule,
     MatTabsModule,
+    MatTableModule,
+    CdkTableModule,
+    MatCheckboxModule,
   ],
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent],

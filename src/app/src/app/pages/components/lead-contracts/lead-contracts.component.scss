@@ -1,0 +1,34 @@
+$border-gray: #cdcdcd;
+
+.card {
+  padding: 1rem 1.5rem;
+  border-radius: 1rem;
+
+  .card-header {
+    background-color: white;
+    border-bottom: 1px solid $border-gray;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    padding-right: 0rem;
+    padding-left: 0rem;
+  }
+
+  .card-body {
+    padding: 0rem;
+    min-height: 30rem;
+
+    table {
+      width: 100%;
+      box-shadow: none;
+
+      .w-10 {
+        width: 10%;
+      }
+      .spaced-symbol {
+        span {
+          margin: 0rem 0.3rem;
+        }
+      }
+    }
+  }
+}
