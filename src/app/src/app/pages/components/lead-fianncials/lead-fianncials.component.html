@@ -1,1 +1,193 @@
-<p>lead-fianncials works!</p>
+<div class="container-fluid">
+  <div id="card-container" class="row justify-content-between">
+    <div class="col-3">
+      <div class="card">
+        <div class="card-body">
+          <p class="title">Credit</p>
+          <p class="content">$0.00</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-3">
+      <div class="card">
+        <div class="card-body">
+          <p class="title">Cost</p>
+          <p class="content">$0.00</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-3">
+      <div class="card">
+        <div class="card-body">
+          <p class="title">Invoiced</p>
+          <p class="content">$0.00</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-3">
+      <div class="card">
+        <div class="card-body">
+          <p class="title">Profit</p>
+          <p class="content">$100</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-table">
+    <div class="card mt-5">
+      <div class="card-header">
+        Ledger
+        <div class="card-button-container float-right">
+          <button class="btn btn-outline-primary mx-1">New Credit</button>
+          <button class="btn btn-outline-primary mx-1">Record Expense</button>
+          <button class="btn btn-primary ml-1">Record Payment</button>
+        </div>
+      </div>
+      <div class="card-body">
+        <table class="table">
+          <thead class="text-white">
+            <tr
+              id="head-row"
+              class="font-weight-bold text-uppercase font-oxygen"
+            >
+              <th>Date</th>
+              <th>Kind</th>
+              <th>Status</th>
+              <th>Who/Meme</th>
+              <th>Applies to</th>
+              <th>Credit</th>
+              <th>Cost</th>
+              <th>Revenue</th>
+            </tr>
+          </thead>
+          <tbody id="event-body">
+            <tr *ngFor="let quote of quotes">
+              <td>
+                <p class="mb-0">01/01/2020</p>
+              </td>
+              <td>
+                <p class="mb-0">Kind</p>
+              </td>
+              <td>
+                <p class="mb-0">Status</p>
+              </td>
+              <td>
+                <p class="mb-0">Mensoor</p>
+              </td>
+              <td class="w-10">
+                <p class="mb-0">Akheel</p>
+              </td>
+              <td class="w-10">
+                <p class="mb-0">$100</p>
+              </td>
+              <td class="w-10">
+                <p class="mb-0">$578</p>
+              </td>
+              <td class="w-10">
+                <p class="mb-0">$700</p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="px-5">
+      <table class="table">
+        <tbody>
+          <tr class="font-oxygen">
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td class="w-10 font-weight-bold">Total</td>
+            <td class="w-10">$500</td>
+            <td class="w-10">$1270</td>
+            <td class="w-10">$2800</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="card-table">
+    <div class="card mt-5">
+      <div class="card-header">
+        Account Payable
+        <div class="card-button-container float-right">
+          <button class="btn btn-outline-primary mx-1">New Credit</button>
+          <button class="btn btn-outline-primary mx-1">Record Expense</button>
+          <button class="btn btn-primary ml-1">Record Payment</button>
+        </div>
+      </div>
+      <div class="card-body">
+        <table class="table">
+          <thead class="text-white">
+            <tr
+              id="head-row"
+              class="font-weight-bold text-uppercase font-oxygen"
+            >
+              <th>Date</th>
+              <th>Category</th>
+              <th>Status</th>
+              <th>Payee/Meme</th>
+              <th>Applies to</th>
+              <th>Credit</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="event-body">
+            <tr *ngFor="let quote of quotes">
+              <td>
+                <p class="mb-0">01/01/2020</p>
+              </td>
+              <td>
+                <p class="mb-0">Future Expense</p>
+              </td>
+              <td>
+                <p class="mb-0">Future</p>
+              </td>
+              <td>
+                <p class="mb-0">Akheel</p>
+              </td>
+              <td class="w-20 pb-0">
+                <p class="mb-0 line-accurate">Order Booked On</p>
+                <small class="mb-0">01/02/2020</small>
+              </td>
+              <td class="w-10">
+                <p class="mb-0">$578</p>
+              </td>
+              <td class="w-10">
+                <div ngbDropdown class="d-inline-block">
+                  <button
+                    class="btn btn-outline-primary"
+                    id="dropdownBasic1"
+                    ngbDropdownToggle
+                  >
+                    Action
+                  </button>
+                  <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                    <button ngbDropdownItem>Post</button>
+                    <button ngbDropdownItem>Remind</button>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="px-5">
+      <table class="table">
+        <tbody>
+          <tr class="font-oxygen">
+            <td></td>
+            <td></td>
+            <td></td>
+            <td class="font-weight-bold">Total</td>
+            <td class="w-10">$500</td>
+            <td class="w-10"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

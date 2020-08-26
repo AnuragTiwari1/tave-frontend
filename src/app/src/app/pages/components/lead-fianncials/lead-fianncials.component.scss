@@ -1,6 +1,41 @@
 $border-gray: #cdcdcd;
 
-.card {
+#card-container {
+  .col-3 {
+    padding: 0rem 1.5rem;
+  }
+
+  .card {
+    text-align: center;
+    border-radius: 1rem;
+    color: white;
+
+    .title {
+      font-size: 30px;
+      margin-bottom: 0rem;
+    }
+
+    .content {
+      font-size: 40px;
+      margin-bottom: 0rem;
+    }
+  }
+
+  .col-3:nth-child(1) .card {
+    background-color: #4551b7;
+  }
+  .col-3:nth-child(2) .card {
+    background: #f44336;
+  }
+  .col-3:nth-child(3) .card {
+    background: #41d14f;
+  }
+  .col-3:nth-child(4) .card {
+    background: #8d8d8d;
+  }
+}
+
+.card-table .card {
   padding: 1rem 1.5rem;
   padding-bottom: 0rem;
   border-radius: 1rem;
@@ -37,11 +72,22 @@ $border-gray: #cdcdcd;
       top: 0; /* Don't forget this, required for the stickiness */
     }
   }
+
+  small {
+    font-size: 0.5rem;
+  }
+
+  .line-accurate {
+    line-height: 0.5;
+  }
 }
 
-.icon-container {
+.w-10 {
   width: 10%;
-  span {
-    padding: 0rem 0.3rem;
+}
+
+.card-button-container {
+  button {
+    border-radius: 2rem;
   }
 }
