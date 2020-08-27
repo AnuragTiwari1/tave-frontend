@@ -1,0 +1,39 @@
+$border-gray: #cdcdcd;
+
+.card {
+  padding: 1rem 1.5rem;
+  border-radius: 1rem;
+  margin-top: 2rem;
+
+  .card-header {
+    background-color: white;
+    border-bottom: 1px solid $border-gray;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    padding-right: 0rem;
+    padding-left: 0rem;
+
+    .header-icon-container {
+      float: right;
+
+      span {
+        margin: 0rem 0.5rem;
+        svg {
+          opacity: 0.3;
+        }
+      }
+
+      .active {
+        svg {
+          stroke: #466991;
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+  .card-body {
+    padding: 0rem;
+    min-height: 30rem;
+  }
+}
