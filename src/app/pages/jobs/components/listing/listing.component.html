@@ -2,7 +2,7 @@
   <div class="row mt-4 font-oxygen">
     <div class="col-md-6">
       <p class="h3">
-        <span class="cursor-pointer" (click)="setView(CalendarView.Month)"
+        <span class="cursor-pointer"
           >Jobs
           <svg
             width="16"
@@ -17,9 +17,6 @@
             />
           </svg>
         </span>
-        <span *ngIf="view === CalendarView.Day" class="cursor-pointer ml-1"
-          >Details</span
-        >
       </p>
     </div>
     <div class="col-md-6">
