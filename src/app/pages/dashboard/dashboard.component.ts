@@ -90,6 +90,24 @@ export class DashboardComponent implements OnInit {
       ],
     },
     {
+      name: 'Jobs',
+      identifier: 'jobs',
+      route: 'jobs',
+      iconClass: 'fa fa-briefcase',
+      submenu: [
+        {
+          name: 'Confirmed Jobs',
+          route: 'jobs',
+          identifier: '',
+        },
+        {
+          name: 'New Booked Job',
+          route: 'jobs/create',
+          identifier: 'create',
+        },
+      ],
+    },
+    {
       name: 'Leads',
       identifier: 'leads',
       route: 'leads',

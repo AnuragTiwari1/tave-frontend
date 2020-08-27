@@ -45,6 +45,9 @@ import { LeadTasksComponent } from './pages/leads/components/lead-tasks/lead-tas
 import { LeadNotesComponent } from './pages/leads/components/lead-notes/lead-notes.component';
 import { LeadFilesComponent } from './pages/leads/components/lead-files/lead-files.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { JobsComponent } from './pages/jobs/jobs.component';
+import { ListingComponent as JobsListingComponent } from './pages/jobs/components/listing/listing.component';
+import { JobsCreateComponent } from './pages/jobs/components/jobs-create/jobs-create.component';
 
 @NgModule({
   declarations: [
@@ -78,6 +81,9 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     LeadTasksComponent,
     LeadNotesComponent,
     LeadFilesComponent,
+    JobsComponent,
+    JobsListingComponent,
+    JobsCreateComponent,
   ],
   imports: [
     BrowserModule,
@@ -137,6 +143,20 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
               {
                 path: '',
                 component: LeadMainComponent,
+              },
+            ],
+          },
+          {
+            path: 'jobs',
+            component: JobsComponent,
+            children: [
+              {
+                path: '',
+                component: JobsListingComponent,
+              },
+              {
+                path: 'create',
+                component: JobsCreateComponent,
               },
             ],
           },

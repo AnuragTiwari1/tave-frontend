@@ -1,0 +1,35 @@
+<div class="container-fluid px-0">
+  <div class="row mt-4 font-oxygen">
+    <div class="col-md-6">
+      <p class="h3">
+        <span class="cursor-pointer" (click)="setView(CalendarView.Month)"
+          >Jobs
+          <svg
+            width="16"
+            height="10"
+            viewBox="0 0 16 25"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M3.11416 24.0235L0 20.9094L8.8976 12.0118L0 3.11416L3.11416 0L15.1259 12.0118L3.11416 24.0235Z"
+              fill="#6B6B6B"
+            />
+          </svg>
+        </span>
+        <span *ngIf="view === CalendarView.Day" class="cursor-pointer ml-1"
+          >Details</span
+        >
+      </p>
+    </div>
+    <div class="col-md-6">
+      <a
+        role="button"
+        class="btn btn-outline-primary float-md-right"
+        routerLink="create"
+      >
+        Add New
+      </a>
+    </div>
+  </div>
+</div>
