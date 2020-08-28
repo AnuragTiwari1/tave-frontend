@@ -96,9 +96,7 @@
           <div class="form-group">
             <label for="name">Source</label>
             <select class="form-control" formControlName="source">
-              <option value="session">Contacts</option>
               <option value="session">Advertisement</option>
-              <option value="session">Others</option>
             </select>
           </div>
         </div>
@@ -160,6 +158,102 @@
               class="form-control"
               id="name"
               formControlName="bookedOn"
+              aria-describedby="name"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 px-2 mt-3">
+      <div class="card h-100">
+        <div class="card-header">Contact</div>
+        <div class="card-body">
+          <div class="form-group">
+            <label for="name">Job Type</label>
+            <select class="form-control" formControlName="contact_job_type">
+              <option value="13">Wedding Photography</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="Name">Name</label>
+            <input
+              type="name"
+              class="form-control"
+              id="name"
+              formControlName="contact_name"
+              aria-describedby="name"
+            />
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input
+              type="email"
+              class="form-control"
+              id="name"
+              formControlName="contact_email"
+              aria-describedby="name"
+            />
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input
+              type="number"
+              class="form-control"
+              id="name"
+              formControlName="contact_phone"
+              aria-describedby="name"
+            />
+          </div>
+          <div class="form-group">
+            <label for="phone">Address</label>
+            <input
+              type="address"
+              class="form-control"
+              id="name"
+              formControlName="contact_address"
+              aria-describedby="name"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 px-2 mt-3">
+      <div class="card h-100">
+        <div class="card-header">Schedule</div>
+        <div class="card-body">
+          <div class="form-group">
+            <label for="name">Job Type</label>
+            <select class="form-control" formControlName="event_type_id">
+              <option value="13">Wedding Photography</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="phone">Address</label>
+            <input
+              type="address"
+              class="form-control"
+              id="name"
+              formControlName="event_location"
+              aria-describedby="name"
+            />
+          </div>
+          <div class="form-group">
+            <label for="name">From</label>
+            <input
+              type="date"
+              class="form-control"
+              id="name"
+              formControlName="event_from_date"
+              aria-describedby="name"
+            />
+          </div>
+          <div class="form-group">
+            <label for="name">To</label>
+            <input
+              type="date"
+              class="form-control"
+              id="name"
+              formControlName="event_to_date"
               aria-describedby="name"
             />
           </div>

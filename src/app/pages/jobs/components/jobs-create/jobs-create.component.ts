@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { ToastrService } from 'ngx-toastr';
 import { LeadsService } from '../../../../services/leads.service';
 import { Router } from '@angular/router';
 
@@ -29,13 +28,23 @@ export class JobsCreateComponent implements OnInit {
     stage: new FormControl('Lead', [Validators.required]),
     leadInquiredOn: new FormControl('', [Validators.required]),
     bookedOn: new FormControl('', [Validators.required]),
+
+    contact_job_type: new FormControl('', [Validators.required]),
+    contact_name: new FormControl('', [Validators.required]),
+    contact_email: new FormControl('', [Validators.required]),
+    contact_phone: new FormControl('', [Validators.required]),
+    contact_address: new FormControl('', [Validators.required]),
+
+    event_type_id: new FormControl('', [Validators.required]),
+    event_location: new FormControl('', [Validators.required]),
+    event_from_date: new FormControl('', [Validators.required]),
+    event_to_date: new FormControl('', [Validators.required]),
+    event_is_all_day: new FormControl(false),
+    event_is_confirmed: new FormControl(false),
+    event_is_primary: new FormControl(false),
   });
 
-  constructor(
-    private toastr: ToastrService,
-    private leadServices: LeadsService,
-    private router: Router
-  ) {}
+  constructor(private leadServices: LeadsService, private router: Router) {}
 
   ngOnInit(): void {}
 

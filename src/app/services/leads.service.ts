@@ -13,33 +13,7 @@ export class LeadsService {
 
   createLeads(formObj: any) {
     const formData = new FormData();
-    // formData.append('name', );
-    // formData.append('brand_id', );
-    // formData.append('job_type_id',);
-    // formData.append('date', );
-    // formData.append('lead_note', );
-    // formData.append('rating', );
-    // formData.append('booking_confidence',);
-    // formData.append('will_decide_by', );
-    // formData.append('max_budget', );
-    // formData.append('lead_source_id',);
-    // formData.append('stage', );
-    // formData.append('lead_inquired_on', );
-    // formData.append('job_was_booked_on', );
 
-    // formData.append('', 'Anurag');
-    // formData.append('', '1');
-    // formData.append('', '1');
-    // formData.append('', 'Anurag');
-    // formData.append('', 'Anurag');
-    // formData.append('', '1');
-    // formData.append('', 1);
-    // formData.append('', new Date().toString());
-    // formData.append('', '10000');
-    // formData.append('', '1');
-    // formData.append('', '1');
-    // formData.append('', new Date().toString());
-    // formData.append('', new Date().toString());
     formData.append(
       'data',
       JSON.stringify({
@@ -51,7 +25,7 @@ export class LeadsService {
         rating: formObj.rating,
         booking_confidence: formObj.confidence,
         will_decide_by: formObj.decideBy,
-        max_budget: formObj.maIxBudget,
+        max_budget: formObj.maxBudget,
         lead_source_id: 1,
         stage: formObj.stage,
         lead_inquired_on: formObj.leadInquiredOn,
@@ -75,23 +49,23 @@ export class LeadsService {
     formData.append(
       'contacts',
       JSON.stringify({
-        name: 'Anurag Tiwari',
-        default_job_role_id: 10,
+        name: formObj.contact_name,
+        default_job_role_id: formObj.contact_job_type,
         is_company: 1,
         is_client: 1,
-        email: 'anuragweb@gmail.com',
-        mobile: '9607155846',
-        address: 'Pune, India',
+        email: formObj.contact_email,
+        mobile: formObj.contact_phone,
+        address: formObj.contact_address,
       })
     );
     formData.append('event_card_count', '1');
     formData.append(
       'event',
       JSON.stringify({
-        event_type_id: 3,
-        location: 2323,
-        from_date: new Date(),
-        to_date: new Date(),
+        event_type_id: formObj.event_type_id,
+        location: formObj.event_location,
+        from_date: formObj.event_from_date,
+        to_date: formObj.event_to_date,
         is_all_day_event: 1,
         is_confirmed: 1,
         is_primary: 1,
