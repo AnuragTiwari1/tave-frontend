@@ -1,7 +1,10 @@
 <div class="card font-oxygen">
   <div class="card-header">
     Quotes
-    <button class="btn btn-primary tave-rounded-button float-right">
+    <button
+      class="btn btn-primary tave-rounded-button float-right"
+      (click)="open(addQuote)"
+    >
       Add Quote
     </button>
   </div>
@@ -128,7 +131,10 @@
 <div class="card font-oxygen mt-5">
   <div class="card-header">
     Orders
-    <button class="btn btn-primary tave-rounded-button float-right">
+    <button
+      class="btn btn-primary tave-rounded-button float-right"
+      (click)="open(addOrder)"
+    >
       Add Order
     </button>
   </div>
@@ -177,41 +183,133 @@
     </table>
   </div>
 
-  <div
-    class="modal"
-    id="myModal"
-    [style.display]="showModal ? 'block' : 'none'"
-  >
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <!-- Modal Header -->
-        <div class="modal-header">
-          <h4 class="modal-title">Add Quotes</h4>
-          <button
-            type="button"
-            class="close"
-            data-dismiss="modal"
-            (click)="hide()"
-          >
-            &times;
-          </button>
+  <ng-template #addQuote let-modal>
+    <form [formGroup]="quotesForm" (ngSubmit)="onQuotesSubmit()">
+      <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Add New Quote</h4>
+        <button
+          type="button"
+          class="close"
+          aria-label="Close"
+          (click)="modal.dismiss('Cross click')"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="Note type">Order Type</label>
+          <select class="form-control" formControlName="type">
+            <option value="13">Primary</option>
+          </select>
         </div>
-
-        <!-- Modal body -->
-        <div class="modal-body"></div>
-
-        <!-- Modal footer -->
-        <div class="modal-footer">
-          <button
-            type="button"
-            class="btn btn-danger"
-            data-dismiss="modal"
-            (click)="hide()"
-          >
-            Close
-          </button>
+        <div class="form-group">
+          <label for="Enter Note">Order Name</label>
+          <div class="input-group">
+            <input class="form-control" formControlName="name" type="text" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="Enter Note">Price</label>
+          <div class="input-group">
+            <input class="form-control" formControlName="price" type="text" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="Enter Note">expiration</label>
+          <div class="input-group">
+            <input
+              class="form-control"
+              formControlName="expiration"
+              type="date"
+            />
+          </div>
         </div>
       </div>
-    </div>
-  </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-outline-dark">Save</button>
+      </div>
+    </form>
+  </ng-template>
+
+  <ng-template #addOrder let-modal>
+    <form [formGroup]="orderForm" (ngSubmit)="onOrderSubmit()">
+      <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Add New Order</h4>
+        <button
+          type="button"
+          class="close"
+          aria-label="Close"
+          (click)="modal.dismiss('Cross click')"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="Note type">Status</label>
+          <select class="form-control" formControlName="type">
+            <option value="13">Paid</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="Enter Note">Name</label>
+          <div class="input-group">
+            <input class="form-control" formControlName="name" type="text" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="Enter Note">Sold To</label>
+          <div class="input-group">
+            <input class="form-control" formControlName="soldTo" type="text" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="Enter Note">Sold On</label>
+          <div class="input-group">
+            <input class="form-control" formControlName="soldOn" type="date" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="Enter Note">Next Invoice</label>
+          <div class="input-group">
+            <input
+              class="form-control"
+              formControlName="nextInvoice"
+              type="number"
+            />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="Enter Note">Due By</label>
+          <div class="input-group">
+            <input class="form-control" formControlName="dueBy" type="date" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="Enter Note">Balance</label>
+          <div class="input-group">
+            <input
+              class="form-control"
+              formControlName="balance"
+              type="number"
+            />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="Enter Note">Order Total</label>
+          <div class="input-group">
+            <input
+              class="form-control"
+              formControlName="orderTotal"
+              type="number"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-outline-dark">Save</button>
+      </div>
+    </form>
+  </ng-template>
 </div>

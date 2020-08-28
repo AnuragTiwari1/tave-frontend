@@ -109,4 +109,14 @@ export class LeadsService {
     const formData = new FormData();
     return this.http.post('/Lead/addContact', formData);
   }
+
+  addQuotes(leadId, formObj) {
+    const formData = new FormData();
+    return this.http.post('/Lead/addQuotes', formData);
+  }
+
+  addOrders(leadId, formObj) {
+    const formData = new FormData();
+    return this.http.post('/Lead/addOrders', formData);
+  }
 }
