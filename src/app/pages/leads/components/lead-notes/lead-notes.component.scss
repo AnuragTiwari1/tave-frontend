@@ -1,0 +1,19 @@
+$border-gray: #cdcdcd;
+
+.card {
+  padding: 1rem 1.5rem;
+  border-radius: 1rem;
+
+  .card-header {
+    background-color: white;
+    border-bottom: 1px solid $border-gray;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    padding-right: 0rem;
+    padding-left: 0rem;
+  }
+
+  .card-body {
+    padding: 0rem;
+  }
+}
