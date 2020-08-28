@@ -1,1 +1,180 @@
-<p>jobs-create works!</p>
+<div class="container-fluid">
+  <form class="row" [formGroup]="jobsForm" (ngSubmit)="onSubmit()">
+    <div class="col-12 col-md-6 px-2">
+      <div class="card h-100">
+        <div class="card-header">Job Profile</div>
+        <div class="card-body">
+          <div class="form-group">
+            <label for="name">Name </label>
+            <input
+              type="name"
+              class="form-control"
+              id="name"
+              formControlName="name"
+              aria-describedby="name"
+            />
+          </div>
+          <div class="form-group">
+            <label for="name">Brand</label>
+            <input
+              type="name"
+              class="form-control"
+              id="name"
+              formControlName="brand"
+              aria-describedby="name"
+            />
+          </div>
+          <div class="form-group">
+            <label for="name">Job Type</label>
+            <select class="form-control" formControlName="jobType">
+              <option value="session">Session</option>
+              <option value="session">Meeting</option>
+              <option value="session">Call</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="name">Job Date</label>
+            <input
+              type="date"
+              class="form-control"
+              id="name"
+              formControlName="jobDate"
+              aria-describedby="name"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-6 px-2">
+      <div class="card h-100">
+        <div class="card-header">Lead Details</div>
+        <div class="card-body">
+          <label>Rating</label>
+          <br />
+          <ngb-rating formControlName="rating" [max]="5"></ngb-rating>
+          <br />
+          <br />
+
+          <label for="confidence">Confidence</label>
+          <br />
+          <div
+            class="btn-group btn-group-toggle"
+            ngbRadioGroup
+            name="radioBasic"
+            formControlName="confidence"
+          >
+            <label ngbButtonLabel class="btn-primary">
+              <input ngbButton type="radio" value="Low" /> Low
+            </label>
+            <label ngbButtonLabel class="btn-primary">
+              <input ngbButton type="radio" value="Medium" /> Medium
+            </label>
+            <label ngbButtonLabel class="btn-primary">
+              <input ngbButton type="radio" value="High" /> High
+            </label>
+          </div>
+          <br />
+          <br />
+          <div class="form-group">
+            <label for="name">Will decide by</label>
+            <input
+              type="date"
+              class="form-control"
+              id="name"
+              formControlName="decideBy"
+              aria-describedby="name"
+            />
+          </div>
+          <div class="form-group">
+            <label for="name">Max Budget</label>
+            <input
+              type="number"
+              class="form-control"
+              id="name"
+              formControlName="maxBudget"
+              aria-describedby="name"
+            />
+          </div>
+          <div class="form-group">
+            <label for="name">Source</label>
+            <select class="form-control" formControlName="source">
+              <option value="session">Contacts</option>
+              <option value="session">Advertisement</option>
+              <option value="session">Others</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-6 px-2 mt-3">
+      <div class="card h-100">
+        <div class="card-header">Lead Notes</div>
+        <div class="card-body">
+          <textarea
+            class="form-control"
+            rows="5"
+            formControlName="leadNote"
+          ></textarea>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-6 px-2 mt-3">
+      <div class="card h-100">
+        <div class="card-header">Manual Workflow Progress</div>
+        <div class="card-body">
+          <label for="confidence">Status</label>
+          <br />
+          <div
+            class="btn-group btn-group-toggle"
+            ngbRadioGroup
+            name="radioBasic"
+            formControlName="stage"
+          >
+            <label ngbButtonLabel class="btn-primary">
+              <input ngbButton type="radio" value="Lead" /> Lead
+            </label>
+            <label ngbButtonLabel class="btn-primary">
+              <input ngbButton type="radio" value="Booked" /> Booked
+            </label>
+            <label ngbButtonLabel class="btn-primary">
+              <input ngbButton type="radio" value="Fulfilment" /> Fulfilment
+            </label>
+            <label ngbButtonLabel class="btn-primary">
+              <input ngbButton type="radio" value="Completed" /> Completed
+            </label>
+          </div>
+          <br />
+          <br />
+          <div class="form-group">
+            <label for="name">Lead inquired on</label>
+            <input
+              type="date"
+              class="form-control"
+              id="name"
+              formControlName="jobDate"
+              aria-describedby="name"
+            />
+          </div>
+          <div class="form-group">
+            <label for="name">Job was Booked on</label>
+            <input
+              type="date"
+              class="form-control"
+              id="name"
+              formControlName="jobDate"
+              aria-describedby="name"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row w-100">
+      <button
+        type="submit"
+        class="btn btn-primary rounded-pill py-3 mt-4 ml-auto align-self-end"
+      >
+        <p class="h5 mb-0 px-5 font-weight-bold text-uppercase">Submit</p>
+      </button>
+    </div>
+  </form>
+</div>
