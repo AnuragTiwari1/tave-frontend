@@ -99,4 +99,14 @@ export class LeadsService {
   setActiveTab(index: number) {
     this.activeTabIndex = index;
   }
+
+  addNote(leadId, formObj) {
+    const formData = new FormData();
+    return this.http.post('/Lead/addNote', formData);
+  }
+
+  addContact(leadId, formObj) {
+    const formData = new FormData();
+    return this.http.post('/Lead/addContact', formData);
+  }
 }
