@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { LeadsService } from '../../../../services/leads.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-jobs-create',
@@ -29,7 +31,11 @@ export class JobsCreateComponent implements OnInit {
     bookedOn: new FormControl('', [Validators.required]),
   });
 
-  constructor(private toastr: ToastrService) {}
+  constructor(
+    private toastr: ToastrService,
+    private leadServices: LeadsService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {}
 
@@ -44,7 +50,11 @@ export class JobsCreateComponent implements OnInit {
     const val = this.jobsForm.value;
 
     if (this.jobsForm.valid) {
+      this.leadServices.createLeads(val).subscribe(() => {
+        this.router.navigate(['/app/leads']);
+      });
     } else {
+      console.log(this.jobsForm.errors, val);
       this.toastr.error(
         'Please fill all the fields before submitting',
         'Form has errored'
