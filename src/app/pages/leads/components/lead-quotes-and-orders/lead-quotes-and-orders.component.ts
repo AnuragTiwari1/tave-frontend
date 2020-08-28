@@ -10,7 +10,15 @@ export class LeadQuotesAndOrdersComponent implements OnInit {
 
   orders = [[], [], [], [], []];
 
+  showModal: boolean = false;
+
   constructor() {}
 
   ngOnInit(): void {}
+
+
+
+  hide() {
+    this.showModal = false;
+  }
 }

@@ -3,13 +3,10 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-lead-mail',
   templateUrl: './lead-mail.component.html',
-  styleUrls: ['./lead-mail.component.css']
+  styleUrls: ['./lead-mail.component.css'],
 })
 export class LeadMailComponent implements OnInit {
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }

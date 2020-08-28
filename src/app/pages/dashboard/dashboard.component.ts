@@ -107,24 +107,24 @@ export class DashboardComponent implements OnInit {
         },
       ],
     },
-    {
-      name: 'Leads',
-      identifier: 'leads',
-      route: 'leads',
-      iconClass: 'fa fa-industry',
-      submenu: [
-        {
-          name: 'Overview',
-          route: 'leads',
-          identifier: '',
-        },
-        {
-          name: 'New Lead',
-          route: 'leads/create',
-          identifier: 'create',
-        },
-      ],
-    },
+    // {
+    //   name: 'Leads',
+    //   identifier: 'leads',
+    //   route: 'leads',
+    //   iconClass: 'fa fa-industry',
+    //   submenu: [
+    //     {
+    //       name: 'Overview',
+    //       route: 'leads',
+    //       identifier: '',
+    //     },
+    //     {
+    //       name: 'New Lead',
+    //       route: 'leads/create',
+    //       identifier: 'create',
+    //     },
+    //   ],
+    // },
   ];
 
   constructor(

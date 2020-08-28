@@ -48,17 +48,19 @@ export class JobsCreateComponent implements OnInit {
   onSubmit() {
     this.formSumitAttempt = true;
     const val = this.jobsForm.value;
-
-    if (this.jobsForm.valid) {
-      this.leadServices.createLeads(val).subscribe(() => {
-        this.router.navigate(['/app/leads']);
-      });
-    } else {
-      console.log(this.jobsForm.errors, val);
-      this.toastr.error(
-        'Please fill all the fields before submitting',
-        'Form has errored'
-      );
-    }
+    this.leadServices.createLeads(val).subscribe(() => {
+      this.router.navigate(['/app/jobs']);
+    });
+    // if (this.jobsForm.valid) {
+    //   this.leadServices.createLeads(val).subscribe(() => {
+    //     this.router.navigate(['/app/leads']);
+    //   });
+    // } else {
+    //   console.log(this.jobsForm.errors, val);
+    //   this.toastr.error(
+    //     'Please fill all the fields before submitting',
+    //     'Form has errored'
+    //   );
+    // }
   }
 }

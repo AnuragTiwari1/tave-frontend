@@ -112,10 +112,12 @@
             </div>
             <div>
               <p class="h5 mb-1 font-oxygen font-weight-bold">
-                Expert Person Required
+                {{ job.name || "Wedding Photograpy" }}
               </p>
               <span class="small text-muted pr-3">
-                <span class="align-bottom px-1"> Graphic Expert </span>
+                <span class="align-bottom px-1">
+                  {{ job.job_type_name || "Wedding Photograpy" }}
+                </span>
               </span>
               <span class="small text-muted">
                 <svg
@@ -170,7 +172,7 @@
                     fill="#E54F4F"
                   />
                 </svg>
-                <span class="align-bottom px-1"> 02 Feb 2020 </span>
+                <span class="align-bottom px-1">{{ job.date }}</span>
               </span>
             </div>
           </div>
@@ -188,10 +190,12 @@
           class="co1-12 p-3 my-3 bg-light rounded"
           *ngFor="let job of jobList"
         >
-          <div class="row">
-            <div class="col">Need a Expert</div>
-            <div class="col">Graphic Design</div>
-            <div class="col">02 Feb 2020</div>
+          <div class="row cursor-pointer" (click)="handleJobClick(job.id)">
+            <div class="col">{{ job.name }}</div>
+            <div class="col">
+              {{ job.job_type_name || "Wedding Photograpy" }}
+            </div>
+            <div class="col">{{ job.date }}</div>
           </div>
         </div>
       </div>
