@@ -12,7 +12,7 @@ export class LeadMainComponent {
 
   constructor(
     private route: ActivatedRoute,
-    private leadServices: LeadsService
+    public leadServices: LeadsService
   ) {
     this.route.queryParams.subscribe((params) => {
       this.id = params.id;

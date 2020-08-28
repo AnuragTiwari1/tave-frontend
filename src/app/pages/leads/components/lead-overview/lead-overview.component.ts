@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LeadsService } from 'src/app/services/leads.service';
 
 export interface IContactOverView {
   name: string;
@@ -16,7 +17,7 @@ export interface IContactOverView {
   styleUrls: ['./lead-overview.component.scss'],
 })
 export class LeadOverviewComponent implements OnInit {
-  constructor() {}
+  constructor(public leadServices:LeadsService) {}
 
   ngOnInit(): void {}
 }

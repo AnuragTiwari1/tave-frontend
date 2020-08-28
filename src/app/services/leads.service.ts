@@ -8,8 +8,11 @@ import { tap } from 'rxjs/operators';
 export class LeadsService {
   currentId: string;
   currentLead: any;
+  activeTabIndex: number;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    this.activeTabIndex = 0;
+  }
 
   createLeads(formObj: any) {
     const formData = new FormData();
@@ -91,5 +94,9 @@ export class LeadsService {
   setLead(data) {
     console.log('setting the current lead to>>>>>>>', data);
     this.currentLead = data;
+  }
+
+  setActiveTab(index: number) {
+    this.activeTabIndex = index;
   }
 }
