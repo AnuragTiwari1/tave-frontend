@@ -95,7 +95,10 @@
     <div class="card-body container-fluid">
       <div *ngIf="grid" class="row">
         <div class="col-6" *ngFor="let job of jobList">
-          <div class="card my-2 d-flex flex-row align-items-center">
+          <div
+            class="card my-2 d-flex flex-row align-items-center cursor-pointer"
+            (click)="handleJobClick(job.id)"
+          >
             <div class="mr-4">
               <svg
                 width="63"
