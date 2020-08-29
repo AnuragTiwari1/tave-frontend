@@ -4,7 +4,7 @@
       <div class="card">
         <div class="card-body">
           <p class="title">Credit</p>
-          <p class="content">$0.00</p>
+          <p class="content">${{ leadServices.currentLead.credit_total }}</p>
         </div>
       </div>
     </div>
@@ -12,7 +12,7 @@
       <div class="card">
         <div class="card-body">
           <p class="title">Cost</p>
-          <p class="content">$0.00</p>
+          <p class="content">${{ leadServices.currentLead.cost_total }}</p>
         </div>
       </div>
     </div>
@@ -20,7 +20,7 @@
       <div class="card">
         <div class="card-body">
           <p class="title">Invoiced</p>
-          <p class="content">$0.00</p>
+          <p class="content">${{ leadServices.currentLead.invoiced_total }}</p>
         </div>
       </div>
     </div>
@@ -28,7 +28,7 @@
       <div class="card">
         <div class="card-body">
           <p class="title">Profit</p>
-          <p class="content">$100</p>
+          <p class="content">${{ leadServices.currentLead.profit_total }}</p>
         </div>
       </div>
     </div>
@@ -84,35 +84,35 @@
           <tbody id="event-body">
             <tr *ngFor="let quote of quotes">
               <td>
-                <p class="mb-0">01/01/2020</p>
+                <p class="mb-0">{{ quote.date }}</p>
               </td>
               <td>
-                <p class="mb-0">Kind</p>
+                <p class="mb-0">{{ quote.kind }}</p>
               </td>
               <td>
-                <p class="mb-0">Status</p>
+                <p class="mb-0">{{ quote.status }}</p>
               </td>
               <td>
-                <p class="mb-0">Mensoor</p>
+                <p class="mb-0">{{ quote.who_meme }}</p>
               </td>
               <td class="w-10">
-                <p class="mb-0">Akheel</p>
+                <p class="mb-0">{{ quote.applies_to }}</p>
               </td>
               <td class="w-10">
-                <p class="mb-0">$100</p>
+                <p class="mb-0">${{ quote.credit }}</p>
               </td>
               <td class="w-10">
-                <p class="mb-0">$578</p>
+                <p class="mb-0">${{ quote.cost }}</p>
               </td>
               <td class="w-10">
-                <p class="mb-0">$700</p>
+                <p class="mb-0">${{ quote.revenue }}</p>
               </td>
             </tr>
           </tbody>
         </table>
       </div>
     </div>
-    <div class="px-5">
+    <!-- <div class="px-5">
       <table class="table">
         <tbody>
           <tr class="font-oxygen">
@@ -127,7 +127,7 @@
           </tr>
         </tbody>
       </table>
-    </div>
+    </div> -->
   </div>
   <div class="card-table">
     <div class="card mt-5">
@@ -163,23 +163,23 @@
           <tbody id="event-body">
             <tr *ngFor="let quote of quotes">
               <td>
-                <p class="mb-0">01/01/2020</p>
+                <p class="mb-0">{{ payable.date }}</p>
               </td>
               <td>
-                <p class="mb-0">Future Expense</p>
+                <p class="mb-0">{{ payable.category }}</p>
               </td>
               <td>
-                <p class="mb-0">Future</p>
+                <p class="mb-0">{{ payable.status }}</p>
               </td>
               <td>
-                <p class="mb-0">Akheel</p>
+                <p class="mb-0">{{ payable.payee_name }}</p>
               </td>
               <td class="w-20 pb-0">
                 <p class="mb-0 line-accurate">Order Booked On</p>
-                <small class="mb-0">01/02/2020</small>
+                <small class="mb-0">{{ payable.applies_to }}</small>
               </td>
               <td class="w-10">
-                <p class="mb-0">$578</p>
+                <p class="mb-0">${{ payable.credit }}</p>
               </td>
               <!-- <td class="w-10">
                 <div ngbDropdown class="d-inline-block">

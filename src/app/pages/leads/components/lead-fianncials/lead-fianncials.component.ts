@@ -10,7 +10,8 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class LeadFianncialsComponent implements OnInit {
   quotes = [];
-  showExpanse = true;
+  payable = [];
+  showExpanse = false;
   closeResult = '';
 
   ledgerForm = new FormGroup({
@@ -38,15 +39,28 @@ export class LeadFianncialsComponent implements OnInit {
     private modalService: NgbModal
   ) {
     this.quotes = this.getFilterArray();
+    this.payable = this.getFilterArrayPayable();
+  }
+
+  getFilterArrayPayable() {
+    if (this.showExpanse) {
+      return (this.leadServices?.currentLead?.acc_payable || []).filter(
+        (e) => e.status === 'paid'
+      );
+    } else {
+      return (this.leadServices?.currentLead?.acc_payable || []).filter(
+        (e) => e.status !== 'paid'
+      );
+    }
   }
 
   getFilterArray() {
     if (this.showExpanse) {
-      return (this.leadServices?.currentLead?.financials || []).filter(
+      return (this.leadServices?.currentLead?.ledger || []).filter(
         (e) => e.status === 'paid'
       );
     } else {
-      return (this.leadServices?.currentLead?.financials || []).filter(
+      return (this.leadServices?.currentLead?.ledger || []).filter(
         (e) => e.status !== 'paid'
       );
     }
