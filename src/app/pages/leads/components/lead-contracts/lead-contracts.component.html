@@ -1,7 +1,10 @@
 <div class="card">
   <div class="card-header">
     Contract
-    <button class="btn btn-primary tave-rounded-button float-right">
+    <button
+      class="btn btn-primary tave-rounded-button float-right"
+      (click)="open(addContract)"
+    >
       Add New
     </button>
   </div>
@@ -144,4 +147,42 @@
       ></tr>
     </table>
   </div>
+
+  <ng-template #addContract let-modal>
+    <form [formGroup]="contractForm" (ngSubmit)="onContractSubmit()">
+      <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Add New Note</h4>
+        <button
+          type="button"
+          class="close"
+          aria-label="Close"
+          (click)="modal.dismiss('Cross click')"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="Note type">Note Type</label>
+          <select class="form-control" formControlName="type">
+            <option value="Primary">Primary</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="Enter Note">Enter Note</label>
+          <div class="input-group">
+            <textarea
+              class="form-control"
+              rows="5"
+              id="comment"
+              formControlName="note"
+            ></textarea>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-outline-dark">Save</button>
+      </div>
+    </form>
+  </ng-template>
 </div>

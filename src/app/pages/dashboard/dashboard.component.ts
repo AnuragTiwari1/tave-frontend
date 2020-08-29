@@ -136,11 +136,7 @@ export class DashboardComponent implements OnInit {
     },
   ];
 
-  constructor(
-    private router: Router,
-    private authService: AuthService,
-    private accountServices: AccountsService
-  ) {}
+  constructor(private router: Router, private authService: AuthService) {}
 
   ngOnInit(): void {
     //Toggle Click Function

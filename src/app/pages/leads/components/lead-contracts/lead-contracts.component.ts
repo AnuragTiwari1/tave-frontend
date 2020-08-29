@@ -1,6 +1,9 @@
 import { SelectionModel } from '@angular/cdk/collections';
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
+import { LeadsService } from 'src/app/services/leads.service';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 export interface IContract {
   name: string;
@@ -42,6 +45,13 @@ const ELEMENT_DATA: IContract[] = [
   styleUrls: ['./lead-contracts.component.scss'],
 })
 export class LeadContractsComponent implements OnInit {
+  closeResult = '';
+  contractFormSubmitAttempt: boolean;
+
+  contractForm = new FormGroup({
+    name: new FormControl('', [Validators.required]),
+  });
+
   displayedColumns: string[] = [
     'select',
     'position',
@@ -76,7 +86,35 @@ export class LeadContractsComponent implements OnInit {
     }`;
   }
 
-  constructor() {}
+  constructor(
+    public leadServices: LeadsService,
+    private modalService: NgbModal
+  ) {}
+
+  open(content) {
+    this.modalService
+      .open(content, { ariaLabelledBy: 'modal-basic-title' })
+      .result.then(
+        (result) => {
+          this.closeResult = `Closed with: ${result}`;
+        },
+        (reason) => {
+          this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+        }
+      );
+  }
+
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return `with: ${reason}`;
+    }
+  }
 
   ngOnInit(): void {}
+
+  onContractSubmit() {}
 }
