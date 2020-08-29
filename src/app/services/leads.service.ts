@@ -124,12 +124,20 @@ export class LeadsService {
     const formData = new FormData();
     formData.append('note_type', formObj.type);
     formData.append('notes', formObj.note);
-    return this.http.post(`/Lead/createNote/${leadId}`, formData);
+    return this.http.post(`/Lead/createNote/${leadId}`, formData).pipe(
+      tap(() => {
+        window.location.reload();
+      })
+    );
   }
 
   addContact(leadId, formObj) {
     const formData = new FormData();
-    return this.http.post('/Lead/addContact', formData);
+    return this.http.post('/Lead/addContact', formData).pipe(
+      tap(() => {
+        window.location.reload();
+      })
+    );
   }
 
   addQuotes(leadId, formObj) {
@@ -140,7 +148,11 @@ export class LeadsService {
     formData.append('nettotal', formObj.price);
     formData.append('expiration', formObj.expiration);
 
-    return this.http.post(`/Lead/createQuote/${leadId}`, formData);
+    return this.http.post(`/Lead/createQuote/${leadId}`, formData).pipe(
+      tap(() => {
+        window.location.reload();
+      })
+    );
   }
 
   addOrders(leadId, formObj) {
@@ -154,11 +166,14 @@ export class LeadsService {
     formData.append('balance', formObj.balance);
     formData.append('order_total', formObj.orderTotal);
 
-    return this.http.post(`/Lead/createOrder/${leadId}`, formData);
+    return this.http.post(`/Lead/createOrder/${leadId}`, formData).pipe(
+      tap(() => {
+        window.location.reload();
+      })
+    );
   }
 
   setLeadId(leadId) {
-    console.log('the id>>>>>>>>>.', leadId);
     this.currentId = leadId;
   }
 }
