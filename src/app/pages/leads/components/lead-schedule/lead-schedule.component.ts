@@ -7,7 +7,10 @@ import { LeadsService } from 'src/app/services/leads.service';
   styleUrls: ['./lead-schedule.component.scss'],
 })
 export class LeadScheduleComponent implements OnInit {
-  constructor(public leadsServices: LeadsService) {}
+  constructor(public leadsServices: LeadsService) {
+  }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+
+  }
 }
