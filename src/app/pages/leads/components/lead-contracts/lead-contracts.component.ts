@@ -65,6 +65,7 @@ export class LeadContractsComponent implements OnInit {
     private modalService: NgbModal
   ) {
     this.dataSource = this.leadServices?.currentLead?.contracts || [];
+    console.log('the dataSource>>>>>>>>>>>>>>', this.dataSource);
   }
 
   open(content) {
