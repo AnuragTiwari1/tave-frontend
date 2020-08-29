@@ -100,10 +100,9 @@ export class LeadsService {
     const ledger = data.data.ledger;
     const acc_payable = data.data.acc_payable;
 
-    const { contacts, events, ...leadProperties } = leadData;
+    const { events, ...leadProperties } = leadData;
 
     const currentLead = leadProperties;
-    currentLead.contacts = contacts[0];
     currentLead.events = events[0];
     currentLead.notes = notes;
     currentLead.quotes = quotes;
@@ -116,7 +115,7 @@ export class LeadsService {
     currentLead.credit_total = data.data.credit_total;
     currentLead.cost_total = data.data.cost_total;
 
-    currentLead.contract = data.data.contract;
+    currentLead.contracts = data.data.contracts;
 
     return currentLead;
   }
@@ -180,7 +179,7 @@ export class LeadsService {
 
     formData.append('name', formObj.name);
     formData.append('client_signature', formObj.is_signed);
-    formData.append('recepients', formObj.recepients);
+    formData.append('recepients', formObj.recipient);
 
     return this.http.post(`/Lead/createContract/${leadId}`, formData).pipe(
       tap(() => {
