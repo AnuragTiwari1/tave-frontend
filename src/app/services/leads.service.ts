@@ -92,8 +92,7 @@ export class LeadsService {
   }
 
   setLead(data) {
-    console.log('setting the current lead to>>>>>>>', data);
-    this.currentLead = data;
+    this.currentLead = data.data;
   }
 
   setActiveTab(index: number) {
