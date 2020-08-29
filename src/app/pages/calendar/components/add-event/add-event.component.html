@@ -1,9 +1,7 @@
 <div class="container-fluid px-0">
   <div class="row mt-4 font-oxygen">
     <div>
-      <p class="h3 mx-3">
-        Add New Event
-      </p>
+      <p class="h3 mx-3">Add New Event</p>
     </div>
   </div>
   <div class="card mt-4 rounded-3">
@@ -74,7 +72,7 @@
               <label class="required" for="date">Starts at</label>
               <div class="input-group input-group mb-3">
                 <input
-                  [owlDateTime]="startDateTime"
+                  type="date"
                   class="form-control"
                   formControlName="startDate"
                 />
@@ -99,8 +97,8 @@
               <label class="required" for="date">Ends on</label>
               <div class="input-group input-group mb-3">
                 <input
-                  [owlDateTime]="endDateTime"
                   class="form-control"
+                  type="date"
                   formControlName="endDate"
                 />
                 <div class="input-group-append">
