@@ -48,6 +48,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { JobsComponent } from './pages/jobs/jobs.component';
 import { ListingComponent as JobsListingComponent } from './pages/jobs/components/listing/listing.component';
 import { JobsCreateComponent } from './pages/jobs/components/jobs-create/jobs-create.component';
+import { CreateComponent as CreateLeadComponent } from './pages/jobs/components/leads/create/create.component';
 
 @NgModule({
   declarations: [
@@ -84,6 +85,7 @@ import { JobsCreateComponent } from './pages/jobs/components/jobs-create/jobs-cr
     JobsComponent,
     JobsListingComponent,
     JobsCreateComponent,
+    CreateLeadComponent,
   ],
   imports: [
     BrowserModule,
@@ -143,6 +145,10 @@ import { JobsCreateComponent } from './pages/jobs/components/jobs-create/jobs-cr
               {
                 path: '',
                 component: LeadMainComponent,
+              },
+              {
+                path: 'create',
+                component: CreateLeadComponent,
               },
             ],
           },

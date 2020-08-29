@@ -90,6 +90,19 @@ export class DashboardComponent implements OnInit {
       ],
     },
     {
+      name: 'Leads',
+      identifier: 'leads',
+      route: 'leads/create',
+      iconClass: 'fa fa-industry',
+      submenu: [
+        {
+          name: 'New Leads',
+          route: 'leads/create',
+          identifier: '',
+        },
+      ],
+    },
+    {
       name: 'Jobs',
       identifier: 'jobs',
       route: 'jobs',
@@ -107,6 +120,7 @@ export class DashboardComponent implements OnInit {
         },
       ],
     },
+
     {
       name: 'Quotes and Orders',
       identifier: 'qao',
