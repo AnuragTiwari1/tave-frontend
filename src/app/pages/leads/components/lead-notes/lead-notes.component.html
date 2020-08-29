@@ -19,18 +19,12 @@
           </div>
           <div
             class="col-12 p-3 my-3 bg-light rounded"
-            *ngFor="let note of notesList"
+            *ngFor="let note of this.leadServices?.currentLead?.notes"
           >
             <div class="row">
-              <div class="col-3">9/9/2020</div>
-              <div class="col-6">
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                Reiciendis libero rerum laudantium totam, necessitatibus
-                aspernatur obcaecati. Sequi odio aperiam error illo nesciunt
-                corporis accusamus praesentium quae magnam, facere deserunt
-                nihil!
-              </div>
-              <div class="col-3">Primary</div>
+              <div class="col-3">{{ note.date }}</div>
+              <div class="col-6">{{ note.notes }}</div>
+              <div class="col-3">{{ note.note_type }}</div>
             </div>
           </div>
         </div>

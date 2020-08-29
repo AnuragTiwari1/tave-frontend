@@ -11,7 +11,7 @@ export class LeadQuotesAndOrdersComponent implements OnInit {
   quotesFormSubmitAttempt: boolean;
   orderFormSubmitAttempt: boolean;
 
-  quotes = [[], [], [], [], [], [], [], [], [], []];
+  quotes = [];
   closeResult = '';
   orders = [[], [], [], [], []];
 
@@ -40,7 +40,9 @@ export class LeadQuotesAndOrdersComponent implements OnInit {
     private modalService: NgbModal
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.quotes = this.leadServices.currentLead.quotes;
+  }
 
   open(content) {
     this.modalService

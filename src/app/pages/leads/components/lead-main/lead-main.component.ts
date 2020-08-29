@@ -17,7 +17,7 @@ export class LeadMainComponent {
     this.route.queryParams.subscribe((params) => {
       this.id = params.id;
 
-      this.leadServices.getLeadByID(this.id).subscribe();
+      this.leadServices.setLeadId(this.id);
     });
   }
 }

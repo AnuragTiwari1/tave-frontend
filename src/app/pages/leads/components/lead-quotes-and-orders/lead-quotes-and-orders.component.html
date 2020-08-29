@@ -24,22 +24,22 @@
       <tbody id="event-body">
         <tr *ngFor="let quote of quotes">
           <td>
-            <p class="mb-0">Type 1</p>
+            <p class="mb-0">Primary</p>
           </td>
           <td>
-            <p class="mb-0">Akheel Wedding Photography</p>
+            <p class="mb-0">{{ quote.name }}</p>
           </td>
           <td>
-            <p class="mb-0">$580</p>
+            <p class="mb-0">${{ quote.nettotal }}</p>
           </td>
           <td>
-            <p class="mb-0">2 Months Ago</p>
+            <p class="mb-0">few moment ago</p>
           </td>
           <td>
             <p class="mb-0">0</p>
           </td>
           <td>
-            <p class="mb-0">02/03/2020</p>
+            <p class="mb-0">{{ quote.expiration }}</p>
           </td>
           <td class="icon-container">
             <p class="mb-0">

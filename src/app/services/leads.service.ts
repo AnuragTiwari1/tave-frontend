@@ -88,11 +88,32 @@ export class LeadsService {
     this.currentId = id;
     return this.http
       .get<{ data: any }>(`/Lead/viewLeadDetail/${id}`)
-      .pipe(tap(this.setLead));
+      .pipe(tap((data) => this.setLead(data)));
+  }
+
+  getCleanApiData(data) {
+    const leadData = data.data.result;
+
+    const notes = data.data.notes;
+    const quotes = data.data.quotes;
+    const orders = data.data.orders;
+
+    const { contacts, events, ...leadProperties } = leadData;
+
+    const currentLead = leadProperties;
+    currentLead.contacts = contacts[0];
+    currentLead.events = events[0];
+    currentLead.notes = notes;
+    currentLead.quotes = quotes;
+    currentLead.orders = orders;
+
+    return currentLead;
   }
 
   setLead(data) {
-    this.currentLead = data.data;
+    this.currentLead = this.getCleanApiData(data);
+
+    return this.currentLead;
   }
 
   setActiveTab(index: number) {
@@ -101,7 +122,9 @@ export class LeadsService {
 
   addNote(leadId, formObj) {
     const formData = new FormData();
-    return this.http.post('/Lead/addNote', formData);
+    formData.append('note_type', formObj.type);
+    formData.append('notes', formObj.note);
+    return this.http.post(`/Lead/createNote/${leadId}`, formData);
   }
 
   addContact(leadId, formObj) {
@@ -111,11 +134,22 @@ export class LeadsService {
 
   addQuotes(leadId, formObj) {
     const formData = new FormData();
-    return this.http.post('/Lead/addQuotes', formData);
+
+    formData.append('name', formObj.name);
+    formData.append('quote_type', formObj.type);
+    formData.append('nettotal', formObj.price);
+    formData.append('expiration', formObj.expiration);
+
+    return this.http.post(`/Lead/createQuote/${leadId}`, formData);
   }
 
   addOrders(leadId, formObj) {
     const formData = new FormData();
     return this.http.post('/Lead/addOrders', formData);
+  }
+
+  setLeadId(leadId) {
+    console.log('the id>>>>>>>>>.', leadId);
+    this.currentId = leadId;
   }
 }

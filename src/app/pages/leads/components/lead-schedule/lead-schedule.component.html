@@ -1,7 +1,5 @@
 <div class="card font-oxygen">
-  <div class="card-header">
-    Schedule
-  </div>
+  <div class="card-header">Schedule</div>
   <div class="card-body">
     <table class="table table-borderless border mt-3">
       <tbody>
@@ -62,15 +60,18 @@
           </th>
           <td>
             <div>
-              <p class="h4 mb-0 line-height-1 font-weight-normal">JUL 26</p>
-              <small class="mb-0 line-height-1">Sunday 2020</small>
+              <p class="h4 mb-0 line-height-1 font-weight-normal">
+                {{ this.leadsServices?.currentLead?.events?.from_data }}
+              </p>
+              <small class="mb-0 line-height-1">{{ "00:00:00" }}</small>
             </div>
           </td>
           <td>
             <p>All Day</p>
           </td>
           <td>
-            Wedding Ceremony <span class="badge badge-bg float-right">New</span>
+            Wedding Photography
+            <span class="badge badge-bg float-right">New</span>
           </td>
         </tr>
         <tr>
@@ -138,7 +139,8 @@
             <p>All Day</p>
           </td>
           <td>
-            Wedding Ceremony <span class="badge badge-bg float-right">Tentative</span>
+            Wedding Ceremony
+            <span class="badge badge-bg float-right">Tentative</span>
           </td>
         </tr>
       </tbody>

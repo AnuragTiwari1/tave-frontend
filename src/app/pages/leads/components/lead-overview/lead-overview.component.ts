@@ -35,12 +35,20 @@ export class LeadOverviewComponent implements OnInit {
     address: new FormControl('', [Validators.required]),
   });
 
+  leadDetails: any;
+
   constructor(
     public leadServices: LeadsService,
     private modalService: NgbModal
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.leadServices
+      .getLeadByID(this.leadServices.currentId)
+      .subscribe((data) => {
+        this.leadDetails = this.leadServices.currentLead;
+      });
+  }
 
   open(content) {
     this.modalService
@@ -92,5 +100,9 @@ export class LeadOverviewComponent implements OnInit {
           this.contactSubmitAttempt = false;
         });
     }
+  }
+
+  log(p) {
+    console.log(p);
   }
 }
