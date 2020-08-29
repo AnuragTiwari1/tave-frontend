@@ -94,7 +94,7 @@ export class LeadOverviewComponent implements OnInit {
     const val = this.contactForm.value;
     if (this.contactForm.valid) {
       this.leadServices
-        .addContact(this.leadServices.currentId, val)
+        .addContract(this.leadServices.currentId, val)
         .subscribe(() => {
           this.modalService.dismissAll();
           this.contactSubmitAttempt = false;

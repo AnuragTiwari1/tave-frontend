@@ -3,7 +3,7 @@ import { AccountsService } from './accounts.service';
 import { HttpClient } from '@angular/common/http';
 import { IGMailMessages, IMail } from '../interfaces/Mails';
 import { tap, elementAt } from 'rxjs/operators';
-import {messages} from '../mock/mails.json'
+import { messages } from '../mock/mails.json';
 @Injectable({
   providedIn: 'root',
 })
@@ -20,9 +20,8 @@ export class MailService {
     //   )
     //   .pipe(tap(this.parseMails));
 
-    const parsedMessage=this.parseMails({messages})
+    const parsedMessage = this.parseMails({ messages });
 
-    console.log('the messages>>>>>>>>',parsedMessage)
     return parsedMessage;
   }
 
@@ -40,10 +39,9 @@ export class MailService {
         } else if (element.name === 'Date') {
           mailObj.when = element.value;
         }
-
       });
 
-     mailObj.shortMessage=e.msg.snippet;
+      mailObj.shortMessage = e.msg.snippet;
 
       return mailObj;
     }) as IMail[];

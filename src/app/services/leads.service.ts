@@ -97,6 +97,8 @@ export class LeadsService {
     const notes = data.data.notes;
     const quotes = data.data.quotes;
     const orders = data.data.orders;
+    const ledger = data.data.ledger;
+    const acc_payable = data.data.acc_payable;
 
     const { contacts, events, ...leadProperties } = leadData;
 
@@ -106,6 +108,15 @@ export class LeadsService {
     currentLead.notes = notes;
     currentLead.quotes = quotes;
     currentLead.orders = orders;
+    currentLead.ledger = ledger;
+    currentLead.acc_payable = acc_payable;
+
+    currentLead.profit_total = data.data.profit_total;
+    currentLead.invoiced_total = data.data.invoiced_total;
+    currentLead.credit_total = data.data.credit_total;
+    currentLead.cost_total = data.data.cost_total;
+
+    currentLead.contract = data.data.contract;
 
     return currentLead;
   }
@@ -125,15 +136,6 @@ export class LeadsService {
     formData.append('note_type', formObj.type);
     formData.append('notes', formObj.note);
     return this.http.post(`/Lead/createNote/${leadId}`, formData).pipe(
-      tap(() => {
-        window.location.reload();
-      })
-    );
-  }
-
-  addContact(leadId, formObj) {
-    const formData = new FormData();
-    return this.http.post('/Lead/addContact', formData).pipe(
       tap(() => {
         window.location.reload();
       })
@@ -171,6 +173,60 @@ export class LeadsService {
         window.location.reload();
       })
     );
+  }
+
+  addContract(leadId, formObj) {
+    const formData = new FormData();
+
+    formData.append('name', formObj.name);
+    formData.append('client_signature', formObj.is_signed);
+    formData.append('recepients', formObj.recepients);
+
+    return this.http.post(`/Lead/createContract/${leadId}`, formData).pipe(
+      tap(() => {
+        window.location.reload();
+      })
+    );
+  }
+
+  addLedger(leadId, formObj) {
+    const formData = new FormData();
+
+    formData.append('date', formObj.date);
+    formData.append('kind', formObj.kind);
+    formData.append('status', formObj.status);
+    formData.append('who_meme', formObj.who_meme);
+    formData.append('applies_to', formObj.applies_to);
+    formData.append('credit', formObj.credit);
+    formData.append('cost', formObj.cost);
+    formData.append('revenue', formObj.revenue);
+
+    return this.http
+      .post(`/Lead/createFinanceNewCreditLedger/${leadId}`, formData)
+      .pipe(
+        tap(() => {
+          window.location.reload();
+        })
+      );
+  }
+
+  addAccountPayable(leadId, formObj) {
+    const formData = new FormData();
+
+    formData.append('date', formObj.date);
+    formData.append('category', formObj.category);
+    formData.append('status', formObj.status);
+    formData.append('payee_name', formObj.payee_name);
+    formData.append('applies_to', formObj.applies_to);
+    formData.append('credit', formObj.credit);
+
+    return this.http
+      .post(`/Lead/createFinanceNewCreditAccPayable/${leadId}`, formData)
+      .pipe(
+        tap(() => {
+          window.location.reload();
+        })
+      );
   }
 
   setLeadId(leadId) {

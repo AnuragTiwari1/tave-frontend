@@ -11,34 +11,6 @@ export interface IContract {
   isSigned: boolean;
 }
 
-const ELEMENT_DATA: IContract[] = [
-  {
-    name: 'Licence for right',
-    recipients: 'Jhon Smit',
-    isSigned: true,
-  },
-  {
-    name: 'Licence for right',
-    recipients: 'Jhon Smit',
-    isSigned: true,
-  },
-  {
-    name: 'Licence for right',
-    recipients: 'Jhon Smit',
-    isSigned: true,
-  },
-  {
-    name: 'Licence for right',
-    recipients: 'Jhon Smit',
-    isSigned: true,
-  },
-  {
-    name: 'Licence for right',
-    recipients: 'Jhon Smit',
-    isSigned: true,
-  },
-];
-
 @Component({
   selector: 'app-lead-contracts',
   templateUrl: './lead-contracts.component.html',
@@ -50,6 +22,8 @@ export class LeadContractsComponent implements OnInit {
 
   contractForm = new FormGroup({
     name: new FormControl('', [Validators.required]),
+    recipient: new FormControl('', [Validators.required]),
+    is_signed: new FormControl('', [Validators.required]),
   });
 
   displayedColumns: string[] = [
@@ -59,13 +33,13 @@ export class LeadContractsComponent implements OnInit {
     'weight',
     'symbol',
   ];
-  dataSource = new MatTableDataSource<IContract>(ELEMENT_DATA);
+  dataSource = new MatTableDataSource<IContract>();
   selection = new SelectionModel<IContract>(true, []);
 
   /** Whether the number of selected elements matches the total number of rows. */
   isAllSelected() {
     const numSelected = this.selection.selected.length;
-    const numRows = this.dataSource.data.length;
+    const numRows = this.dataSource?.data?.length;
     return numSelected === numRows;
   }
 
@@ -89,7 +63,9 @@ export class LeadContractsComponent implements OnInit {
   constructor(
     public leadServices: LeadsService,
     private modalService: NgbModal
-  ) {}
+  ) {
+    this.dataSource = this.leadServices?.currentLead?.contracts || [];
+  }
 
   open(content) {
     this.modalService
@@ -116,5 +92,9 @@ export class LeadContractsComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  onContractSubmit() {}
+  onContractSubmit() {
+    const val = this.contractForm.value;
+
+    this.leadServices.addContract(this.leadServices.currentId, val).subscribe();
+  }
 }

@@ -38,9 +38,30 @@
       <div class="card-header">
         Ledger
         <div class="card-button-container float-right">
-          <button class="btn btn-outline-primary mx-1">New Credit</button>
-          <button class="btn btn-outline-primary mx-1">Record Expense</button>
-          <button class="btn btn-primary ml-1">Record Payment</button>
+          <button
+            class="btn btn-outline-primary mx-1"
+            (click)="open(addLedger)"
+          >
+            New Credit
+          </button>
+          <button
+            [ngClass]="{
+              'btn mx-1': true,
+              'btn-outline-primary': !this.showExpanse,
+              'btn-primary': this.showExpanse
+            }"
+          >
+            Record Expense
+          </button>
+          <button
+            [ngClass]="{
+              'btn ml-1': true,
+              'btn-outline-primary': this.showExpanse,
+              'btn-primary': !this.showExpanse
+            }"
+          >
+            Record Payment
+          </button>
         </div>
       </div>
       <div class="card-body">
@@ -113,7 +134,12 @@
       <div class="card-header">
         Account Payable
         <div class="card-button-container float-right">
-          <button class="btn btn-outline-primary mx-1">New Credit</button>
+          <button
+            class="btn btn-outline-primary mx-1"
+            (click)="open(addAccountPayable)"
+          >
+            New Credit
+          </button>
           <button class="btn btn-outline-primary mx-1">Record Expense</button>
           <button class="btn btn-primary ml-1">Record Payment</button>
         </div>
@@ -131,7 +157,7 @@
               <th>Payee/Meme</th>
               <th>Applies to</th>
               <th>Credit</th>
-              <th></th>
+              <!-- <th></th> -->
             </tr>
           </thead>
           <tbody id="event-body">
@@ -155,7 +181,7 @@
               <td class="w-10">
                 <p class="mb-0">$578</p>
               </td>
-              <td class="w-10">
+              <!-- <td class="w-10">
                 <div ngbDropdown class="d-inline-block">
                   <button
                     class="btn btn-outline-primary"
@@ -169,7 +195,7 @@
                     <button ngbDropdownItem>Remind</button>
                   </div>
                 </div>
-              </td>
+              </td> -->
             </tr>
           </tbody>
         </table>
@@ -190,4 +216,151 @@
       </table>
     </div>
   </div>
+
+  <ng-template #addLedger let-modal>
+    <form [formGroup]="ledgerForm" (ngSubmit)="onLedgerSubmit()">
+      <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Add Ledger</h4>
+        <button
+          type="button"
+          class="close"
+          aria-label="Close"
+          (click)="modal.dismiss('Cross click')"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="Note type">Date</label>
+          <div class="form-group">
+            <input type="date" formControlName="date" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="Note type">Kind</label>
+          <div class="form-group">
+            <input type="text" formControlName="kind" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="Note type">Status</label>
+          <div class="form-group">
+            <select class="custom-select" formControlName="status">
+              <option value="Credited">Credited</option>
+              <option value="Debited">Debited</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="Note type">Who/Meme</label>
+          <div class="form-group">
+            <input type="text" formControlName="who_meme" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="Enter Note">Applies to</label>
+          <div class="form-group">
+            <input type="text" formControlName="applies_to" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="Enter Note">Credit</label>
+          <div class="form-group">
+            <input type="text" formControlName="credit" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="Enter Note">Cost</label>
+          <div class="form-group">
+            <input type="text" formControlName="cost" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="Enter Note">Revenue</label>
+          <div class="form-group">
+            <input type="text" formControlName="revenue" />
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-outline-dark">Save</button>
+      </div>
+    </form>
+  </ng-template>
+
+  <ng-template #addAccountPayable let-modal>
+    <form
+      [formGroup]="accountPayableForm"
+      (ngSubmit)="onAccountPayableSubmit()"
+    >
+      <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Add Ledger</h4>
+        <button
+          type="button"
+          class="close"
+          aria-label="Close"
+          (click)="modal.dismiss('Cross click')"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="Note type">Date</label>
+          <div class="form-group">
+            <input type="date" formControlName="date" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="Note type">Category</label>
+          <div class="form-group">
+            <input type="text" formControlName="category" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="Note type">Status</label>
+          <div class="form-group">
+            <select class="custom-select" formControlName="status">
+              <option value="Credited">Credited</option>
+              <option value="Debited">Debited</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="Note type">Payee Name</label>
+          <div class="form-group">
+            <input type="text" formControlName="payee_name" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="Enter Note">Applies to</label>
+          <div class="form-group">
+            <input type="text" formControlName="applies_to" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="Enter Note">Credit</label>
+          <div class="form-group">
+            <input type="text" formControlName="credit" />
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-outline-dark">Save</button>
+      </div>
+    </form>
+  </ng-template>
 </div>

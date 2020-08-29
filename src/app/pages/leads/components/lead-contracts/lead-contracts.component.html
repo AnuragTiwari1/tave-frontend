@@ -151,7 +151,7 @@
   <ng-template #addContract let-modal>
     <form [formGroup]="contractForm" (ngSubmit)="onContractSubmit()">
       <div class="modal-header">
-        <h4 class="modal-title" id="modal-basic-title">Add New Note</h4>
+        <h4 class="modal-title" id="modal-basic-title">Add New Contract</h4>
         <button
           type="button"
           class="close"
@@ -163,20 +163,28 @@
       </div>
       <div class="modal-body">
         <div class="form-group">
-          <label for="Note type">Note Type</label>
-          <select class="form-control" formControlName="type">
-            <option value="Primary">Primary</option>
+          <label for="Note type">Contract Name</label>
+          <select class="form-control" formControlName="name">
+            <option value="Licencees for Right">Licencees for Right</option>
           </select>
         </div>
         <div class="form-group">
-          <label for="Enter Note">Enter Note</label>
+          <label for="Enter Note">Recipient name</label>
           <div class="input-group">
-            <textarea
+            <input
+              type="text"
               class="form-control"
-              rows="5"
-              id="comment"
-              formControlName="note"
-            ></textarea>
+              formControlName="recipient"
+            />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="Enter Note">Signed</label>
+          <div class="input-group">
+            <select class="form-control" formControlName="is_signed">
+              <option value="1">Signed</option>
+              <option value="0">Not Signed</option>
+            </select>
           </div>
         </div>
       </div>
