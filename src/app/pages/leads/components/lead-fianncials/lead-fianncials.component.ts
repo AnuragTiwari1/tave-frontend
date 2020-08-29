@@ -10,7 +10,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class LeadFianncialsComponent implements OnInit {
   quotes = [];
-  payable = [];
+  payables = [];
   showExpanse = false;
   closeResult = '';
 
@@ -39,7 +39,7 @@ export class LeadFianncialsComponent implements OnInit {
     private modalService: NgbModal
   ) {
     this.quotes = this.getFilterArray();
-    this.payable = this.getFilterArrayPayable();
+    this.payables = this.getFilterArrayPayable();
   }
 
   getFilterArrayPayable() {
