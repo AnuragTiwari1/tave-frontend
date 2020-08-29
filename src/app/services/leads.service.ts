@@ -145,7 +145,16 @@ export class LeadsService {
 
   addOrders(leadId, formObj) {
     const formData = new FormData();
-    return this.http.post('/Lead/addOrders', formData);
+    formData.append('status', 'Paid');
+    formData.append('name', formObj.name);
+    formData.append('sold_to', formObj.soldTo);
+    formData.append('sold_on', formObj.soldOn);
+    formData.append('next_invoice', formObj.nextInvoice);
+    formData.append('due_by', formObj.dueBy);
+    formData.append('balance', formObj.balance);
+    formData.append('order_total', formObj.orderTotal);
+
+    return this.http.post(`/Lead/createOrder/${leadId}`, formData);
   }
 
   setLeadId(leadId) {

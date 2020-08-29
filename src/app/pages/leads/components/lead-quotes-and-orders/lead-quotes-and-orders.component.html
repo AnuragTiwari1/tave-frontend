@@ -155,28 +155,28 @@
       <tbody id="event-body">
         <tr *ngFor="let order of orders">
           <td>
-            <p class="mb-0">Paid</p>
+            <p class="mb-0">{{ order.status }}</p>
           </td>
           <td>
-            <p class="mb-0">Wedding Photography</p>
+            <p class="mb-0">{{ order.name }}</p>
           </td>
           <td>
-            <p class="mb-0">A1</p>
+            <p class="mb-0">{{ order.sold_to }}</p>
           </td>
           <td>
-            <p class="mb-0">A2</p>
+            <p class="mb-0">{{ order.sold_on }}</p>
           </td>
           <td>
-            <p class="mb-0">10000.00</p>
+            <p class="mb-0">{{ order.next_invoice }}</p>
           </td>
           <td>
-            <p class="mb-0">02/03/2020</p>
+            <p class="mb-0">{{ order.due_by }}</p>
           </td>
           <td>
-            <p class="mb-0">$800</p>
+            <p class="mb-0">{{ order.balance }}</p>
           </td>
           <td>
-            <p class="mb-0">$10000</p>
+            <p class="mb-0">{{ order.order_total }}</p>
           </td>
         </tr>
       </tbody>

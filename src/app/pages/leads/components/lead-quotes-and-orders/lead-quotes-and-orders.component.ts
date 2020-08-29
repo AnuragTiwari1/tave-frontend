@@ -13,7 +13,7 @@ export class LeadQuotesAndOrdersComponent implements OnInit {
 
   quotes = [];
   closeResult = '';
-  orders = [[], [], [], [], []];
+  orders = [];
 
   quotesForm = new FormGroup({
     type: new FormControl('', [Validators.required]),
@@ -42,6 +42,7 @@ export class LeadQuotesAndOrdersComponent implements OnInit {
 
   ngOnInit(): void {
     this.quotes = this.leadServices.currentLead.quotes;
+    this.orders = this.leadServices.currentLead.orders;
   }
 
   open(content) {
@@ -85,13 +86,11 @@ export class LeadQuotesAndOrdersComponent implements OnInit {
     this.orderFormSubmitAttempt = true;
     const val = this.orderForm.value;
 
-    if (this.orderForm.valid) {
-      this.leadServices
-        .addOrders(this.leadServices.currentId, val)
-        .subscribe(() => {
-          this.modalService.dismissAll();
-          this.orderFormSubmitAttempt = false;
-        });
-    }
+    this.leadServices
+      .addOrders(this.leadServices.currentId, val)
+      .subscribe(() => {
+        this.modalService.dismissAll();
+        this.orderFormSubmitAttempt = false;
+      });
   }
 }
