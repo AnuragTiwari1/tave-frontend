@@ -128,7 +128,7 @@ export class DashboardComponent implements OnInit {
       iconClass: 'fa fa-file-text-o',
       submenu: [
         {
-          name: 'Quotes and Orders',
+          name: 'Select Job',
           route: 'qao',
           identifier: '',
         },
