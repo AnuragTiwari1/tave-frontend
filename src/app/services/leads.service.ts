@@ -136,7 +136,13 @@ export class LeadsService {
     formData.append('notes', formObj.note);
     return this.http.post(`/Lead/createNote/${leadId}`, formData).pipe(
       tap(() => {
-        window.location.reload();
+        this.currentLead.notes = [
+          ...this.currentLead.notes,
+          {
+            note_type: formObj.type,
+            notes: formObj.note,
+          },
+        ];
       })
     );
   }
@@ -151,7 +157,15 @@ export class LeadsService {
 
     return this.http.post(`/Lead/createQuote/${leadId}`, formData).pipe(
       tap(() => {
-        window.location.reload();
+        this.currentLead.quotes = [
+          ...this.currentLead.quotes,
+          {
+            name: formObj.name,
+            quote_type: formObj.type,
+            nettotal: formObj.price,
+            expiration: formObj.expiration,
+          },
+        ];
       })
     );
   }
@@ -169,7 +183,19 @@ export class LeadsService {
 
     return this.http.post(`/Lead/createOrder/${leadId}`, formData).pipe(
       tap(() => {
-        window.location.reload();
+        this.currentLead.orders = [
+          ...this.currentLead.orders,
+          {
+            status: 'Paid',
+            name: formObj.name,
+            sold_to: formObj.soldTo,
+            sold_on: formObj.soldOn,
+            next_invoice: formObj.nextInvoice,
+            due_by: formObj.dueBy,
+            balance: formObj.balance,
+            order_total: formObj.orderTotal,
+          },
+        ];
       })
     );
   }
@@ -183,7 +209,14 @@ export class LeadsService {
 
     return this.http.post(`/Lead/createContract/${leadId}`, formData).pipe(
       tap(() => {
-        window.location.reload();
+        this.currentLead.contracts = [
+          ...this.currentLead.contracts,
+          {
+            name: formObj.name,
+            client_signature: formObj.is_signed,
+            recepients: formObj.recipient,
+          },
+        ];
       })
     );
   }
@@ -204,7 +237,19 @@ export class LeadsService {
       .post(`/Lead/createFinanceNewCreditLedger/${leadId}`, formData)
       .pipe(
         tap(() => {
-          window.location.reload();
+          this.currentLead.ledger = [
+            ...this.currentLead.ledger,
+            {
+              date: formObj.date,
+              kind: formObj.kind,
+              status: formObj.status,
+              who_meme: formObj.who_meme,
+              applies_to: formObj.applies_to,
+              credit: formObj.credit,
+              cost: formObj.cost,
+              revenue: formObj.revenue,
+            },
+          ];
         })
       );
   }
@@ -224,6 +269,45 @@ export class LeadsService {
       .pipe(
         tap(() => {
           window.location.reload();
+        })
+      );
+  }
+
+  editQuotes(id, formObj) {
+    const formData = new FormData();
+
+    formData.append('name', formObj.name);
+    formData.append('quote_type', formObj.type);
+    formData.append('nettotal', formObj.price);
+    formData.append('expiration', formObj.expiration);
+
+    return this.http
+      .post(`/Lead/editQuote/${this.currentId}/${id}`, formData)
+      .pipe(
+        tap(() => {
+          window.location.reload();
+        })
+      );
+  }
+
+  editNote(id, formObj) {
+    const formData = new FormData();
+    formData.append('note_type', formObj.type);
+    formData.append('notes', formObj.note);
+    return this.http
+      .post(`/Lead/editNote/${this.currentId}/${id}`, formData)
+      .pipe(
+        tap(() => {
+          tap(() => {
+            const arr: [any] = this.currentLead.notes;
+            const arrIndex = arr.findIndex((e) => e.id === id);
+            if (arrIndex !== -1) {
+              this.currentLead.notes[arrIndex] = {
+                note_type: formObj.type,
+                notes: formObj.note,
+              };
+            }
+          });
         })
       );
   }

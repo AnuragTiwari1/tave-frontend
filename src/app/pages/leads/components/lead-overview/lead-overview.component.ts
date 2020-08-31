@@ -22,6 +22,7 @@ export class LeadOverviewComponent implements OnInit {
   closeResult = '';
   noteFormSubmitAttempt: boolean;
   contactSubmitAttempt: boolean;
+  editNoteId: any;
 
   notesForm = new FormGroup({
     note: new FormControl('', [Validators.required]),
@@ -79,12 +80,21 @@ export class LeadOverviewComponent implements OnInit {
     const val = this.notesForm.value;
 
     if (this.notesForm.valid) {
-      this.leadServices
-        .addNote(this.leadServices.currentId, val)
-        .subscribe(() => {
+      if (this.editNoteId) {
+        this.leadServices.editNote(this.editNoteId, val).subscribe(() => {
           this.modalService.dismissAll();
           this.noteFormSubmitAttempt = false;
+          this.editNoteId = null;
         });
+      } else {
+        this.leadServices
+          .addNote(this.leadServices.currentId, val)
+          .subscribe(() => {
+            this.modalService.dismissAll();
+            this.noteFormSubmitAttempt = false;
+            this.editNoteId = null;
+          });
+      }
     }
   }
 
@@ -104,5 +114,11 @@ export class LeadOverviewComponent implements OnInit {
 
   log(p) {
     console.log(p);
+  }
+
+  handleNoteEditClick(note, content) {
+    this.editNoteId = note.id;
+    this.notesForm.reset({ note: note.notes, type: note.note_type });
+    this.open(content);
   }
 }

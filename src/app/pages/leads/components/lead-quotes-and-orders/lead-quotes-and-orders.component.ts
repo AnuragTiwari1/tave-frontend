@@ -10,6 +10,7 @@ import { LeadsService } from 'src/app/services/leads.service';
 export class LeadQuotesAndOrdersComponent implements OnInit {
   quotesFormSubmitAttempt: boolean;
   orderFormSubmitAttempt: boolean;
+  editQuoteId: any;
 
   quotes = [];
   closeResult = '';
@@ -73,12 +74,20 @@ export class LeadQuotesAndOrdersComponent implements OnInit {
     const val = this.quotesForm.value;
 
     if (this.quotesForm.valid) {
-      this.leadServices
-        .addQuotes(this.leadServices.currentId, val)
-        .subscribe(() => {
+      if (this.editQuoteId) {
+        this.leadServices.editQuotes(this.editQuoteId, val).subscribe(() => {
           this.modalService.dismissAll();
           this.quotesFormSubmitAttempt = false;
+          this.editQuoteId
         });
+      } else {
+        this.leadServices
+          .addQuotes(this.leadServices.currentId, val)
+          .subscribe(() => {
+            this.modalService.dismissAll();
+            this.quotesFormSubmitAttempt = false;
+          });
+      }
     }
   }
 
@@ -92,5 +101,18 @@ export class LeadQuotesAndOrdersComponent implements OnInit {
         this.modalService.dismissAll();
         this.orderFormSubmitAttempt = false;
       });
+  }
+
+  handleQuoteEditClick(quote, content) {
+    this.editQuoteId = quote.id;
+    this.quotesForm.reset({
+      type: quote.quote_type,
+      name: quote.name,
+      price: quote.nettotal,
+      lastViewed: '',
+      views: 0,
+      expiration: quote.expiration,
+    });
+    this.open(content);
   }
 }
