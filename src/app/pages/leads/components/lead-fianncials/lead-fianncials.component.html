@@ -82,7 +82,7 @@
             </tr>
           </thead>
           <tbody id="event-body">
-            <tr *ngFor="let quote of quotes">
+            <tr *ngFor="let quote of leadServices?.currentLead?.ledger">
               <td>
                 <p class="mb-0">{{ quote.date }}</p>
               </td>
@@ -161,7 +161,11 @@
             </tr>
           </thead>
           <tbody id="event-body">
-            <tr *ngFor="let payable of payables">
+            <tr
+              *ngFor="
+                let payable of leadServices?.currentLead?.acc_payable
+              "
+            >
               <td>
                 <p class="mb-0">{{ payable.date }}</p>
               </td>

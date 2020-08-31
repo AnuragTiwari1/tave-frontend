@@ -9,8 +9,6 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
   styleUrls: ['./lead-fianncials.component.scss'],
 })
 export class LeadFianncialsComponent implements OnInit {
-  quotes = [];
-  payables = [];
   showExpanse = false;
   closeResult = '';
 
@@ -37,34 +35,7 @@ export class LeadFianncialsComponent implements OnInit {
   constructor(
     public leadServices: LeadsService,
     private modalService: NgbModal
-  ) {
-    this.quotes = this.getFilterArray();
-    this.payables = this.getFilterArrayPayable();
-  }
-
-  getFilterArrayPayable() {
-    if (this.showExpanse) {
-      return (this.leadServices?.currentLead?.acc_payable || []).filter(
-        (e) => e.status === 'paid'
-      );
-    } else {
-      return (this.leadServices?.currentLead?.acc_payable || []).filter(
-        (e) => e.status !== 'paid'
-      );
-    }
-  }
-
-  getFilterArray() {
-    if (this.showExpanse) {
-      return (this.leadServices?.currentLead?.ledger || []).filter(
-        (e) => e.status === 'paid'
-      );
-    } else {
-      return (this.leadServices?.currentLead?.ledger || []).filter(
-        (e) => e.status !== 'paid'
-      );
-    }
-  }
+  ) {}
 
   open(content) {
     this.modalService
@@ -94,7 +65,10 @@ export class LeadFianncialsComponent implements OnInit {
   onLedgerSubmit() {
     this.leadServices
       .addLedger(this.leadServices.currentId, this.ledgerForm.value)
-      .subscribe();
+      .subscribe(() => {
+        this.modalService.dismissAll();
+        this.ledgerForm.reset({});
+      });
   }
 
   onAccountPayableSubmit() {
@@ -103,6 +77,9 @@ export class LeadFianncialsComponent implements OnInit {
         this.leadServices.currentId,
         this.accountPayableForm.value
       )
-      .subscribe();
+      .subscribe(() => {
+        this.modalService.dismissAll();
+        this.ledgerForm.reset({});
+      });
   }
 }

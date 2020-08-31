@@ -22,7 +22,7 @@
         </tr>
       </thead>
       <tbody id="event-body">
-        <tr *ngFor="let quote of quotes">
+        <tr *ngFor="let quote of this.leadServices?.currentLead?.quotes">
           <td>
             <p class="mb-0">Primary</p>
           </td>
@@ -153,7 +153,7 @@
         </tr>
       </thead>
       <tbody id="event-body">
-        <tr *ngFor="let order of orders">
+        <tr *ngFor="let order of this.leadServices?.currentLead?.orders">
           <td>
             <p class="mb-0">{{ order.status }}</p>
           </td>

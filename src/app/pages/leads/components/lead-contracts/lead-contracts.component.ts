@@ -65,7 +65,6 @@ export class LeadContractsComponent implements OnInit {
     private modalService: NgbModal
   ) {
     this.dataSource = this.leadServices?.currentLead?.contracts || [];
-    console.log('the dataSource>>>>>>>>>>>>>>', this.dataSource);
   }
 
   open(content) {
@@ -96,6 +95,10 @@ export class LeadContractsComponent implements OnInit {
   onContractSubmit() {
     const val = this.contractForm.value;
 
-    this.leadServices.addContract(this.leadServices.currentId, val).subscribe();
+    this.leadServices
+      .addContract(this.leadServices.currentId, val)
+      .subscribe(() => {
+        this.contractForm.reset({});
+      });
   }
 }

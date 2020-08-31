@@ -59,6 +59,7 @@ export class LeadNotesComponent implements OnInit {
           this.modalService.dismissAll();
           this.noteFormSubmitAttempt = false;
           this.editNoteId = null;
+          this.notesForm.reset({});
         });
       } else {
         this.leadServices
@@ -67,6 +68,7 @@ export class LeadNotesComponent implements OnInit {
             this.modalService.dismissAll();
             this.noteFormSubmitAttempt = false;
             this.editNoteId = null;
+            this.notesForm.reset({});
           });
       }
     }

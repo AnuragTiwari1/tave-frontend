@@ -12,9 +12,7 @@ export class LeadQuotesAndOrdersComponent implements OnInit {
   orderFormSubmitAttempt: boolean;
   editQuoteId: any;
 
-  quotes = [];
   closeResult = '';
-  orders = [];
 
   quotesForm = new FormGroup({
     type: new FormControl('', [Validators.required]),
@@ -41,10 +39,7 @@ export class LeadQuotesAndOrdersComponent implements OnInit {
     private modalService: NgbModal
   ) {}
 
-  ngOnInit(): void {
-    this.quotes = this.leadServices.currentLead.quotes;
-    this.orders = this.leadServices.currentLead.orders;
-  }
+  ngOnInit(): void {}
 
   open(content) {
     this.modalService
@@ -78,7 +73,8 @@ export class LeadQuotesAndOrdersComponent implements OnInit {
         this.leadServices.editQuotes(this.editQuoteId, val).subscribe(() => {
           this.modalService.dismissAll();
           this.quotesFormSubmitAttempt = false;
-          this.editQuoteId
+          this.editQuoteId;
+          this.quotesForm.reset({});
         });
       } else {
         this.leadServices
@@ -86,6 +82,7 @@ export class LeadQuotesAndOrdersComponent implements OnInit {
           .subscribe(() => {
             this.modalService.dismissAll();
             this.quotesFormSubmitAttempt = false;
+            this.quotesForm.reset({});
           });
       }
     }

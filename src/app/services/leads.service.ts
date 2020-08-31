@@ -268,7 +268,17 @@ export class LeadsService {
       .post(`/Lead/createFinanceNewCreditAccPayable/${leadId}`, formData)
       .pipe(
         tap(() => {
-          window.location.reload();
+          this.currentLead.acc_payable = [
+            ...this.currentLead.acc_payable,
+            {
+              date: formObj.date,
+              category: formObj.category,
+              status: formObj.status,
+              payee_name: formObj.payee_name,
+              applies_to: formObj.applies_to,
+              credit: formObj.credit,
+            },
+          ];
         })
       );
   }
@@ -285,15 +295,17 @@ export class LeadsService {
       .post(`/Lead/editQuote/${this.currentId}/${id}`, formData)
       .pipe(
         tap(() => {
-          const arr: [any] = this.currentLead.notes;
+          const arr: [any] = this.currentLead.quotes;
           const arrIndex = arr.findIndex((e) => e.id === id);
           if (arrIndex !== -1) {
-            this.currentLead.notes[arrIndex] = {
-              note_type: formObj.type,
-              notes: formObj.note,
+            this.currentLead.quotes[arrIndex] = {
+              name: formObj.name,
+              quote_type: formObj.type,
+              nettotal: formObj.price,
+              expiration: formObj.expiration,
             };
 
-            this.currentLead.notes = [...this.currentLead.notes];
+            this.currentLead.quotes = [...this.currentLead.quotes];
           }
         })
       );

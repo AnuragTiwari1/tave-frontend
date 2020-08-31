@@ -85,6 +85,7 @@ export class LeadOverviewComponent implements OnInit {
           this.modalService.dismissAll();
           this.noteFormSubmitAttempt = false;
           this.editNoteId = null;
+          this.notesForm.reset({});
         });
       } else {
         this.leadServices
@@ -93,6 +94,7 @@ export class LeadOverviewComponent implements OnInit {
             this.modalService.dismissAll();
             this.noteFormSubmitAttempt = false;
             this.editNoteId = null;
+            this.notesForm.reset({});
           });
       }
     }
@@ -108,6 +110,7 @@ export class LeadOverviewComponent implements OnInit {
         .subscribe(() => {
           this.modalService.dismissAll();
           this.contactSubmitAttempt = false;
+          this.contactForm.reset({});
         });
     }
   }
