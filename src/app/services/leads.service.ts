@@ -285,7 +285,16 @@ export class LeadsService {
       .post(`/Lead/editQuote/${this.currentId}/${id}`, formData)
       .pipe(
         tap(() => {
-          window.location.reload();
+          const arr: [any] = this.currentLead.notes;
+          const arrIndex = arr.findIndex((e) => e.id === id);
+          if (arrIndex !== -1) {
+            this.currentLead.notes[arrIndex] = {
+              note_type: formObj.type,
+              notes: formObj.note,
+            };
+
+            this.currentLead.notes = [...this.currentLead.notes];
+          }
         })
       );
   }
@@ -298,16 +307,17 @@ export class LeadsService {
       .post(`/Lead/editNote/${this.currentId}/${id}`, formData)
       .pipe(
         tap(() => {
-          tap(() => {
-            const arr: [any] = this.currentLead.notes;
-            const arrIndex = arr.findIndex((e) => e.id === id);
-            if (arrIndex !== -1) {
-              this.currentLead.notes[arrIndex] = {
-                note_type: formObj.type,
-                notes: formObj.note,
-              };
-            }
-          });
+          const arr: [any] = this.currentLead.notes;
+          const arrIndex = arr.findIndex((e) => e.id === id);
+          if (arrIndex !== -1) {
+            this.currentLead.notes[arrIndex] = {
+              ...this.currentLead.notes[arrIndex],
+              note_type: formObj.type,
+              notes: formObj.note,
+            };
+
+            this.currentLead.notes = [...this.currentLead.notes];
+          }
         })
       );
   }

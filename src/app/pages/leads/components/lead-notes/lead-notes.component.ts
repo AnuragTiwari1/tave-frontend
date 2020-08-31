@@ -9,7 +9,7 @@ import { LeadsService } from 'src/app/services/leads.service';
   styleUrls: ['./lead-notes.component.scss'],
 })
 export class LeadNotesComponent implements OnInit {
-  notesList = [{}, {}, {}, {}];
+  editNoteId: any;
   closeResult = '';
   noteFormSubmitAttempt: boolean;
 
@@ -54,12 +54,30 @@ export class LeadNotesComponent implements OnInit {
     const val = this.notesForm.value;
 
     if (this.notesForm.valid) {
-      this.leadServices
-        .addNote(this.leadServices.currentId, val)
-        .subscribe(() => {
+      if (this.editNoteId) {
+        this.leadServices.editNote(this.editNoteId, val).subscribe(() => {
           this.modalService.dismissAll();
           this.noteFormSubmitAttempt = false;
+          this.editNoteId = null;
         });
+      } else {
+        this.leadServices
+          .addNote(this.leadServices.currentId, val)
+          .subscribe(() => {
+            this.modalService.dismissAll();
+            this.noteFormSubmitAttempt = false;
+            this.editNoteId = null;
+          });
+      }
     }
+  }
+
+  handleNoteEditClick(note, content) {
+    this.editNoteId = note.id;
+    this.notesForm.reset({
+      note: note.notes,
+      type: note.note_type || 'Primary',
+    });
+    this.open(content);
   }
 }
